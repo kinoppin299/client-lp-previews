@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>EDオンライン薬診断 | 一般社団法人祥美会</title>
+  <style>
+    :root {
+      --ink: #111;
+      --paper: #fffaf0;
+      --red: #d91118;
+      --yellow: #ffd51f;
+      --green: #09a54a;
+      --line: #171717;
+      --muted: #5a5a5a;
+      --font-display: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --font-copy: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,.035) 1px, transparent 1px),
+        #eadfca;
+      background-size: 18px 18px;
+      color: var(--ink);
+      font-family: var(--font-copy);
+      line-height: 1.55;
+    }
+    main {
+      max-width: 440px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: var(--paper);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 18px 45px rgba(0,0,0,.26);
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .pr {
+      padding: 8px 12px;
+      background: #111;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .hero {
+      background: #000;
+      border-bottom: 6px solid var(--red);
+    }
+    .hero-copy {
+      padding: 14px 14px 16px;
+      background: #111;
+      color: #fff;
+    }
+    .flash {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      background: var(--yellow);
+      color: #000;
+      font-size: 15px;
+      font-weight: 900;
+      border: 2px solid #000;
+      transform: rotate(-1.5deg);
+      font-family: var(--font-display);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(31px, 8vw, 40px);
+      line-height: 1.05;
+      font-weight: 1000;
+      letter-spacing: 0;
+      font-family: var(--font-display);
+    }
+    .hero-copy strong {
+      color: var(--yellow);
+      text-shadow: 2px 2px 0 var(--red);
+    }
+    .lead {
+      margin: 12px 0 0;
+      font-size: 20px;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+    .cta {
+      display: block;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      margin: 14px 14px 0;
+      padding: 16px 14px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #13c95a, #07913f);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 22px;
+      line-height: 1.22;
+      font-weight: 1000;
+      font-family: var(--font-display);
+      border: 3px solid #07652e;
+      box-shadow: 0 5px 0 #064820, 0 12px 20px rgba(0,0,0,.18);
+      animation: ctaGlow 2.2s ease-in-out infinite;
+      transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: -40% -32%;
+      background: linear-gradient(110deg, transparent 32%, rgba(255,255,255,.38) 47%, transparent 62%);
+      transform: translateX(-72%) rotate(8deg);
+      animation: ctaShine 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .cta:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #064820, 0 8px 16px rgba(0,0,0,.18);
+    }
+    .cta.is-ready {
+      animation-duration: 1.55s;
+      filter: saturate(1.12);
+    }
+    .cta small {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #eaffef;
+    }
+    .shock {
+      padding: 18px 14px 8px;
+    }
+    .shock h2 {
+      margin: 0 0 10px;
+      font-size: 27px;
+      line-height: 1.24;
+      font-weight: 850;
+      font-family: var(--font-display);
+    }
+    .shock mark {
+      background: var(--yellow);
+      color: #000;
+      padding: 0 4px;
+    }
+    .shock p {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 520;
+      line-height: 1.72;
+    }
+    .question {
+      margin: 18px 10px 0;
+      border: 3px solid #111;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 5px 5px 0 rgba(0,0,0,.16);
+    }
+    .q-title {
+      padding: 12px 12px 10px;
+      background: #111;
+      color: #fff;
+      border-bottom: 5px solid var(--red);
+    }
+    .q-kicker {
+      display: inline-block;
+      margin-bottom: 4px;
+      padding: 2px 7px;
+      background: var(--red);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      font-family: var(--font-display);
+    }
+    .q-title h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 900;
+      font-family: var(--font-display);
+    }
+    .choices {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      background: #fff8df;
+    }
+    .choice {
+      min-height: 58px;
+      border: 3px solid #111;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      font-size: 21px;
+      font-weight: 760;
+      line-height: 1.3;
+      text-align: left;
+      padding: 12px 12px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #111;
+    }
+    .choice.is-selected {
+      background: var(--yellow);
+      border-color: var(--red);
+      color: #000;
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 #111;
+    }
+    .arrow {
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border-top: 2px solid rgba(0,0,0,.12);
+      color: var(--red);
+      font-size: 35px;
+      font-weight: 1000;
+      animation: bounce 1.05s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-3px); }
+      50% { transform: translateY(7px); }
+    }
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 5px 0 #064820, 0 12px 20px rgba(0,0,0,.18), 0 0 0 rgba(19,201,90,0); }
+      50% { box-shadow: 0 5px 0 #064820, 0 12px 20px rgba(0,0,0,.18), 0 0 18px rgba(19,201,90,.42); }
+    }
+    @keyframes ctaShine {
+      0% { transform: translateX(-72%) rotate(8deg); opacity: 0; }
+      18% { opacity: .9; }
+      44% { transform: translateX(72%) rotate(8deg); opacity: 0; }
+      100% { transform: translateX(72%) rotate(8deg); opacity: 0; }
+    }
+    .result {
+      margin: 20px 10px 0;
+      padding: 15px 13px;
+      border: 4px solid #111;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 5px 5px 0 var(--red);
+    }
+    .result h2 {
+      margin: 0 0 8px;
+      font-size: 29px;
+      line-height: 1.2;
+      font-weight: 850;
+      font-family: var(--font-display);
+    }
+    .result p {
+      margin: 8px 0 0;
+      font-size: 19px;
+      font-weight: 520;
+      line-height: 1.72;
+    }
+    .badges {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .badge {
+      padding: 9px 8px;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 760;
+      line-height: 1.35;
+    }
+    .offer {
+      margin-top: 20px;
+      padding-bottom: 18px;
+      background: #111;
+    }
+    .offer-text {
+      padding: 14px;
+      color: #fff;
+    }
+    .offer-text h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 850;
+      font-family: var(--font-display);
+      color: var(--yellow);
+    }
+    .offer-text p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 520;
+      line-height: 1.72;
+    }
+    .notes {
+      padding: 16px 14px 18px;
+      background: #fff;
+      color: #242424;
+    }
+    .notes h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .notes ul {
+      margin: 0;
+      padding-left: 1.1em;
+    }
+    .notes li {
+      margin: 7px 0;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .clinic-footer {
+      padding: 16px 14px 112px;
+      background: #f3f3f3;
+      color: #222;
+      border-top: 1px solid rgba(0,0,0,.14);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .clinic-footer h2 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .clinic-footer dl {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 6px 10px;
+      margin: 0;
+    }
+    .clinic-footer dt {
+      color: #666;
+      font-weight: 500;
+    }
+    .clinic-footer dd {
+      margin: 0;
+      font-weight: 400;
+    }
+    .clinic-footer a {
+      color: #0b6f37;
+      word-break: break-all;
+    }
+    .sticky {
+      position: fixed;
+      z-index: 10;
+      left: 50%;
+      bottom: 10px;
+      width: min(412px, calc(100vw - 18px));
+      transform: translateX(-50%) translateY(120px);
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(17,17,17,.93);
+      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .sticky.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .sticky .cta {
+      margin: 0;
+      font-size: 20px;
+      padding: 13px 10px;
+    }
+    @media (min-width: 700px) {
+      body { padding: 28px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta,
+      .cta::after,
+      .arrow {
+        animation: none;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <img src="assets/img01_fv.png" alt="薬局でED薬ください その一言言えますか LINEでこっそりED薬診断">
+    <div class="hero-copy">
+      <span class="flash">7月、ED薬が薬局へ</span>
+      <h1>でも店頭で<br><strong>言えるか問題</strong>、勃発。</h1>
+      <p class="lead">薬剤師にチェック結果を見せる前に。まずはLINEで、こっそり薬診断。</p>
+    </div>
+    <a class="cta" href="#preview-cta">LINEでこっそり薬診断をする<small>無料お薬診断 / 3分で確認</small></a>
+  </section>
+
+  <section class="shock">
+    <h2>病院も薬局も気まずい。<br><mark>でも放置はもっと気まずい。</mark></h2>
+    <p>中折れ、硬さ不足、いざ本番の不安。いきなり購入ではなく、まず3問で悩みタイプを確認してください。</p>
+  </section>
+
+  <section class="question">
+    <div class="q-title">
+      <span class="q-kicker">Q1</span>
+      <h2>いちばん困るのは？</h2>
+    </div>
+    <img src="assets/img02_q1_symptom.png" alt="中折れ 硬さ不足 症状タイプ確認">
+    <div class="choices">
+      <button class="choice" type="button">途中で萎える</button>
+      <button class="choice" type="button">硬さが続かない</button>
+      <button class="choice" type="button">いざという時に立たない</button>
+      <button class="choice" type="button">早く終わるのも気になる</button>
+    </div>
+    <div class="arrow">↓</div>
+  </section>
+
+  <section class="question">
+    <div class="q-title">
+      <span class="q-kicker">Q2</span>
+      <h2>薬選びで不安なのは？</h2>
+    </div>
+    <img src="assets/img04_q3_anxiety.png" alt="適当に選ばない 相性をLINEで確認">
+    <div class="choices">
+      <button class="choice" type="button">副作用が怖い</button>
+      <button class="choice" type="button">食事やお酒の影響が気になる</button>
+      <button class="choice" type="button">自然に効くのか不安</button>
+      <button class="choice" type="button">どれが合うか分からない</button>
+    </div>
+    <div class="arrow">↓</div>
+  </section>
+
+  <section class="question">
+    <div class="q-title">
+      <span class="q-kicker">Q3</span>
+      <h2>バレたくない不安は？</h2>
+    </div>
+    <img src="assets/img05_q4_privacy.png" alt="バレたくない人へ 無地封筒で配慮 LINEで相談">
+    <div class="choices">
+      <button class="choice" type="button">家族/パートナーにバレたくない</button>
+      <button class="choice" type="button">病院で人に会いたくない</button>
+      <button class="choice" type="button">ネット薬が本物か不安</button>
+      <button class="choice" type="button">LINE追加後の流れが不安</button>
+    </div>
+    <div class="arrow">↓</div>
+  </section>
+
+  <section class="result">
+    <h2>回答を見る限り、薬を適当に選ぶ前に確認です。</h2>
+    <p>見るべきは「相性」「正規性」「バレにくさ」。国内正規ジェネリック3種から、医師診療のもとで選択肢を確認できます。</p>
+    <div class="badges">
+      <div class="badge">国内正規<br>ジェネリック</div>
+      <div class="badge">医師診療</div>
+      <div class="badge">無地封筒で<br>配送配慮</div>
+      <div class="badge">LINEで<br>相談</div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <img src="assets/img06_offer.png" alt="LINEでこっそり無料お薬診断 国内正規ジェネリック 医師診療">
+    <div class="offer-text">
+      <h2>LINE追加後、まず無料お薬診断へ。</h2>
+      <p>10錠以上購入で最大6錠追加。価格・薬剤・配送条件は診療/公式LINE内で確認してください。</p>
+    </div>
+    <a class="cta" href="#preview-cta">LINEでこっそり薬診断をする<small>薬局で言う前に、まずスマホで確認</small></a>
+  </section>
+
+  <section class="notes">
+    <img src="assets/img07_safety.png" alt="服用前に確認 1日1回 24時間以上あける 持病や服用中の薬は医師へ 自由診療">
+    <h2>確認事項</h2>
+    <ul>
+      <li>ED治療薬は医師の診療に基づき処方されます。服用中のお薬、持病、既往歴がある場合は必ず医師へご相談ください。</li>
+      <li>ED治療薬は1日1回まで、次回使用まで24時間以上あけてください。</li>
+      <li>副作用として、ほてり、動悸、頭痛、めまい等が起きる場合があります。異常を感じた場合は使用を中止し、医師へ相談してください。</li>
+      <li>10錠以上購入で最大6錠追加の条件、価格、配送、支払い方法は公式LINEおよび診療時の案内をご確認ください。</li>
+    </ul>
+  </section>
+
+  <footer class="clinic-footer">
+    <h2>クリニック情報</h2>
+    <dl>
+      <dt>施設名</dt>
+      <dd>エミシアクリニック</dd>
+      <dt>所在地</dt>
+      <dd>〒150-0041<br>東京都渋谷区神南1丁目-22-8 渋谷<br>東日本ビル4F</dd>
+      <dt>HP</dt>
+      <dd><a href="https://emishia-clinic.jp">https://emishia-clinic.jp</a></dd>
+    </dl>
+  </footer>
+</main>
+
+<div class="sticky">
+  <a class="cta" href="#preview-cta">LINEでこっそり薬診断</a>
+</div>
+
+<script>
+  document.querySelectorAll(".choice").forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = button.closest(".choices");
+      group.querySelectorAll(".choice").forEach((item) => item.classList.remove("is-selected"));
+      button.classList.add("is-selected");
+      updateCtaState();
+      const next = button.closest(".question").nextElementSibling;
+      if (next) {
+        window.setTimeout(() => next.scrollIntoView({ behavior: "smooth", block: "start" }), 180);
+      }
+    });
+  });
+  function updateCtaState() {
+    const questionCount = document.querySelectorAll(".question").length;
+    const selectedCount = document.querySelectorAll(".question .choice.is-selected").length;
+    const isReady = selectedCount >= questionCount;
+    document.querySelectorAll(".cta").forEach((cta) => cta.classList.toggle("is-ready", isReady));
+    const stickyCta = document.querySelector(".sticky .cta");
+    if (stickyCta) {
+      stickyCta.textContent = isReady ? "診断結果をLINEで確認" : "LINEでこっそり薬診断";
+    }
+  }
+  const sticky = document.querySelector(".sticky");
+  const result = document.querySelector(".result");
+  if ("IntersectionObserver" in window && sticky && result) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        sticky.classList.toggle("is-visible", entry.isIntersecting || window.scrollY > result.offsetTop);
+      });
+    }, { threshold: 0.12 });
+    observer.observe(result);
+  } else if (sticky) {
+    window.addEventListener("scroll", () => {
+      sticky.classList.toggle("is-visible", window.scrollY > 2200);
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>
