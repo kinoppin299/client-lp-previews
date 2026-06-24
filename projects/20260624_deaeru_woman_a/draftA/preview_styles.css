@@ -106,6 +106,14 @@ p:last-child {
   font-weight: 700;
 }
 
+p strong,
+.lead strong,
+.quote strong {
+  color: #211a20;
+  font-weight: 900;
+  background: linear-gradient(transparent 62%, rgba(255, 241, 168, 0.92) 62%);
+}
+
 .soft-band {
   background: var(--pink);
 }
@@ -162,11 +170,19 @@ p:last-child {
 }
 
 .question-card div {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
   padding: 13px 14px;
   border-radius: 8px;
   background: var(--white);
   border: 1px solid var(--line);
   font-weight: 800;
+  line-height: 1.58;
+}
+
+.question-card .emoji {
+  flex: 0 0 1.35em;
 }
 
 .proof-grid {
