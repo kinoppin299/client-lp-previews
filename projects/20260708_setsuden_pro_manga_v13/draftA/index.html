@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="noindex,nofollow,noarchive" name="robots"/>
+<title>節電プロ マンガ記事LP v13 preview</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #e9eef2;
+      color: #202020;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+      letter-spacing: 0;
+    }
+    body { line-height: 1.78; }
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 28px rgba(0,0,0,.13);
+      overflow: hidden;
+    }
+    .pr {
+      margin: 0;
+      padding: 9px 12px 7px;
+      background: #f7f7f7;
+      color: #333;
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 500;
+      text-align: right;
+    }
+    .lp-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      border: 0;
+    }
+    .manga-panel { border-top: 10px solid #fff; border-bottom: 10px solid #fff; }
+    section { padding: 22px 19px 24px; }
+    p {
+      margin: 0 0 14px;
+      font-size: clamp(18px, 4.8vw, 24px);
+      line-height: 1.72;
+      font-weight: 500;
+      color: #282828;
+    }
+    .lead {
+      font-size: clamp(23px, 6vw, 32px);
+      line-height: 1.43;
+      font-weight: 850;
+      color: #111;
+    }
+    .caption-lead {
+      font-size: clamp(20px, 5.2vw, 28px);
+      line-height: 1.5;
+      font-weight: 850;
+      color: #111;
+    }
+    .soft { background: #fbfaf6; }
+    .quiet { color: #464646; font-weight: 500; }
+    .marker {
+      background: linear-gradient(transparent 62%, #fff16a 62%);
+      font-weight: 850;
+    }
+    .red { color: #e60012; font-weight: 900; }
+    .blue { color: #005bac; font-weight: 900; }
+    .fn-ref {
+      display: inline-block;
+      margin-left: 2px;
+      font-size: .45em;
+      line-height: 1;
+      vertical-align: super;
+      font-weight: 700;
+    }
+    .quiet-line { height: 16px; background: #f4f0e8; }
+    .thought {
+      margin: 2px 0 10px;
+      padding: 16px 17px;
+      border-left: 7px solid #e60012;
+      background: #fff8de;
+      font-size: clamp(20px, 5.4vw, 28px);
+      line-height: 1.55;
+      font-weight: 750;
+    }
+    .thought strong { color: #e60012; font-weight: 900; }
+    .note-block {
+      padding: 7px 16px 10px;
+      background: #fff;
+      border-top: 1px solid #ededed;
+    }
+    .note-block p,
+    .inline-note,
+    .cta-note {
+      margin: 0 0 5px;
+      color: #5d5d5d;
+      font-size: clamp(10px, 2.55vw, 12px);
+      line-height: 1.46;
+      font-weight: 400;
+    }
+    .soft + .note-block { background: #fbfaf6; }
+    .section-title {
+      display: inline-block;
+      margin: 0 0 14px;
+      padding: 5px 12px;
+      border-left: 8px solid #e60012;
+      background: #fff4cf;
+      font-size: clamp(19px, 5vw, 25px);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+    .burden-card,
+    .service-card,
+    .cost-card,
+    .voice-card,
+    .happy-card,
+    .trust-card {
+      border-radius: 8px;
+      border: 2px solid #ededed;
+      background: #fff;
+      box-shadow: 0 5px 16px rgba(0,0,0,.06);
+    }
+    .burden-card { overflow: hidden; margin-top: 12px; }
+    .burden-head {
+      padding: 15px 16px;
+      background: #0d3380;
+      color: #fff;
+      font-size: clamp(20px, 5.3vw, 29px);
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .burden-row {
+      display: grid;
+      grid-template-columns: 32% 34% 34%;
+      border-top: 1px solid #e6e6e6;
+      min-height: 92px;
+    }
+    .burden-row > div { padding: 12px 10px; font-size: clamp(14px, 3.8vw, 18px); line-height: 1.45; }
+    .burden-label { background: #fff7d7; font-weight: 900; color: #111; }
+    .burden-old { background: #f7f7f7; color: #444; font-weight: 650; }
+    .burden-now { background: #fff; color: #222; font-weight: 750; }
+    .big-num {
+      display: block;
+      margin-top: 2px;
+      color: #e60012;
+      font-size: clamp(24px, 7vw, 40px);
+      line-height: 1.05;
+      font-weight: 950;
+    }
+    .chat {
+      margin: 14px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .bubble {
+      padding: 13px 15px;
+      border-radius: 8px;
+      font-size: clamp(18px, 4.7vw, 24px);
+      line-height: 1.52;
+      font-weight: 700;
+    }
+    .bubble.friend { background: #e9f3ff; border: 2px solid #9bc8ff; }
+    .bubble.main { background: #fff4cf; border: 2px solid #ffd65a; }
+    .bubble .name {
+      display: block;
+      margin-bottom: 2px;
+      color: #005bac;
+      font-size: .72em;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .service-card { padding: 18px 16px; background: linear-gradient(180deg, #fff, #f5fbff); }
+    .service-name {
+      margin: 2px 0 10px;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1.12;
+      color: #005bac;
+      font-weight: 950;
+      text-align: center;
+    }
+    .service-card ul,
+    .cost-card ul,
+    .happy-card ul,
+    .trust-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .service-card li,
+    .cost-card li,
+    .happy-card li,
+    .trust-card li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      font-size: clamp(17px, 4.5vw, 23px);
+      line-height: 1.42;
+      font-weight: 750;
+    }
+    .cost-card {
+      padding: 18px 16px;
+      margin-top: 8px;
+      background: linear-gradient(180deg, #fff8d7, #fff);
+      border-color: #ffd65a;
+    }
+    .cost-head {
+      margin: 0 0 13px;
+      text-align: center;
+      color: #111;
+      font-size: clamp(24px, 6.8vw, 38px);
+      line-height: 1.2;
+      font-weight: 950;
+    }
+    .zero {
+      color: #e60012;
+      font-size: 1.35em;
+      letter-spacing: 0;
+    }
+    .voices {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .voice-card {
+      padding: 15px 15px 13px;
+      border-color: #ffd2d2;
+      background: #fff;
+    }
+    .voice-person {
+      margin: 0 0 7px;
+      color: #e60012;
+      font-size: clamp(17px, 4.3vw, 22px);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+    .voice-text {
+      margin: 0;
+      font-size: clamp(18px, 4.8vw, 24px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+    .trust-card {
+      margin-top: 14px;
+      padding: 16px 15px;
+      background: #f5fbff;
+      border-color: #b9d9ff;
+    }
+    .happy-card {
+      margin-top: 12px;
+      padding: 17px 16px;
+      background: linear-gradient(180deg, #fff3ce, #fff);
+      border-color: #ffd65a;
+    }
+    .happy-title {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #e60012;
+      font-size: clamp(25px, 7vw, 40px);
+      line-height: 1.23;
+      font-weight: 950;
+    }
+    .arrow {
+      display: grid;
+      place-items: center;
+      height: 48px;
+      color: #e60012;
+      font-size: 40px;
+      font-weight: 900;
+      animation: bounce 1.05s infinite;
+      line-height: 1;
+    }
+    .cta-zone {
+      padding: 20px 16px 28px;
+      background: linear-gradient(180deg, #fff, #fff3ce);
+    }
+    .cta {
+      display: block;
+      padding: 17px 14px;
+      border-radius: 8px;
+      background: #f47b20;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: clamp(19px, 5.1vw, 27px);
+      line-height: 1.32;
+      font-weight: 900;
+      box-shadow: 0 7px 0 #b65313;
+    }
+    .cta-sub {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #e60012;
+      font-size: clamp(19px, 5vw, 26px);
+      line-height: 1.38;
+      font-weight: 900;
+    }
+    .cta-arrow {
+      text-align: center;
+      color: #e60012;
+      font-size: 44px;
+      font-weight: 900;
+      animation: bounce 1.05s infinite;
+      margin: 2px 0 8px;
+    }
+    .cta-note { margin: 10px 2px 0; color: #674420; font-weight: 400; }
+    .copy-break {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+    .copy-break p {
+      margin-bottom: 0;
+      font-size: clamp(18px, 4.6vw, 23px);
+      line-height: 1.62;
+    }
+    .manga-stack .manga-panel {
+      border-top: 0;
+      border-bottom: 0;
+    }
+    .manga-stack .manga-panel + .manga-panel { border-top: 4px solid #fff; }
+    .company-area {
+      padding: 22px 18px 26px;
+      background: #f7f7f7;
+      border-top: 1px solid #ddd;
+    }
+    .company-area h2 {
+      margin: 0 0 11px;
+      color: #222;
+      font-size: clamp(17px, 4.2vw, 22px);
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .company-area p {
+      margin: 0;
+      color: #444;
+      font-size: clamp(13px, 3.4vw, 15px);
+      line-height: 1.62;
+      font-weight: 400;
+    }
+    .company-area a { color: #005bac; overflow-wrap: anywhere; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  </style>
+</head>
+<body>
+<main class="page">
+<p class="pr">[PR]節電プロ株式会社</p>
+<img alt="固定資産税を実質取り戻す 東京都の戸建て限定 目からウロコの節約術とは" class="lp-img" loading="lazy" src="assets/v5_01_fv_property_tax_happy.webp"/>
+<section>
+<p class="lead">「え、これ固定資産税を取り戻したようなものじゃない？」</p>
+<p>友人にそう言われて、最初はピンときませんでした。</p>
+<p>見直したのは、毎月なんとなく払い続けていた<span class="marker">電気代</span>でした。</p>
+</section>
+<img alt="導入前20727円 導入後1860円 月18867円の差" class="lp-img" loading="lazy" src="assets/v8_02_bill_proof_card_user_facing.webp"/>
+<div class="note-block">
+<p>※電気代の明細事例より。2025年02月分20,727円、2025年06月分1,860円の事例です。</p>
+<p>※各家庭の大きさ、使用状況、設置条件、天候、契約プラン、季節等によって異なります。効果を保証するものではありません。</p>
+<p>※年換算は単月差額を12倍した単純計算であり、年間削減額を保証するものではありません。</p>
+</div>
+<section class="soft">
+<p>導入前後で、月18,867円の差。</p>
+<p class="caption-lead">年で見ると約226,404円相当。ここまで違うなら<span class="red">固定資産税を実質取り返したも同然</span>です！</p>
+</section>
+<div class="quiet-line"></div>
+<img alt="固定資産税 また来た" class="lp-img manga-panel" loading="lazy" src="assets/v6_03a_tax_arrives.webp"/>
+<img alt="ローンも電気代も重い" class="lp-img manga-panel" loading="lazy" src="assets/v6_03b_husband_pressure.webp"/>
+<section>
+<p class="lead">東京都の戸建て家計は負担が大きい。</p>
+<p>住宅ローンは残っている。固定資産税は毎年来る。食費も老後資金も、簡単には削れません。</p>
+</section>
+<img alt="10年前の感覚のままでは家計がきつい 住宅ローン金利 固定資産税 電気代" class="lp-img" loading="lazy" src="assets/v13_03_household_burden_table.webp"/>
+<div class="note-block">
+<p>※住宅ローン金利は【フラット35】借入期間21年以上35年以下・融資率9割以下の金利情報/推移を参照。2016年7月は推移グラフ上の0%台、2026年7月は最頻金利3.14%。</p>
+<p>※固定資産税・都市計画税は所在地、土地・家屋の評価、住宅用地特例、負担調整、軽減措置等により異なります。</p>
+</div>
+<img alt="もう削れないもの" class="lp-img" loading="lazy" src="assets/v5_04_no_more_cut_card.webp"/>
+<section class="soft">
+<p>我慢する節約には限界があります。</p>
+<p>そんな時、同年代の友人・亜希が、まったく違う見方を教えてくれました。</p>
+</section>
+<img alt="うちは買う電気を減らした" class="lp-img manga-panel" loading="lazy" src="assets/v6_05a_friend_reframe.webp"/>
+<img alt="買う電気を減らす" class="lp-img manga-panel" loading="lazy" src="assets/v6_05b_misaki_question.webp"/>
+<section>
+<p class="thought">食費を削るんじゃない。<br/><strong>買う電気を減らす。</strong></p>
+<p>この一言で、電気代は「払うしかないもの」という思い込みが崩れました。</p>
+</section>
+<img alt="友人が節電プロの無料見積もりを教える漫画" class="lp-img manga-panel" loading="lazy" src="assets/v13_06_friend_setsuden_intro_manga.webp"/>
+<img alt="節電プロとは？ 太陽光と蓄電池の無料見積もりサービス" class="lp-img" loading="lazy" src="assets/v13_07_setsuden_service_card.webp"/>
+<img alt="電気代を払うだけにしない" class="lp-img" loading="lazy" src="assets/v5_06_system_diagram.webp"/>
+<section>
+<p>家で電気をつくって、ためて、使う。</p>
+<p>節約の対象を生活費ではなく、家の電気の仕組みに変える考え方です。</p>
+</section>
+<img alt="でも太陽光って高いでしょ" class="lp-img manga-panel" loading="lazy" src="assets/v6_07a_price_fear.webp"/>
+<img alt="私もそこが一番不安だった" class="lp-img manga-panel" loading="lazy" src="assets/v6_07b_aki_reassure.webp"/>
+<section class="soft">
+<p>もちろん、ここで一番気になるのは費用です。</p>
+<p>住宅ローンも固定資産税もあるのに、また大きな出費は怖い。そこは誰でも同じです。</p>
+</section>
+<img alt="当社提携ローンなら初期費用0円から" class="lp-img" loading="lazy" src="assets/v13_09_initial_cost_zero_card.webp"/>
+<div class="note-block">
+<p>※当社提携ローン使用の場合。「太陽光＋蓄電池」セットでのご案内です。</p>
+<p>※ローンの利用には審査があります。実際の支払額は条件により異なります。</p>
+</div>
+<img alt="補助金実績 平均415万円※1" class="lp-img" loading="lazy" src="assets/v11_08_subsidy_card_with_note_ref.webp"/>
+<section class="soft">
+<p>さらに、東京都の戸建て向けには補助金実績もあります。</p>
+<p class="lead"><span class="red">平均415万円<sup class="fn-ref">※1</sup></span>という数字を見て、夫も少し前のめりになりました。</p>
+<p>「高そう」で止まる前に、まず費用感だけでも聞く価値はあります。</p>
+</section>
+<div class="note-block">
+<p>※1：2025年度7月1日～12月31日平均。各家庭の大きさ、使用状況によって異なります。</p>
+<p>※この補助金額は太陽光・蓄電池以外（高断熱化など）も含む事業の総額です。</p>
+<p>※戸建て以外でも対象となる場合がございます。引用元：クール・ネット東京（断熱・太陽光住宅普及拡大事業）。</p>
+</div>
+<section>
+<p class="section-title">ご近所も、もう始めてた？</p>
+<p>調べたら、同じ東京の戸建てで始めた家庭の声がありました。特別な人ではなく、ごく普通の家庭です。</p>
+</section>
+<img alt="実際に始めた方の声" class="lp-img" loading="lazy" src="assets/v13_11_reviews_card.webp"/>
+<section class="soft copy-break">
+<p>声だけでなく、安さの理由まで聞けるなら、家族にも話しやすくなります。</p>
+</section>
+<img alt="安さの理由 自社施工 直接仕入れ 相見積もり歓迎 最低価格保証" class="lp-img" loading="lazy" src="assets/v13_12_trust_stack_card.webp"/>
+<div class="note-block">
+<p>※個人の感想であり、効果を保証するものではありません。各家庭の大きさ・使用状況によって異なります。</p>
+<p>※画像はイメージです。</p>
+<p>※メーカーにより保証年数・補償内容は異なります。</p>
+</div>
+<section class="soft">
+<p class="thought">導入するかどうかの前に、<br/><strong>まず我が家ならいくら変わるのか知りたい。</strong></p>
+</section>
+<div class="manga-stack">
+<img alt="月18867円差" class="lp-img manga-panel" loading="lazy" src="assets/v7_11a_bill_difference_horizontal.webp"/>
+<img alt="年で見ると大きい" class="lp-img manga-panel" loading="lazy" src="assets/v6_11b_husband_decision.webp"/>
+</div>
+<div class="note-block">
+<p>※電気代の明細事例より。2025年02月分20,727円、2025年06月分1,860円の事例です。</p>
+<p>※各家庭の大きさ、使用状況、設置条件、天候、契約プラン、季節等によって異なります。効果を保証するものではありません。</p>
+</div>
+<section class="soft copy-break">
+<p>数字を見てから判断できるなら、いきなり決めるよりずっと考えやすい。</p>
+</section>
+<div class="cta-zone">
+<p class="cta-sub">我が家なら、<br/>月々いくら変わる？</p>
+<div class="cta-arrow">↓</div>
+<a aria-label="クライアント確認用ダミーCTA" class="cta" data-cta-state="dummy-client-preview" href="#cta-dummy" onclick="return false;">太陽光＋蓄電池の<br/>無料見積もりを申し込む</a>
+<p class="cta-note">※申込み後、現地訪問アポ調整のお電話があります。契約は必須ではなく、訪問後に説明を聞いた上で断っても問題ありません。</p>
+<p class="cta-note">⚠所有の一戸建てではない（賃貸・マンションタイプは対象外）／⚠現在太陽光をリースで契約中の方はご利用いただけません。</p>
+</div>
+<img alt="まず日程を決めるだけです" class="lp-img manga-panel" loading="lazy" src="assets/v6_12a_phone_flow.webp"/>
+<img alt="うちだと結局いくら" class="lp-img manga-panel" loading="lazy" src="assets/v6_12b_home_consult.webp"/>
+<section>
+<p>申し込んだら、まずは電話で日程調整。</p>
+<p>自宅で話を聞いて、内容に納得できなければ契約不要です。</p>
+</section>
+<img alt="費用感だけ聞く価値あり" class="lp-img" loading="lazy" src="assets/v5_13_diagnosis_card.webp"/>
+<section class="soft">
+<p class="lead">1つでも当てはまるなら、知らないまま払い続けるのはもったいない。</p>
+<p>電気代、住宅ローン、固定資産税。全部を我慢で乗り切るより、変えられる固定費から見直す方が現実的です。</p>
+</section>
+<img alt="エアコンつけていい" class="lp-img manga-panel" loading="lazy" src="assets/v7_14a_child_aircon_teen.webp"/>
+<img alt="電気作ってるから心配しなくていいのよ" class="lp-img manga-panel" loading="lazy" src="assets/v12_14b_misaki_power_reassure.webp"/>
+<section>
+<p class="lead">家族に我慢させる節約から、家の仕組みを変える節約へ。</p>
+</section>
+<img alt="毎年の固定資産税を実質取り返したも同然" class="lp-img" loading="lazy" src="assets/v13_15_happy_result_card.webp"/>
+<div class="note-block">
+<p>※「固定資産税を実質取り戻す」は、電気代差額の家計インパクトを比喩的に表現したものであり、税金が返還される意味ではありません。</p>
+<p>※個人の感想であり、効果を保証するものではありません。</p>
+</div>
+<img alt="知らないまま払うのはもったいない" class="lp-img" loading="lazy" src="assets/v5_15_final_push_card.webp"/>
+<div class="note-block">
+<p>※補助金には本年度の申請枠に限りがあります。迷っているうちに枠が埋まる可能性があります。</p>
+<p>※引用元：クール・ネット東京（断熱・太陽光住宅普及拡大事業全体）。</p>
+<p>※戸建て以外でも対象となる場合がございます。</p>
+</div>
+<div class="cta-zone">
+<p class="cta-sub">固定費を変えられるか、<br/>まず費用感を聞く。</p>
+<div class="cta-arrow">↓</div>
+<a aria-label="クライアント確認用ダミーCTA" class="cta" data-cta-state="dummy-client-preview" href="#cta-dummy" onclick="return false;">太陽光＋蓄電池の<br/>無料見積もりを申し込む</a>
+<p class="cta-note">※申込み後、現地訪問アポ調整のお電話があります。契約は必須ではなく、訪問後に説明を聞いた上で断っても問題ありません。</p>
+<p class="cta-note">⚠所有の一戸建てではない（賃貸・マンションタイプは対象外）／⚠現在太陽光をリースで契約中の方はご利用いただけません。</p>
+</div>
+<footer class="company-area">
+<h2>会社概要</h2>
+<p>節電プロ株式会社<br/>東京都足立区東伊興1-16-6 セスコビル1F<br/><a href="mailto:info@setsuden-pro.com">info@setsuden-pro.com</a></p>
+</footer>
+</main>
+</body>
+</html>
