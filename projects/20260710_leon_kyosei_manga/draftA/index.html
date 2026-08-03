@@ -329,6 +329,56 @@
       white-space: nowrap;
     }
 
+    .note-mark {
+      display: inline !important;
+      position: relative;
+      top: 0.08em;
+      margin-left: 1px !important;
+      padding: 0 !important;
+      color: currentColor !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      font-size: 0.34em !important;
+      line-height: 1;
+      font-weight: 400 !important;
+      opacity: 0.72;
+      vertical-align: baseline;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    .legal-note {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 9.5px;
+      line-height: 1.48;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .legal-note.compact {
+      margin-top: 5px;
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .legal-notes {
+      margin: 7px 0 0;
+      padding: 0;
+      color: var(--muted);
+      list-style: none;
+      font-size: 9.5px;
+      line-height: 1.48;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .legal-notes li {
+      margin-top: 3px;
+    }
+
     .refund-lead {
       margin-top: 16px;
       padding: 14px 12px 12px;
@@ -351,11 +401,20 @@
 
     .refund-lead strong {
       display: block;
+      position: relative;
       margin-top: 7px;
       color: #3d2a12;
       font-size: 29px;
       font-weight: 900;
       line-height: 1.2;
+    }
+
+    .refund-lead strong .note-mark {
+      position: absolute !important;
+      right: 6px;
+      bottom: 0.22em;
+      font-size: 9px !important;
+      line-height: 1 !important;
     }
 
     .refund-visual {
@@ -485,6 +544,11 @@
       margin-top: 4px;
       font-size: 14px;
       font-weight: 900;
+    }
+
+    .deal-head .legal-notes {
+      color: rgba(255, 255, 255, 0.82);
+      text-align: center;
     }
 
     .deal-body {
@@ -874,6 +938,10 @@
       filter: drop-shadow(0 10px 10px rgba(191, 54, 83, 0.24));
     }
 
+    .final-cta-image {
+      margin-top: 14px;
+    }
+
     @keyframes cta-pop {
       0%,
       100% {
@@ -1046,14 +1114,15 @@
       <video class="clinic-video" src="assets/leon_clinic_short_autoplay.mp4" autoplay muted loop playsinline preload="metadata" aria-label="レオン矯正の院内説明動画"></video>
       <p class="lead-punch">探していた条件が、まとめて揃っていた。</p>
       <ul class="leon-points">
-        <li><b>モニター割引 最大20万円オフ</b><span>まず気になる費用のハードルが下がる。</span></li>
-        <li><b>最安値保証キャンペーン</b><span>安く始めたい人ほど、ここはかなり強い。</span></li>
+        <li><b>モニター割引 最大20万円オフ<span class="note-mark">※</span></b><span>まず気になる費用のハードルが下がる。</span><small class="legal-note compact">※契約プランによって割引金額は異なります。※2回目カウンセリングまでの契約に限り。</small></li>
+        <li><b>最安値保証キャンペーン<span class="note-mark">※</span></b><span>安く始めたい人ほど、ここはかなり強い。</span><small class="legal-note compact">※他院のマウスピース矯正において、マウスピース数が同程度の枚数かつ同程度の治療内容と当院が判断した場合に限り当取組の比較対象とします。※契約前もしくは契約後2週間以内にレオン矯正よりも安いプランを提示された場合は、差額を全額返金or料金を割引。</small></li>
         <li><b>提携クリニック全国83院以上</b><span>月1回の通院目安で、近くの相談先を探せる。</span></li>
         <li><b>専用カウンセラー付き</b><span>費用・通院・進め方を、ひとりで抱え込まなくていい。</span></li>
       </ul>
       <div class="authority-box">
         <h2>しかも、治療プランを作成する医師にも安心材料があった。</h2>
-        <p class="provider-copy">世界でたった<strong>1%</strong>しかいないトッププロバイダー認定医師が、治療プランを設計。</p>
+        <p class="provider-copy">世界でたった<strong>1%</strong><span class="note-mark">※</span>しかいないトッププロバイダー認定医師が、治療プランを設計。</p>
+        <p class="legal-note">※主治医がインビザライン提供元Align Technology, Incからトッププロバイダー賞を受賞(2024年度・2025年度)。当該年度における受賞者が全世界インビザライン登録ドクターの中で1%未満、日本国内で5人未満（Align Technology, Inc調べ）</p>
         <p>マウスピース矯正は、歯をどう動かすかの治療計画が大事。安さだけでなく、ここまで揃っているのは大きかった。</p>
         <figure class="authority-visual">
           <img src="assets/leon_top_provider_doctor_1200.webp" alt="レオン矯正のトッププロバイダー認定医師資料">
@@ -1061,11 +1130,20 @@
         <div class="section-pulse-arrow" aria-hidden="true">▼</div>
         <div class="refund-lead">
           <span>だから</span>
-          <strong>全額返金保証制度付き！</strong>
+          <strong>全額返金保証制度付き！<span class="note-mark">※</span></strong>
         </div>
         <figure class="refund-visual">
           <img src="assets/leon_full_refund_guarantee.webp" alt="全額返金保証制度付き">
         </figure>
+        <ul class="legal-notes">
+          <li>※治療シュミレーションとの一致率が90％以上の場合は保証対象外となります。</li>
+          <li>※各プラン付帯の保証機能にて追加治療を受けていない場合は保証対象外になります。</li>
+          <li>※治療プラン終了後、1ヶ月以上経過後の申し出は保証対象外となります。</li>
+          <li>※治療プラン終了の判定は担当医によるものとする。</li>
+          <li>※指定する矯正日に2ヶ月月連続してご来院いただけなかった場合は保証対象外となります。</li>
+          <li>※追加治療につきましてはワイヤー矯正治療の併用となる場合もございます。</li>
+          <li>※ワイヤー矯正併用時につきましては費用は当院が負担させていただきます。</li>
+        </ul>
       </div>
     </section>
 
@@ -1089,8 +1167,12 @@
       <div class="deal-box">
         <div class="deal-head">
           <p class="offer-kicker">＼今なら特別モニター／</p>
-          <h2>最大20万円OFF</h2>
+          <h2>最大20万円OFF<span class="note-mark">※</span></h2>
           <p>矯正は高い、で諦めてた人ほど見てほしい。</p>
+          <ul class="legal-notes">
+            <li>※契約プランによって割引金額は異なります</li>
+            <li>※2回目カウンセリングまでの契約に限り</li>
+          </ul>
         </div>
         <div class="deal-body">
           <figure class="offer-visual">
@@ -1099,8 +1181,12 @@
 
           <div class="offer-arrow">▼</div>
           <div class="zero-box">
-            <b>無料診断でここまで0円</b>
-            <span>歯型スキャン / レントゲン / カウンセリング / 治療プラン相談</span>
+            <b>無料診断<span class="note-mark">※</span>でここまで0円</b>
+            <span>歯型スキャン / カウンセリング / 治療プラン相談</span>
+            <ul class="legal-notes">
+              <li>※歯並びの状態によっては、追加の検査代がかかる場合がございます。</li>
+              <li>※2025/5/13時点での自社によるインターネット調査（キーワード「矯正」でGoogle検索をした結果上位表示された歯科クリニック30院を対象）</li>
+            </ul>
           </div>
 
           <div class="offer-arrow">▼</div>
@@ -1111,17 +1197,29 @@
           </div>
 
           <div class="bonus-blast">
-            <b>さらに14万円相当の特典</b>
+            <b>さらに14万円相当の特典<span class="note-mark">※</span></b>
             <span>ホワイトニングジェル / 精密検査 / 後戻り防止リテーナー</span>
+            <ul class="legal-notes">
+              <li>※ジェルホワイトニング1本分（3か月分、約3万円相当）を無償でご提供いたします。使用量によって回数は前後します。</li>
+              <li>※アタッチメントがついている場合自然体としては白くなりますが、アタッチメントの部分は白くなりにくい場合があります。</li>
+              <li>※店舗によって対応可否が異なります詳細はカウンセラーにお問い合わせください</li>
+              <li>※2回目カウンセリングまでの契約に限り</li>
+              <li>※歯並びの状態によっては、追加の検査代がかかる場合がございます。</li>
+              <li>※2025/5/13時点での自社によるインターネット調査（キーワード「矯正」でGoogle検索をした結果上位表示された歯科クリニック30院を対象）</li>
+            </ul>
           </div>
 
           <div class="offer-arrow">▼</div>
           <div class="guarantee-block">
-            <h3>安さで迷う人に、最安値保証</h3>
+            <h3>安さで迷う人に、最安値保証<span class="note-mark">※</span></h3>
             <figure class="offer-visual">
               <img src="assets/leon_offer_lowest_price.webp" alt="レオン矯正の最安値保証">
             </figure>
             <p class="guarantee-punch">他院で同程度の治療内容がより安い場合、差額の返金または料金割引の対象になります。</p>
+            <ul class="legal-notes">
+              <li>※他院のマウスピース矯正において、マウスピース数が同程度の枚数かつ同程度の治療内容と当院が判断した場合に限り当取組の比較対象とする</li>
+              <li>※契約前もしくは契約後2週間以内にレオン矯正よりも安いプランを提示された場合は、差額を全額返金or料金を割引</li>
+            </ul>
           </div>
           <div class="cta-pulse-arrow" aria-hidden="true">▼</div>
           <a class="cta-image-link" href="https://leonkyosei.jp/?utm_source=scrlet01-lp">
@@ -1139,7 +1237,7 @@
     <section class="step-flow">
       <h2>無料カウンセリングで見ること</h2>
       <div class="steps">
-        <div class="step"><b>1. 現在の歯並びを確認</b><span>レントゲンや歯型スキャンで、歯や骨格の状態を確認します。</span></div>
+        <div class="step"><b>1. 現在の歯並びを確認</b><span>歯型スキャンで、歯や骨格の状態を確認します。</span></div>
         <div class="step"><b>2. 変化イメージをシミュレーション</b><span>自分の歯並びで、どんな治療計画が考えられるかを確認します。</span></div>
         <div class="step"><b>3. 費用・通院・対象医院を確認</b><span>総額、追加費用、通院頻度、近くの提携院をその場で確認します。</span></div>
         <div class="step"><b>4. 始めるかどうかはその後で判断</b><span>納得できないまま進める必要はありません。</span></div>
@@ -1164,9 +1262,8 @@
         <p class="final-kicker">まずは無料カウンセリングで</p>
         <h2><span>自分の歯並びが</span><br>どれだけキレイに整えられそうか<br>今すぐチェック</h2>
         <div class="cta-pulse-arrow" aria-hidden="true">▼</div>
-        <a class="final-deal-strip" href="https://leonkyosei.jp/?utm_source=scrlet01-lp">
-          <b>今なら最大20万円OFF</b>
-          <span>初回診断0円 / 最安値保証 / 月1回通院OK</span>
+        <a class="cta-image-link final-cta-image" href="https://leonkyosei.jp/?utm_source=scrlet01-lp">
+          <img src="assets/CTA-btn.webp" alt="簡単30秒！相談だけでもOK！無料カウンセリングを予約する">
         </a>
         <div class="clinic-map">
           <b>近くの提携院も、予約前にチェック</b>
@@ -1238,7 +1335,6 @@
             </tbody>
           </table>
         </div>
-        <p class="final-sub">※最大20万円オフは契約プラン等の条件があります。治療可否・費用・期間は診断内容により異なります。</p>
       </div>
     </section>
 
