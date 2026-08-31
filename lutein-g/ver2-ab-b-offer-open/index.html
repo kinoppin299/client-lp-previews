@@ -32,7 +32,8 @@
       box-shadow: 0 0 0 1px rgba(36, 36, 36, .08);
     }
     .article-head {
-      padding: 14px 15px 0;
+      --head-pad-x: 15px;
+      padding: 14px var(--head-pad-x) 0;
     }
     .pr-line {
       margin: 0 0 9px;
@@ -42,7 +43,7 @@
       text-align: right;
     }
     .fv-catch {
-      margin: 0;
+      margin: 0 calc(var(--head-pad-x) * -1);
       padding: 0;
     }
     .fv-catch img {
@@ -55,15 +56,15 @@
     .fv-video-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 5px;
-      margin: 0;
+      gap: 0;
+      margin: 0 calc(var(--head-pad-x) * -1);
       padding: 0 0 9px;
     }
     .fv-video-tile {
       aspect-ratio: 9 / 16;
       overflow: hidden;
       border: 1px solid rgba(36, 36, 36, .65);
-      border-radius: 6px;
+      border-radius: 0;
       background: #111;
     }
     .fv-video-tile video {
@@ -94,7 +95,8 @@
       padding: 0;
     }
     .body-copy {
-      padding: 13px 17px 0;
+      --body-pad-x: 17px;
+      padding: 13px var(--body-pad-x) 0;
       font-size: 21px;
       line-height: 1.78;
     }
@@ -135,13 +137,23 @@
       -webkit-box-decoration-break: clone;
     }
     .text-underline {
-      color: #204c40;
-      font-weight: 760;
+      color: #2a4a40;
+      font-weight: 720;
       text-decoration: underline;
-      text-decoration-color: rgba(255, 199, 45, .74);
-      text-decoration-thickness: .16em;
-      text-underline-offset: .08em;
+      text-decoration-color: rgba(239, 185, 35, .58);
+      text-decoration-thickness: .11em;
+      text-underline-offset: .12em;
       text-decoration-skip-ink: none;
+    }
+    .inline-footnote-mark {
+      display: inline-block;
+      margin-left: .04em;
+      color: currentColor;
+      font-size: .42em;
+      line-height: 1;
+      vertical-align: baseline;
+      transform: translateY(.28em);
+      font-weight: 800;
     }
     .rohto-center .text-emphasis {
       color: #d90000;
@@ -193,6 +205,28 @@
       background: transparent;
       border-radius: 0;
       overflow: hidden;
+    }
+    .body-copy > .inline-image-plan,
+    .body-copy > .lumina-video-card,
+    .trace-offer-theater > .inline-image-plan,
+    .trace-offer-theater > .lumina-video-card {
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .body-copy > .image-cta-link {
+      display: block;
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .body-copy > .image-cta-link .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .trace-reassurance-box .inline-image-plan,
+    .trace-survey-widget .inline-image-plan,
+    .trace-final-ticket .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
     }
     .cta-block .inline-image-plan {
       border-color: transparent;
@@ -988,7 +1022,7 @@
       text-align: left;
     }
     .trace-offer-theater {
-      margin: 4px -3px 28px;
+      margin: 4px 0 28px;
     }
     .trace-offer-theater p {
       font-size: 20px;
@@ -1069,6 +1103,25 @@
     }
     .trace-down span:nth-child(2) { animation-delay: .12s; }
     .trace-down span:nth-child(3) { animation-delay: .24s; }
+    .trace-big-arrow {
+      gap: 9px;
+      margin: 10px 0 14px;
+    }
+    .trace-big-arrow span {
+      border-left-width: 18px;
+      border-right-width: 18px;
+      border-top-width: 26px;
+      filter: drop-shadow(0 4px 0 rgba(230, 0, 18, .20));
+    }
+    .trace-thus-copy {
+      margin: 12px 0 2px !important;
+      color: #e60012;
+      text-align: center;
+      font-size: 36px !important;
+      line-height: 1.08 !important;
+      font-weight: 950;
+      text-shadow: 2px 2px 0 #fff000, 0 3px 0 rgba(0, 0, 0, .12);
+    }
     .trace-special-reward,
     .trace-price-card,
     .trace-per-day,
@@ -1314,6 +1367,21 @@
       font-style: normal;
       font-weight: 800;
     }
+    .trace-survey-widget .question-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 98px;
+      margin: 0 0 8px;
+      padding: 4px 10px 5px;
+      border-radius: 4px;
+      background: #27215f;
+      color: #fff8c9;
+      font-size: 13px;
+      line-height: 1.15;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 #f4c542;
+    }
     .trace-survey-widget .diagnosis-question p {
       color: #242424;
       font-size: 18px;
@@ -1383,6 +1451,14 @@
       font-size: 15px;
       line-height: 1.25;
       font-weight: 900;
+    }
+    .trace-final-offer-card-image {
+      margin: 10px 0 12px;
+    }
+    .trace-final-offer-card-image .actual-visual {
+      border-radius: 8px;
+      box-shadow: 0 4px 0 rgba(201, 0, 0, .14);
+      overflow: hidden;
     }
     .trace-final-title {
       margin: 0 0 6px !important;
@@ -1777,6 +1853,20 @@
       transform: scale(.76);
       animation-delay: .12s;
     }
+    .effect-arrow.effect-arrow-large {
+      gap: 5px;
+      margin: 4px 0 15px;
+      opacity: .95;
+    }
+    .effect-arrow.effect-arrow-large span {
+      border-left-width: 20px;
+      border-right-width: 20px;
+      border-top-width: 26px;
+      filter: drop-shadow(0 5px 0 rgba(216, 57, 43, .22));
+    }
+    .effect-arrow.effect-arrow-large span:first-child {
+      transform: scale(.84);
+    }
     @keyframes bounceDown {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(7px); }
@@ -1784,6 +1874,36 @@
     @keyframes popPulse {
       0%, 100% { transform: scale(1) rotate(-4deg); }
       50% { transform: scale(1.08) rotate(4deg); }
+    }
+    .legal-footer {
+      margin: 24px 0 0;
+      padding: 18px 16px 22px;
+      border-top: 1px solid #e7dfd3;
+      background: #f8f4ec;
+      text-align: center;
+    }
+    .legal-footer a {
+      display: inline-block;
+      margin: 4px 8px;
+      color: #4c4741;
+      font-size: 12px;
+      line-height: 1.5;
+      text-decoration: underline;
+      text-underline-offset: .18em;
+    }
+    .body-copy > .inline-image-plan,
+    .body-copy > .lumina-video-card,
+    .body-copy > .client-831-media,
+    .trace-offer-theater > .inline-image-plan,
+    .trace-offer-theater > .lumina-video-card {
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .trace-reassurance-box .inline-image-plan,
+    .trace-survey-widget .inline-image-plan,
+    .trace-final-ticket .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
     }
     @media (prefers-reduced-motion: reduce) {
       .effect-arrow span,
@@ -1796,11 +1916,13 @@
         box-shadow: none;
       }
       .article-head {
-        padding: 13px 14px 0;
+        --head-pad-x: 14px;
+        padding: 13px var(--head-pad-x) 0;
       }
       .body-copy {
-        padding-left: 16px;
-        padding-right: 16px;
+        --body-pad-x: 16px;
+        padding-left: var(--body-pad-x);
+        padding-right: var(--body-pad-x);
         font-size: 21px;
       }
       .fv-notes {
@@ -1946,6 +2068,12 @@
 <p>目って「見えればいい場所」だと思っていませんか？</p>
 <p><span class="text-underline">でも実は、目は「見るため」だけの場所ではありません。</span></p>
 
+      <div class="effect-arrow effect-arrow-large" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+    
+
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
           <img src="lutein_g_image2_assets/batch01/I04_eye_gateway_16x9.png" alt="目は、毎日の入口" loading="lazy" width="1280" height="720">
@@ -1953,12 +2081,6 @@
         </div>
         
       </figure>
-    
-
-      <div class="effect-arrow" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </div>
     
 <p><strong class="text-marker">目から入る光</strong>は、毎日のリズムにも関わります。<br><strong class="text-marker">目から入る情報</strong>は、読む、探す、判断する、思い出すといった毎日の動きにも関わります。</p>
 <p>だから年齢とともに、</p>
@@ -2069,7 +2191,6 @@
         </div>
       </figure>
     
-<p>名前だけ聞くより、<strong class="text-emphasis">どこを支える話なのか</strong>がスッと入ってきますよね。</p>
 <p>名前は少し難しいですが、簡単に言うと、<br><strong class="text-emphasis">目の奥で、光の刺激やぼやけ感が気になる世代の「くっきり見る力」に関わる成分</strong>です。</p>
 
       <figure class="lumina-video-card client-831-media client-831-video" aria-label="目の奥の見え方を意識するきっかけ">
@@ -2129,7 +2250,7 @@
       </div>
     
 <p>特に、目だけでなく眠りや認知機能まで関わる話となると、<br><strong class="text-hot">情報元が弱いものは選びたくない</strong>ですよね。</p>
-<p>その点、ルテインGは、<br><strong class="text-emphasis">なんと！GABAマーケットシェア世界No.1※、テレビでも紹介されている東証プライム上場企業・ファーマフーズが開発している商品</strong>なんです。</p>
+<p>その点、ルテインGは、<br><strong class="text-emphasis">なんと！GABAマーケットシェア世界No.1<span class="inline-footnote-mark">※</span>、テレビでも紹介されている東証プライム上場企業・ファーマフーズが開発している商品</strong>なんです。</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
@@ -2179,9 +2300,9 @@
         
       </figure>
     
-<p><strong class="text-hot">「いろいろ入っている」と聞くと、逆に何の商品かわかりにくい</strong>ですよね。</p>
-<p>でもルテインGは、<br><strong class="text-marker">見え方の不安を入口に、眠りやうっかりまで見ていく設計</strong>なんです。</p>
-<p><strong class="text-emphasis">ルテインとゼアキサンチン</strong>は、<br><strong class="text-marker">加齢とともに減少する目の黄斑色素量を増やし、</strong><br>ぼやけの軽減により、<strong class="text-marker">くっきり見る力を改善する機能</strong>が報告されています。</p>
+<p>「いろいろ入っている」と聞くと、逆に何の商品かわかりにくいですよね。</p>
+<p>でもルテインGは、<br><strong class="text-emphasis">見え方の不安を入口</strong>にして、眠りやうっかりまで見ていく設計なんです。</p>
+<p><strong class="text-emphasis">ルテインとゼアキサンチン</strong>は、<br>加齢とともに減少する目の黄斑色素量を増やし、<br>ぼやけの軽減により、<strong class="text-marker">くっきり見る力を改善する機能</strong>が報告されています。</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
@@ -2191,7 +2312,7 @@
         
       </figure>
     
-<p>さらに<strong class="text-emphasis">GABA</strong>には、<br><strong class="text-marker">睡眠の質、眠りの深さ、すっきりした目覚め、</strong><br><strong class="text-marker">加齢によって低下する認知機能の一部の維持、</strong><br><strong class="text-marker">中高齢者の活力感や心の健康の維持</strong>に役立つ機能が報告されています。</p>
+<p>さらに<strong class="text-emphasis">GABA</strong>には、<br>睡眠の質、眠りの深さ、すっきりした目覚め、<br>加齢によって低下する認知機能の一部の維持、<br>中高齢者の活力感や心の健康の維持に役立つ機能が報告されています。</p>
 
       <figure class="inline-image-plan real-image-plan client-831-media client-831-image">
         <div class="actual-visual">
@@ -2326,8 +2447,8 @@
         <div class="body-copy">
       <div class="trace-offer-theater" id="offer-v2">
         <div class="trace-voice-block">
-          <p>良さそうだけど...</p>
-          <p><strong>「ちょっと高いし、<br>Amazonで買えばいいかな...」</strong></p>
+          <p>良さそうだけど…</p>
+          <p><strong>「今度Amazonで<br>買えばいいかな…」</strong></p>
           <p>そう考えている方！</p>
         </div>
 
@@ -2372,6 +2493,12 @@
       </figure>
     
         <p class="micro-note trace-note">※定期コース初回限定価格。初めての方に限り1世帯1回限り。2回目は翌月、以降2ヶ月毎に4袋9,000円(税込)送料無料。別途1回の発送につき梱包手数料200円(税込)。1回で解約した場合の総額は1,480円(税込・送料無料・梱包手数料含む)です。</p>
+        <p class="trace-thus-copy">つまり！</p>
+        
+      <div class="trace-down trace-big-arrow trace-per-day-arrow" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    
 
         
       <figure class="inline-image-plan real-image-plan offer-sequence-image trace-per-day">
@@ -2402,7 +2529,7 @@
     
         <p class="micro-note trace-note">※Amazon参考価格は2026年8月29日に保存した表示キャプチャをもとにしています。価格は変動する場合があります。</p>
 
-        <p class="trace-loss-copy">あとで探せばいいか...で閉じると、<br><strong>1,630円分もったいない</strong>かもしれません。</p>
+        <p class="trace-loss-copy">あとで探せばいいか...で閉じると、<br><strong>1,630円分 損します！</strong></p>
 
         <div class="trace-reassurance-box">
           <p><strong>よくある「何回以上続けないとダメ」みたいな契約ではありません。</strong></p>
@@ -2437,6 +2564,11 @@
 
         <p class="trace-survey-lead">ここまで読んで、<br><strong>「これ、自分にも関係あるかも...」</strong><br>と思った方へ。<br><strong>まずは今の目の状態を選んでください。</strong></p>
         
+      <div class="trace-down trace-big-arrow trace-survey-arrow" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    
+        
       <figure class="inline-image-plan real-image-plan survey-start-title-image trace-survey-start-card">
         <div class="actual-visual">
           <img src="lutein_g_image2_assets/survey_start_4q_20260830/webp/survey_start_eye_now_check_4q_16x9.webp" alt="30秒で完了 目の今チェック 4問だけ選んでください" loading="lazy" width="1536" height="864">
@@ -2451,7 +2583,7 @@
           </div>
 
           <div class="diagnosis-question" data-question data-intent-tag="NOW_PAIN_SELF_IDENTIFICATION" data-image2-slot="QUESTION_Q1_NOW_PAIN_EYE_MOMENT">
-            <span class="question-kicker">QUESTION 01 / 04</span>
+            <span class="question-kicker">1問目 / 全4問</span>
             <p>最近、目のことで一番気になる瞬間はどれですか？</p>
             
       <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q1-image">
@@ -2467,7 +2599,7 @@
           </div>
 
           <div class="diagnosis-question" data-question data-intent-tag="CURRENT_COUNTERMEASURE_GAP" data-image2-slot="QUESTION_Q2_COUNTERMEASURE_GAP">
-            <span class="question-kicker">QUESTION 02 / 04</span>
+            <span class="question-kicker">2問目 / 全4問</span>
             <p>今まで、どうやってごまかしてきましたか？</p>
             
       <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q2-image">
@@ -2483,7 +2615,7 @@
           </div>
 
           <div class="diagnosis-question" data-question data-intent-tag="FEATURE_VALUE_SELECTION" data-image2-slot="QUESTION_Q3_VALUE_SELECTION_EYE_BRAIN">
-            <span class="question-kicker">QUESTION 03 / 04</span>
+            <span class="question-kicker">3問目 / 全4問</span>
             <p>目のサポートで、今いちばん欲しいのはどれですか？</p>
             
       <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q3-image">
@@ -2499,7 +2631,7 @@
           </div>
 
           <div class="diagnosis-question" data-question data-intent-tag="SOFT_COMMITMENT_TO_TRIAL" data-image2-slot="QUESTION_Q4_SOFT_TRIAL_PERMISSION">
-            <span class="question-kicker">QUESTION 04 / 04</span>
+            <span class="question-kicker">4問目 / 全4問</span>
             <p>定期回数縛りなし・後払いも選べる初回980円なら、まず試してみたいですか？</p>
             
       <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q4-image">
@@ -2526,10 +2658,17 @@
         </div>
 
         <div class="trace-ab-open-offer" data-ab-pattern="B_OFFER_AFTER_SURVEY">
-          <p class="trace-survey-lead">1つでも心当たりがある方は、<br><strong>ここで先延ばしを終わらせてください。</strong></p>
+          <p class="trace-survey-lead">1つでも当てはまった方は、<br><strong>お得な金額で今すぐ始めてみてください！</strong></p>
           
       <div class="trace-final-ticket" aria-label="ルテインG 初回条件のまとめ">
         <div class="trace-final-ribbon">このページから申込みの方へ</div>
+        
+      <figure class="inline-image-plan real-image-plan trace-final-offer-card-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client/client_offer_cr_3x2.png" alt="ルテインG 定期初回価格980円 約60%OFF 送料無料 1世帯1回限り" loading="lazy" width="1536" height="1024">
+        </div>
+      </figure>
+    
         <p class="trace-final-title">初回限定条件をまとめると</p>
         <div class="trace-final-price-row">
           <span>通常定価 2,500円(税込)</span>
@@ -2563,6 +2702,10 @@
     </div>
       </section>
     
+    <footer class="legal-footer" aria-label="運営情報">
+      <a href="https://shop.tamagokichi.com/company/" target="_blank" rel="noopener">会社概要</a>
+      <a href="https://shop.tamagokichi.com/law/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+    </footer>
   </main>
   
   <script>
