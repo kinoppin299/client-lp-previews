@@ -43,19 +43,20 @@
     }
     .fv-catch {
       margin: 0;
-      padding: 0 0 10px;
+      padding: 0;
     }
     .fv-catch img {
       display: block;
       width: 100%;
       height: auto;
       border: 1px solid rgba(36, 36, 36, .12);
-      border-radius: 8px;
+      border-radius: 8px 8px 0 0;
     }
     .fv-video-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 5px;
+      margin: 0;
       padding: 0 0 9px;
     }
     .fv-video-tile {
@@ -106,18 +107,18 @@
     .text-emphasis {
       display: inline;
       padding: 0 .06em;
-      color: #1d473d;
-      font-size: 1.03em;
-      font-weight: 800;
+      color: #1f4f70;
+      font-size: 1.02em;
+      font-weight: 760;
       line-height: 1.74;
     }
     .text-marker {
       display: inline;
       padding: 0 .08em;
-      color: #1f1f1f;
-      background: linear-gradient(transparent 62%, rgba(255, 219, 96, .72) 62%);
-      font-size: 1.03em;
-      font-weight: 800;
+      color: #245246;
+      background: linear-gradient(transparent 68%, rgba(255, 219, 96, .48) 68%);
+      font-size: 1.02em;
+      font-weight: 760;
       line-height: 1.74;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
@@ -126,19 +127,19 @@
       display: inline;
       padding: 0 .06em;
       color: #d3281f;
-      background: linear-gradient(transparent 66%, rgba(255, 235, 120, .72) 66%);
+      background: linear-gradient(transparent 68%, rgba(255, 235, 120, .58) 68%);
       font-size: 1.04em;
-      font-weight: 800;
+      font-weight: 820;
       line-height: 1.74;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
     .text-underline {
-      color: #1f1f1f;
-      font-weight: 700;
+      color: #204c40;
+      font-weight: 760;
       text-decoration: underline;
-      text-decoration-color: var(--amber);
-      text-decoration-thickness: .22em;
+      text-decoration-color: rgba(255, 199, 45, .74);
+      text-decoration-thickness: .16em;
       text-underline-offset: .08em;
       text-decoration-skip-ink: none;
     }
@@ -154,7 +155,7 @@
       background: none;
       color: #14765b;
       font-weight: 800;
-      white-space: nowrap;
+      white-space: normal;
     }
     .body-copy > .bullet-line .text-hot {
       color: #d3281f;
@@ -1100,6 +1101,36 @@
       text-align: center;
       font-weight: 800;
     }
+    .trace-price-text-hit {
+      margin: -4px 0 12px;
+      padding: 12px 8px 10px;
+      border-top: 4px solid #e60012;
+      border-bottom: 4px solid #e60012;
+      background: radial-gradient(circle at 50% 48%, rgba(255, 240, 92, .9), rgba(255, 255, 255, .96) 58%);
+      text-align: center;
+    }
+    .trace-price-text-hit span {
+      display: block;
+      color: #141414;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .trace-price-text-hit strong {
+      display: inline-block;
+      color: #e60012;
+      font-size: 52px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 #fff100;
+    }
+    .trace-price-text-hit small {
+      color: #141414;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: none;
+    }
     .trace-alert-copy {
       margin-top: 18px !important;
       padding-top: 9px;
@@ -1794,7 +1825,7 @@
         
 
         <div class="fv-video-tile">
-          <video src="lutein_g_fv_video_assets/supermarket_blur.mp4" poster="lutein_g_fv_video_assets/thumbs/supermarket_blur.jpg" autoplay muted loop playsinline preload="metadata"></video>
+          <video src="lutein_g_fv_video_assets/eye_test.mp4" poster="lutein_g_fv_video_assets/thumbs/eye_test.jpg" autoplay muted loop playsinline preload="metadata"></video>
         </div>
         
 
@@ -2310,7 +2341,7 @@
 
         <div class="trace-date-band">
           <span>本日</span>
-          <strong>8月30日（日）</strong>
+          <strong data-today-label>8月31日（月）</strong>
           <em>このページから進んだ方は、<br>簡単なアンケート回答後に特別価格へ進めます。</em>
         </div>
 
@@ -2328,6 +2359,10 @@
       </figure>
     
         <p class="trace-offer-copy">ルテインGも、このページからのお申込みで、<br><strong class="text-hot">通常定価2,500円(税込)</strong>が...</p>
+        <div class="trace-price-text-hit" aria-label="初回限定価格980円税込">
+          <span>なんと、初回</span>
+          <strong>980円<small>（税込）</small></strong>
+        </div>
 
         
       <figure class="inline-image-plan real-image-plan offer-sequence-image offer-main-image offer-client-price-image trace-price-card">
@@ -2526,6 +2561,23 @@
   </main>
   
   <script>
+    const formatTodayJst = () => {
+      const parts = new Intl.DateTimeFormat('ja-JP-u-ca-gregory', {
+        timeZone: 'Asia/Tokyo',
+        month: 'numeric',
+        day: 'numeric',
+        weekday: 'short'
+      }).formatToParts(new Date());
+      const getPart = (type) => {
+        const item = parts.find((part) => part.type === type);
+        return item ? item.value : '';
+      };
+      return `${getPart('month')}月${getPart('day')}日（${getPart('weekday')}）`;
+    };
+    document.querySelectorAll('[data-today-label]').forEach((element) => {
+      element.textContent = formatTodayJst();
+    });
+
     document.querySelectorAll('[data-diagnosis]').forEach((widget) => {
       const questions = Array.from(widget.querySelectorAll('[data-question]'));
       const result = widget.querySelector('[data-diagnosis-result]');
