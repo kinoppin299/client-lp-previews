@@ -1,0 +1,2708 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <title>ルテインG 競合圧縮版 Ver3</title>
+  <style>
+    :root {
+      --ink: #242424;
+      --muted: #6a625b;
+      --line: #e7dfd3;
+      --green: #1f7a5c;
+      --amber: #ffd15c;
+      --red: #d8392b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f7f4ee;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+      line-height: 1.82;
+      letter-spacing: 0;
+    }
+    .page {
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(36, 36, 36, .08);
+    }
+    .article-head {
+      --head-pad-x: 15px;
+      padding: 14px var(--head-pad-x) 0;
+    }
+    .pr-line {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: right;
+    }
+    .fv-catch {
+      margin: 0 calc(var(--head-pad-x) * -1);
+      padding: 0;
+    }
+    .fv-catch img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(36, 36, 36, .12);
+      border-radius: 8px 8px 0 0;
+    }
+    .fv-video-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      margin: 0 calc(var(--head-pad-x) * -1);
+      padding: 0 0 9px;
+    }
+    .fv-video-tile {
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border: 1px solid rgba(36, 36, 36, .65);
+      border-radius: 0;
+      background: #111;
+    }
+    .fv-video-tile video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .fv-notes {
+      margin: -1px 2px 12px;
+      padding: 0 1px;
+      color: #8b837c;
+      font-size: 9.5px;
+      line-height: 1.45;
+    }
+    .fv-notes p {
+      margin: 0 0 2px;
+    }
+    .fv-notes p:last-child {
+      margin-bottom: 0;
+    }
+    .fv-notes b {
+      color: #726a63;
+      font-weight: 700;
+    }
+    .reader-section {
+      margin: 0;
+      padding: 0;
+    }
+    .body-copy {
+      --body-pad-x: 17px;
+      padding: 13px var(--body-pad-x) 0;
+      font-size: 21px;
+      line-height: 1.78;
+    }
+    .reader-section:first-of-type .body-copy {
+      padding-top: 10px;
+    }
+    .body-copy p {
+      margin: 0 0 18px;
+    }
+    .text-emphasis {
+      display: inline;
+      padding: 0 .06em;
+      color: #1f4f70;
+      font-size: 1.02em;
+      font-weight: 760;
+      line-height: 1.74;
+    }
+    .text-marker {
+      display: inline;
+      padding: 0 .08em;
+      color: #245246;
+      background: linear-gradient(transparent 68%, rgba(255, 219, 96, .48) 68%);
+      font-size: 1.02em;
+      font-weight: 760;
+      line-height: 1.74;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .text-hot {
+      display: inline;
+      padding: 0 .06em;
+      color: #d3281f;
+      background: linear-gradient(transparent 68%, rgba(255, 235, 120, .58) 68%);
+      font-size: 1.04em;
+      font-weight: 820;
+      line-height: 1.74;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .text-underline {
+      color: #2a4a40;
+      font-weight: 720;
+      text-decoration: underline;
+      text-decoration-color: rgba(239, 185, 35, .58);
+      text-decoration-thickness: .11em;
+      text-underline-offset: .12em;
+      text-decoration-skip-ink: none;
+    }
+    .inline-footnote-mark {
+      display: inline-block;
+      margin-left: .04em;
+      color: currentColor;
+      font-size: .42em;
+      line-height: 1;
+      vertical-align: baseline;
+      transform: translateY(.28em);
+      font-weight: 800;
+    }
+    .rohto-center .text-emphasis {
+      color: #d90000;
+      font-weight: 800;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+    }
+    .body-copy > .bullet-line .text-emphasis,
+    .body-copy > .bullet-line .text-marker,
+    .body-copy > .bullet-line .text-hot {
+      padding: 0;
+      background: none;
+      color: #14765b;
+      font-weight: 800;
+      white-space: normal;
+    }
+    .body-copy > .bullet-line .text-hot {
+      color: #d3281f;
+    }
+    .body-copy > .bullet-line {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      margin: 0 0 10px;
+      padding: 9px 10px;
+      border-left: 4px solid var(--amber);
+      border-radius: 6px;
+      background: #fffaf0;
+      font-weight: 700;
+      line-height: 1.62;
+      font-size: 19px;
+    }
+    .body-copy > .bullet-line .bullet-mark {
+      flex: 0 0 auto;
+      color: var(--green);
+      font-weight: 900;
+    }
+    .body-copy > .bullet-line .bullet-text {
+      display: block;
+      flex: 1 1 auto;
+      min-width: 0;
+      color: #202020;
+      font-weight: 700;
+    }
+    .inline-image-plan {
+      margin: 18px 0 20px;
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .body-copy > .inline-image-plan,
+    .body-copy > .lumina-video-card,
+    .trace-offer-theater > .inline-image-plan,
+    .trace-offer-theater > .lumina-video-card {
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .body-copy > .image-cta-link {
+      display: block;
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .body-copy > .image-cta-link .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .trace-reassurance-box .inline-image-plan,
+    .trace-survey-widget .inline-image-plan,
+    .trace-final-ticket .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .cta-block .inline-image-plan {
+      border-color: transparent;
+      background: transparent;
+    }
+    .actual-visual {
+      position: relative;
+      background: #fff;
+    }
+    .actual-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .lumina-video-card {
+      margin: 18px -3px 21px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 36, 36, .14);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 7px 0 rgba(18, 18, 18, .10);
+    }
+    .lumina-video-visual {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #eaf3ff;
+    }
+    .lumina-video-visual video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lumina-video-label {
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .lumina-video-label span {
+      display: inline-block;
+      max-width: 100%;
+      padding: 6px 11px 7px;
+      border: 2px solid rgba(31, 35, 104, .85);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .92);
+      color: #1f2368;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 900;
+      box-shadow: 0 3px 0 rgba(31, 35, 104, .18);
+    }
+    .client-831-media {
+      margin: 16px -2px 22px;
+    }
+    .client-831-video .lumina-video-visual {
+      aspect-ratio: auto;
+      background: #fff;
+    }
+    .client-831-video .lumina-video-visual video {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .offer-alert-title {
+      margin: 24px -17px 22px;
+      padding: 13px 16px 14px;
+      border-left: 8px solid #1264ad;
+      border-bottom: 3px solid #1264ad;
+      background: #fff;
+      color: #050505;
+      font-weight: 900;
+      line-height: 1.52;
+    }
+    .offer-alert-title span {
+      display: block;
+      font-size: 20px;
+    }
+    .offer-alert-title strong {
+      display: block;
+      font-size: 22px;
+    }
+    .rohto-center {
+      text-align: center;
+      font-weight: 800;
+    }
+    .offer-sequence-head {
+      margin: 18px -17px 12px;
+      padding: 17px 14px 16px;
+      border-top: 7px solid #b90016;
+      border-bottom: 7px solid #b90016;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255, 237, 144, .9), transparent 42%),
+        linear-gradient(135deg, #fff7d2 0%, #fff 48%, #fff2c0 100%);
+      text-align: center;
+      box-shadow: inset 0 1px 0 #fff, 0 6px 0 rgba(185, 0, 22, .13);
+    }
+    .offer-sequence-head span {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .offer-sequence-head strong {
+      display: inline;
+      padding: 0 .08em;
+      color: #e60012;
+      background: linear-gradient(transparent 54%, #fff000 54%);
+      font-size: 27px;
+      line-height: 1.45;
+      font-weight: 900;
+    }
+    .offer-sequence-head em {
+      display: block;
+      margin-top: 9px;
+      color: #111;
+      font-size: 16px;
+      line-height: 1.45;
+      font-style: normal;
+      font-weight: 900;
+    }
+    .price-compare-board {
+      margin: 20px 0 22px;
+      padding: 20px 14px 16px;
+      border: 3px solid #111;
+      background: #fff;
+      text-align: center;
+      box-shadow: 0 6px 0 rgba(0, 0, 0, .12);
+    }
+    .compare-kicker,
+    .compare-title,
+    .compare-limited {
+      margin: 0 0 8px;
+      line-height: 1.45;
+      font-weight: 900;
+    }
+    .compare-kicker {
+      font-size: 18px;
+    }
+    .compare-title {
+      font-size: 21px;
+    }
+    .compare-limited {
+      display: inline;
+      background: linear-gradient(transparent 52%, #fff000 52%);
+      color: #111;
+      font-size: 23px;
+    }
+    .compare-table {
+      display: grid;
+      gap: 0;
+      margin-top: 20px;
+      border: 2px solid #111;
+    }
+    .compare-table div {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr auto;
+      align-items: center;
+      min-height: 72px;
+      border-bottom: 2px solid #111;
+      background: #fff;
+    }
+    .compare-table div:last-child {
+      border-bottom: 0;
+    }
+    .compare-table span {
+      align-self: stretch;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      border-right: 2px solid #111;
+      font-size: 17px;
+      font-weight: 900;
+    }
+    .compare-table strong {
+      padding: 7px 4px;
+      color: #111;
+      font-size: 33px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .compare-table small {
+      padding-right: 8px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .compare-table .is-special span,
+    .compare-table .is-special strong,
+    .compare-table .is-special small {
+      background: #e60012;
+      color: #fff100;
+    }
+    .compare-table .is-special span {
+      color: #fff;
+    }
+    .normal-price-box {
+      margin: 16px auto 24px;
+      padding: 14px 10px 15px;
+      max-width: 330px;
+      text-align: center;
+      background: #fffde1;
+      border-top: 2px solid #f1dd69;
+      border-bottom: 2px solid #f1dd69;
+      font-weight: 900;
+      line-height: 1.34;
+    }
+    .normal-price-box span {
+      display: block;
+      font-size: 17px;
+    }
+    .normal-price-box strong {
+      color: #111;
+      font-size: 34px;
+      letter-spacing: 0;
+    }
+    .normal-price-box small {
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .shock-burst {
+      margin: 18px 0 10px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .jagged-burst {
+      width: 108px;
+      height: 72px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      clip-path: polygon(50% 0%, 59% 26%, 87% 9%, 74% 37%, 100% 50%, 74% 63%, 87% 91%, 59% 74%, 50% 100%, 41% 74%, 13% 91%, 26% 63%, 0% 50%, 26% 37%, 13% 9%, 41% 26%);
+      background: #f3151e;
+      color: #fff;
+      font-size: 42px;
+      font-weight: 900;
+      filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .1));
+      animation: popPulse 1.4s ease-in-out infinite;
+    }
+    .offer-unlock {
+      margin-bottom: 6px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .yellow-marker-red {
+      padding: 0 .1em;
+      color: #f00000;
+      background: linear-gradient(transparent 34%, #fff000 34% 86%, transparent 86%);
+      font-size: 23px;
+      font-weight: 900;
+      line-height: 1.62;
+    }
+    .offer-main-image,
+    .cta-main-image {
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .offer-image2-widget {
+      margin: 10px -5px 14px;
+    }
+    .offer-image2-widget img {
+      border: 1px solid rgba(36, 36, 36, .16);
+      border-radius: 8px;
+      box-shadow: 0 7px 0 rgba(18, 18, 18, .10);
+    }
+    .offer-vault-gif {
+      margin: 14px -3px 16px;
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .offer-vault-gif .actual-visual img {
+      border: 1px solid rgba(36, 36, 36, .12);
+      border-radius: 8px;
+      box-shadow: 0 6px 0 rgba(18, 18, 18, .10);
+    }
+    .offer-wait-gif {
+      margin-top: 19px;
+      margin-bottom: 13px;
+    }
+    .offer-sequence-image {
+      margin: 14px -4px 16px;
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .offer-sequence-image .actual-visual img {
+      border: 1px solid rgba(36, 36, 36, .12);
+      border-radius: 8px;
+      box-shadow: 0 6px 0 rgba(18, 18, 18, .10);
+    }
+    .offer-comparison-image,
+    .offer-price-image,
+    .offer-client-price-image,
+    .cta-final-offer-image {
+      margin-left: -6px;
+      margin-right: -6px;
+    }
+    .offer-client-price-image .actual-visual img {
+      border-color: rgba(64, 20, 92, .24);
+      box-shadow: 0 7px 0 rgba(64, 20, 92, .16);
+    }
+    .amazon-proof-image {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .amazon-proof-image .actual-visual img {
+      border-color: rgba(28, 28, 28, .2);
+      box-shadow: 0 5px 0 rgba(0, 0, 0, .12);
+    }
+    .offer-evidence-note {
+      margin-top: -4px;
+      margin-bottom: 14px;
+    }
+    .offer-total-note {
+      margin-top: -7px !important;
+      margin-bottom: 12px !important;
+      text-align: left;
+    }
+    .offer-bridge-copy {
+      margin: 12px 0 16px;
+      padding: 12px 13px;
+      border-left: 5px solid #e60012;
+      background: #fff9e4;
+      font-size: 18px;
+      line-height: 1.62;
+      font-weight: 700;
+      text-align: left;
+    }
+    .offer-bridge-copy strong {
+      color: #d90000;
+      font-weight: 900;
+      background: linear-gradient(transparent 62%, #fff000 62%);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .cta-standard-zone {
+      margin: 17px -3px 21px;
+      padding: 14px 10px 13px;
+      border-top: 4px solid #f3151e;
+      border-bottom: 4px solid #f3151e;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 241, 121, .75), transparent 44%),
+        linear-gradient(180deg, #fffdf0 0%, #ffffff 68%, #fff5cf 100%);
+      text-align: center;
+      box-shadow: 0 5px 0 rgba(243, 21, 30, .11);
+    }
+    .cta-standard-lead {
+      margin: 0 0 10px !important;
+      color: #242424;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+    .cta-assurance-chips {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 10px;
+    }
+    .cta-assurance-chips span {
+      display: block;
+      padding: 8px 6px;
+      border: 2px solid #008765;
+      border-radius: 999px;
+      background: #f2fff8;
+      color: #00654d;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .cta-standard-button {
+      margin: 8px 0 5px !important;
+    }
+    .cta-standard-button .actual-visual {
+      background: transparent;
+    }
+    .cta-standard-button .actual-visual img {
+      width: min(100%, 520px);
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow:
+        0 8px 0 rgba(0, 87, 72, .32),
+        0 0 20px rgba(0, 184, 131, .25);
+      animation: ctaPulse 1.35s ease-in-out infinite;
+    }
+    .cta-condition-note {
+      margin-top: 6px !important;
+      text-align: center;
+    }
+    .cta-down-arrow {
+      margin: 3px 0 8px;
+    }
+    .cta-down-arrow span {
+      border-left-width: 25px;
+      border-right-width: 25px;
+      border-top-width: 30px;
+    }
+    .offer-mid-cta {
+      margin-top: 13px;
+    }
+    .offer-reassurance-cta {
+      margin: 15px -6px 2px;
+    }
+    .diagnosis-result-cta {
+      margin: 12px -3px 0;
+    }
+    .diagnosis-result-cta .cta-standard-lead {
+      font-size: 17px;
+    }
+    .offer-reward-gif {
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+    .offer-reassurance-line {
+      margin-top: 16px;
+      margin-bottom: 17px;
+      font-size: 20px;
+      line-height: 1.56;
+    }
+    .offer-subscription-image {
+      margin: 14px -3px 16px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .payment-static-steps {
+      margin: 13px 0 10px;
+      padding: 12px 10px;
+      border: 2px solid #1264ad;
+      background: #f5fbff;
+      box-shadow: 0 3px 0 rgba(18, 100, 173, .14);
+      text-align: center;
+    }
+    .payment-static-steps strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #104b85;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .payment-static-steps div {
+      display: grid;
+      gap: 6px;
+    }
+    .payment-static-steps span {
+      display: block;
+      padding: 8px 9px;
+      border: 1px solid rgba(18, 100, 173, .25);
+      border-radius: 8px;
+      background: #fff;
+      color: #222;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    .offer-subscription-image img {
+      border: 1px solid rgba(36, 36, 36, .12);
+      border-radius: 8px;
+      box-shadow: 0 6px 0 rgba(18, 18, 18, .10);
+    }
+    .offer-postpay-gif {
+      margin-top: 13px;
+      margin-bottom: 12px;
+    }
+    .offer-survey-gif {
+      margin-top: 18px;
+      margin-bottom: 15px;
+    }
+    .offer-answer-thanks-gif {
+      margin: 0 0 13px;
+    }
+    .offer-loss-gif {
+      margin-top: 4px;
+      margin-bottom: 17px;
+    }
+    .rohto-price-repeat {
+      margin-top: 23px;
+    }
+    .rohto-price-repeat p {
+      margin: 8px 0 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .offer-weapon-stack {
+      display: grid;
+      gap: 11px;
+      margin: 20px -3px 18px;
+    }
+    .offer-weapon-card {
+      position: relative;
+      overflow: hidden;
+      padding: 12px 13px 13px 62px;
+      border: 3px solid #007a57;
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .92), rgba(239, 255, 248, .96)),
+        #ecfff7;
+      color: #005f47;
+      box-shadow: 0 5px 0 rgba(0, 112, 80, .18);
+    }
+    .offer-weapon-card::before {
+      content: "✓";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #008765;
+      color: #fff;
+      font-size: 27px;
+      line-height: 1;
+      font-weight: 900;
+      transform: translateY(-50%);
+    }
+    .offer-weapon-card.shipping {
+      border-color: #d59a00;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .92), rgba(255, 246, 203, .97)),
+        #fff5c3;
+      color: #8a5500;
+      box-shadow: 0 5px 0 rgba(213, 154, 0, .20);
+    }
+    .offer-weapon-card.shipping::before {
+      background: #f1a900;
+      color: #fff;
+    }
+    .offer-weapon-card span {
+      display: block;
+      margin-bottom: 2px;
+      color: #222;
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .offer-weapon-card strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.28;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .offer-limited-strip {
+      margin: 13px 0 16px;
+      padding: 10px 11px;
+      border-top: 2px solid #f3151e;
+      border-bottom: 2px solid #f3151e;
+      background: #fff8dc;
+      text-align: center;
+      color: #222;
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+    .offer-limited-strip.offer-urgency-strip {
+      position: relative;
+      margin: 18px -3px 18px;
+      padding: 18px 12px 13px;
+      border: 3px solid #e60012;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 8% 18%, rgba(255, 255, 0, .42), transparent 26%),
+        linear-gradient(180deg, #fff 0%, #fff8cf 100%);
+      box-shadow: 0 7px 0 rgba(230, 0, 18, .13);
+    }
+    .offer-urgency-strip span {
+      display: inline-block;
+      margin: -31px auto 5px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: #e60012;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 800;
+      box-shadow: 0 3px 0 rgba(120, 0, 0, .2);
+    }
+    .offer-limited-strip strong {
+      color: #d90000;
+      font-size: 18px;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+    }
+    .offer-urgency-strip strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.38;
+    }
+    .offer-urgency-strip p {
+      margin: 7px 0 0;
+      color: #242424;
+      font-size: 16px;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+    .price-echo {
+      margin: 22px 0 12px;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .price-echo-label {
+      color: #f00000;
+      font-size: 21px;
+    }
+    .price-echo-label strong {
+      font-size: 30px;
+    }
+    .price-echo-main strong {
+      color: #f00000;
+      font-size: 52px;
+      background: linear-gradient(transparent 62%, #fff000 62%);
+      letter-spacing: 0;
+    }
+    .price-echo-main span {
+      color: #f00000;
+      font-size: 30px;
+      font-weight: 900;
+      background: linear-gradient(transparent 62%, #fff000 62%);
+    }
+    .price-echo-main small {
+      color: #f00000;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .daily-price {
+      margin: 22px auto 18px;
+      text-align: center;
+    }
+    .daily-price span {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .daily-price strong {
+      display: block;
+      color: #f3151e;
+      font-size: 42px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+    .daily-price sup {
+      font-size: 13px;
+    }
+    .daily-price small {
+      display: block;
+      margin-top: 8px;
+      color: #565656;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .daily-coin-visual {
+      margin: 22px 0 18px;
+      padding: 16px 8px 12px;
+      background: #fff;
+      text-align: center;
+    }
+    .daily-coin-visual p {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .daily-coin-visual strong {
+      display: block;
+      color: #f3151e;
+      font-size: 50px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .daily-coin-visual sup {
+      color: #111;
+      font-size: 15px;
+    }
+    .daily-coin-visual small {
+      display: block;
+      margin-top: 10px;
+      color: #565656;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .coin-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin: 16px auto 0;
+      max-width: 330px;
+    }
+    .coin {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 17px;
+      font-weight: 900;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, .45), inset 0 -4px 6px rgba(0, 0, 0, .18), 0 3px 0 rgba(0, 0, 0, .12);
+    }
+    .coin-10 {
+      border: 2px solid #b87916;
+      background: radial-gradient(circle at 33% 25%, #ffe59c, #c8871d 70%);
+      color: #84530d;
+    }
+    .coin-1 {
+      border: 2px solid #a7a7a7;
+      background: radial-gradient(circle at 33% 25%, #fff, #c7c7c7 70%);
+      color: #777;
+    }
+    .offer-chips {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin: 18px 0 18px;
+    }
+    .offer-chips span {
+      display: block;
+      padding: 9px 10px;
+      border: 2px solid #008765;
+      border-radius: 999px;
+      background: #f2fffa;
+      color: #00684f;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .offer-risk-box {
+      margin: 18px 0 20px;
+      padding: 13px 13px 12px;
+      border: 3px solid #ffe033;
+      background: #fffef0;
+      box-shadow: 0 4px 0 rgba(239, 198, 0, .35);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+    .offer-risk-box strong {
+      font-weight: 800;
+    }
+    .offer-risk-box p {
+      margin: 8px 0 0;
+    }
+    .reassurance-sales-block {
+      padding: 15px 13px 14px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    .reassurance-sales-block > strong {
+      display: block;
+      color: #d90000;
+      font-size: 20px;
+      line-height: 1.45;
+      text-align: center;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .compact-risk {
+      margin-top: 4px;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .compact-chips {
+      margin: 12px 0 8px;
+    }
+    .micro-note {
+      margin: 6px 0 0 !important;
+      color: #74706b;
+      font-size: 10.5px !important;
+      line-height: 1.45 !important;
+      font-weight: 500;
+    }
+    .authority-source-note {
+      margin: -2px 2px 14px !important;
+      color: #8a827b;
+      font-size: 9.5px !important;
+      text-align: left;
+    }
+    .trace-offer-theater {
+      margin: 4px 0 28px;
+    }
+    .trace-offer-theater p {
+      font-size: 20px;
+      line-height: 1.64;
+    }
+    .trace-voice-block {
+      margin: 8px 0 12px;
+      padding: 12px 12px 13px;
+      border-top: 5px solid #ffe033;
+      border-bottom: 5px solid #ffe033;
+      background: #fff;
+      text-align: center;
+    }
+    .trace-voice-block p {
+      margin: 0 0 7px;
+      font-size: 19px;
+      line-height: 1.48;
+      font-weight: 800;
+    }
+    .trace-voice-block p:last-child {
+      margin-bottom: 0;
+      color: #d90000;
+      font-size: 21px;
+    }
+    .trace-voice-block strong {
+      color: #1264ad;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .trace-wait-alert {
+      margin: 10px -7px 12px;
+    }
+    .trace-date-band {
+      margin: 12px 0 14px;
+      padding: 7px 8px 11px;
+      border-top: 5px solid #ffe033;
+      border-bottom: 5px solid #ffe033;
+      background: #fffdf2;
+      text-align: center;
+    }
+    .trace-date-band span {
+      display: block;
+      color: #1d1d1d;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .trace-date-band strong {
+      display: block;
+      color: #e60012;
+      font-size: 23px;
+      line-height: 1.28;
+      font-weight: 900;
+    }
+    .trace-date-band em {
+      display: block;
+      margin-top: 6px;
+      color: #242424;
+      font-style: normal;
+      font-size: 15px;
+      line-height: 1.42;
+      font-weight: 800;
+    }
+    .trace-down {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin: 8px 0 10px;
+    }
+    .trace-down span {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid #e60012;
+      filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .15));
+      animation: traceArrowPulse 1.05s ease-in-out infinite;
+    }
+    .trace-down span:nth-child(2) { animation-delay: .12s; }
+    .trace-down span:nth-child(3) { animation-delay: .24s; }
+    .trace-big-arrow {
+      gap: 9px;
+      margin: 10px 0 14px;
+    }
+    .trace-big-arrow span {
+      border-left-width: 18px;
+      border-right-width: 18px;
+      border-top-width: 26px;
+      filter: drop-shadow(0 4px 0 rgba(230, 0, 18, .20));
+    }
+    .trace-thus-copy {
+      margin: 12px 0 2px !important;
+      color: #e60012;
+      text-align: center;
+      font-size: 36px !important;
+      line-height: 1.08 !important;
+      font-weight: 950;
+      text-shadow: 2px 2px 0 #fff000, 0 3px 0 rgba(0, 0, 0, .12);
+    }
+    .trace-special-reward,
+    .trace-price-card,
+    .trace-per-day,
+    .trace-amazon-comparison,
+    .trace-subscription-card,
+    .trace-shipping-strip,
+    .trace-postpay-card,
+    .trace-survey-start,
+    .trace-answer-thanks,
+    .trace-last-chance {
+      margin: 12px -5px 14px;
+    }
+    .trace-special-reward .actual-visual img,
+    .trace-price-card .actual-visual img,
+    .trace-per-day .actual-visual img,
+    .trace-amazon-comparison .actual-visual img,
+    .trace-subscription-card .actual-visual img,
+    .trace-shipping-strip .actual-visual img,
+    .trace-postpay-card .actual-visual img,
+    .trace-survey-start .actual-visual img,
+    .trace-answer-thanks .actual-visual img,
+    .trace-last-chance .actual-visual img {
+      border: 1px solid rgba(36, 36, 36, .14);
+      border-radius: 8px;
+      box-shadow: 0 6px 0 rgba(18, 18, 18, .10);
+    }
+    .trace-offer-copy,
+    .trace-alert-copy,
+    .trace-survey-lead {
+      text-align: center;
+      font-weight: 800;
+    }
+    .trace-price-text-hit {
+      margin: -4px 0 12px;
+      padding: 12px 8px 10px;
+      border-top: 4px solid #e60012;
+      border-bottom: 4px solid #e60012;
+      background: radial-gradient(circle at 50% 48%, rgba(255, 240, 92, .9), rgba(255, 255, 255, .96) 58%);
+      text-align: center;
+    }
+    .trace-price-text-hit span {
+      display: block;
+      color: #141414;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .trace-price-text-hit strong {
+      display: inline-block;
+      color: #e60012;
+      font-size: 52px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 #fff100;
+    }
+    .trace-price-text-hit small {
+      color: #141414;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: none;
+    }
+    .trace-alert-copy {
+      margin-top: 18px !important;
+      padding-top: 9px;
+      border-top: 4px solid #ffe033;
+    }
+    .trace-alert-copy strong,
+    .trace-survey-lead strong {
+      color: #d90000;
+      font-weight: 900;
+      background: linear-gradient(transparent 60%, #fff000 60%);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .trace-amazon-proof {
+      margin: 10px -4px 12px;
+    }
+    .trace-loss-copy {
+      margin: 8px 0 16px !important;
+      padding: 11px 12px;
+      border-left: 5px solid #e60012;
+      background: #fff6d7;
+      text-align: left;
+      font-weight: 800;
+    }
+    .trace-loss-copy strong {
+      color: #d90000;
+      font-size: 1.1em;
+      background: linear-gradient(transparent 60%, #fff000 60%);
+    }
+    .trace-reassurance-box {
+      margin: 18px 0 18px;
+      padding: 13px 11px 11px;
+      border: 3px solid #21a16f;
+      background: #f4fff9;
+      box-shadow: 0 5px 0 rgba(33, 161, 111, .14);
+    }
+    .trace-reassurance-box > p:first-child {
+      margin: 0 0 10px;
+      text-align: center;
+    }
+    .trace-reassurance-box > p:first-child strong {
+      color: #0d6f50;
+      font-size: 20px;
+      line-height: 1.45;
+      font-weight: 900;
+    }
+    .trace-survey-widget {
+      margin-top: 12px;
+      border-color: #e60012;
+      background: #fffdf6;
+      box-shadow: 0 6px 0 rgba(230, 0, 18, .14);
+    }
+    .trace-survey-widget .diagnosis-head.trace-survey-title {
+      position: relative;
+      padding: 11px 12px 13px;
+      border-bottom: 4px solid #f4c542;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 232, 90, .55), transparent 24%),
+        radial-gradient(circle at 88% 16%, rgba(255, 232, 90, .42), transparent 22%),
+        linear-gradient(180deg, #f0141f 0%, #c90000 100%);
+      overflow: hidden;
+    }
+    .trace-survey-widget .trace-survey-title span {
+      display: inline-block;
+      margin: 0 0 5px;
+      padding: 3px 10px;
+      border: 1px solid rgba(255, 231, 120, .95);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .14);
+      color: #fff8b8;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .trace-survey-widget .trace-survey-title strong {
+      display: block;
+      color: #fff;
+      font-size: 25px;
+      line-height: 1.22;
+      font-weight: 900;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .24);
+    }
+    .trace-survey-widget .trace-survey-title small {
+      display: block;
+      margin-top: 4px;
+      color: #fffde8;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    .trace-survey-widget .diagnosis-head.trace-survey-choice-head {
+      padding: 9px 10px 10px;
+      border-bottom: 3px solid #f4c542;
+      background: linear-gradient(180deg, #ef151d 0%, #c90000 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .trace-survey-widget .trace-survey-choice-head span {
+      display: inline-block;
+      margin: 0 0 4px;
+      padding: 2px 9px;
+      border: 1px solid rgba(255, 231, 120, .9);
+      border-radius: 999px;
+      color: #fff7b8;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .trace-survey-widget .trace-survey-choice-head strong {
+      display: block;
+      color: #fff;
+      font-size: 19px;
+      line-height: 1.35;
+      font-weight: 900;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .22);
+    }
+    .trace-survey-start-card {
+      position: relative;
+      margin: 10px -2px 13px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      text-align: center;
+      box-shadow: none;
+      overflow: visible;
+    }
+    .trace-survey-start-card::before {
+      content: none;
+    }
+    .trace-survey-start-card .actual-visual {
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      box-shadow: 0 5px 0 rgba(230, 0, 18, .16);
+      overflow: hidden;
+    }
+    .trace-survey-start-card .actual-visual img {
+      display: block;
+      border-radius: 8px;
+    }
+    .trace-survey-start-card span {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #d90000;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .trace-survey-start-card strong {
+      display: block;
+      color: #191919;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .trace-survey-start-card strong small {
+      display: block;
+      color: #191919;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+    .trace-survey-start-card strong b {
+      display: block;
+      color: #d90000;
+      font-size: 27px;
+      line-height: 1.18;
+      font-weight: 900;
+      text-shadow: 0 2px 0 #fff, 0 3px 0 rgba(217, 0, 0, .12);
+    }
+    .trace-survey-start-card em {
+      display: block;
+      margin-top: 7px;
+      color: #242424;
+      font-size: 14px;
+      line-height: 1.45;
+      font-style: normal;
+      font-weight: 800;
+    }
+    .trace-survey-widget .question-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 98px;
+      margin: 0 0 8px;
+      padding: 4px 10px 5px;
+      border-radius: 4px;
+      background: #27215f;
+      color: #fff8c9;
+      font-size: 13px;
+      line-height: 1.15;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 #f4c542;
+    }
+    .trace-survey-widget .diagnosis-question p {
+      color: #242424;
+      font-size: 18px;
+      line-height: 1.48;
+    }
+    .trace-survey-widget .trace-survey-question-image {
+      margin: 8px 0 10px;
+    }
+    .trace-survey-widget .trace-survey-question-image .actual-visual {
+      border-color: rgba(230, 0, 18, .14);
+      background: #fff;
+      box-shadow: 0 3px 0 rgba(230, 0, 18, .08);
+    }
+    .trace-survey-widget .diagnosis-option {
+      min-height: 58px;
+      padding: 12px 12px;
+      border-radius: 6px;
+      font-size: 18px;
+      background: linear-gradient(180deg, #fff, #f4f4f4);
+    }
+    .trace-survey-result {
+      padding: 14px 12px 15px;
+      background: #fffaf0;
+    }
+    .trace-survey-result > strong {
+      display: block;
+      color: #d90000;
+      text-align: center;
+      font-size: 19px;
+      line-height: 1.45;
+      font-weight: 900;
+    }
+    .trace-after-survey {
+      margin: 2px 0 7px !important;
+      text-align: center;
+      color: #1d1d1d;
+      font-size: 17px !important;
+      font-weight: 900;
+    }
+    .trace-open-cta-head {
+      display: block;
+      margin: 3px 0 10px;
+      color: #e60012;
+      text-align: center;
+      font-size: 22px;
+      line-height: 1.35;
+      font-weight: 900;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+    }
+    .trace-final-ticket {
+      margin: 15px -2px 13px;
+      padding: 0 10px 12px;
+      border: 3px solid #c90000;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 240, 110, .7), transparent 38%),
+        linear-gradient(180deg, #fff8df 0%, #fff 48%, #fff5d2 100%);
+      text-align: center;
+      box-shadow: 0 5px 0 rgba(201, 0, 0, .18);
+      overflow: hidden;
+    }
+    .trace-final-ribbon {
+      margin: 0 -10px 10px;
+      padding: 6px 8px;
+      background: #d90000;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .trace-final-offer-card-image {
+      margin: 10px 0 12px;
+    }
+    .trace-final-offer-card-image .actual-visual {
+      border-radius: 8px;
+      box-shadow: 0 4px 0 rgba(201, 0, 0, .14);
+      overflow: hidden;
+    }
+    .trace-final-title {
+      margin: 0 0 6px !important;
+      color: #241b16;
+      font-size: 17px !important;
+      line-height: 1.38 !important;
+      font-weight: 900;
+    }
+    .trace-final-price-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3px;
+      justify-items: center;
+      margin: 4px 0 9px;
+    }
+    .trace-final-price-row span {
+      color: #202020;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: #d90000;
+    }
+    .trace-final-price-row strong {
+      color: #e60012;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: 0 2px 0 #fff, 0 4px 0 rgba(0, 0, 0, .12);
+    }
+    .trace-final-price-row small {
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .trace-final-chips {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .trace-final-chips span:last-child {
+      grid-column: 1 / -1;
+    }
+    .trace-final-chips span {
+      display: grid;
+      place-items: center;
+      min-height: 34px;
+      padding: 5px 4px;
+      border: 2px solid #0a8a61;
+      border-radius: 999px;
+      background: #f0fff8;
+      color: #007250;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .trace-cta-zone {
+      margin: 13px -4px 4px;
+      border-top-color: #e60012;
+      border-bottom-color: #e60012;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 241, 121, .82), transparent 44%),
+        linear-gradient(180deg, #fff 0%, #fff7da 100%);
+    }
+    .trace-cta-arrow span {
+      border-left-width: 13px;
+      border-right-width: 13px;
+      border-top-width: 18px;
+    }
+    .trace-image2-cta {
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+    .trace-image2-cta .actual-visual img {
+      border-radius: 12px;
+      box-shadow:
+        0 9px 0 rgba(0, 83, 58, .36),
+        0 0 24px rgba(0, 184, 131, .28);
+    }
+    .trace-direct-cta {
+      margin: 12px -8px 18px;
+    }
+    .trace-direct-cta .cta-standard-button {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    .trace-answer-cta {
+      margin-top: 12px;
+      margin-bottom: 14px;
+    }
+    .trace-final-cta {
+      margin-top: 14px;
+    }
+    @keyframes traceArrowPulse {
+      0%, 100% { transform: translateY(0); opacity: .5; }
+      50% { transform: translateY(5px); opacity: 1; }
+    }
+    .diagnosis-widget {
+      margin: 18px 0 20px;
+      border: 3px solid #1264ad;
+      background: #f7fbff;
+      box-shadow: 0 5px 0 rgba(18, 100, 173, .18);
+    }
+    .diagnosis-head {
+      padding: 13px 12px;
+      background: #1264ad;
+      color: #fff;
+      text-align: center;
+      font-weight: 800;
+    }
+    .diagnosis-head span {
+      display: block;
+      font-size: 15px;
+    }
+    .diagnosis-head strong {
+      display: block;
+      font-size: 19px;
+    }
+    .diagnosis-question {
+      padding: 14px 12px 12px;
+      border-bottom: 1px solid rgba(18, 100, 173, .2);
+    }
+    .diagnosis-question .diagnosis-question-image {
+      margin: 8px 0 12px;
+    }
+    .diagnosis-intro-image {
+      margin: 10px -2px 12px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .diagnosis-intro-image img {
+      border: 1px solid rgba(18, 100, 173, .16);
+      border-radius: 8px;
+    }
+    .diagnosis-question .diagnosis-question-image .actual-visual {
+      border: 1px solid rgba(18, 100, 173, .16);
+      border-radius: 8px;
+      box-shadow: none;
+      overflow: hidden;
+    }
+    .diagnosis-question .diagnosis-question-image img {
+      border-radius: 8px;
+    }
+    .diagnosis-question p {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+    .diagnosis-option {
+      display: block;
+      width: 100%;
+      min-height: 54px;
+      margin: 8px 0;
+      padding: 10px 11px;
+      border: 2px solid #d7dfe8;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 18px;
+      line-height: 1.38;
+      font-weight: 800;
+      text-align: left;
+      cursor: pointer;
+    }
+    .diagnosis-option::before {
+      content: "□";
+      margin-right: 8px;
+      color: #1264ad;
+      font-weight: 900;
+    }
+    .diagnosis-option.is-selected {
+      border-color: #f3151e;
+      background: #fff5e8;
+      color: #9b150f;
+    }
+    .diagnosis-option.is-selected::before {
+      content: "✓";
+      color: #f3151e;
+    }
+    .diagnosis-result {
+      display: none;
+      padding: 14px 13px 15px;
+      background: #fff7db;
+      text-align: center;
+    }
+    .diagnosis-result.is-visible {
+      display: block;
+    }
+    .diagnosis-result strong {
+      display: inline;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+      color: #d90000;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .diagnosis-result p {
+      margin: 9px 0 6px;
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 800;
+    }
+    .diagnosis-result span {
+      color: #1264ad;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .diagnosis-result-benefits {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin: 10px 0 12px;
+    }
+    .diagnosis-result-benefits span {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 999px;
+      background: #fff;
+      border: 2px solid #f3151e;
+      color: #d90000;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .diagnosis-result .cta-assurance-chips span {
+      color: #00654d;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .trace-result-message {
+      display: none !important;
+    }
+    .trace-survey-result .trace-final-title {
+      color: #241b16;
+      font-size: 17px !important;
+      line-height: 1.38 !important;
+      font-weight: 900;
+      background: none;
+    }
+    .trace-survey-result .trace-final-price-row span {
+      display: inline;
+      color: #202020;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .trace-survey-result .trace-final-price-row strong {
+      display: block;
+      color: #e60012;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 900;
+      background: none;
+    }
+    .trace-survey-result .trace-final-price-row small {
+      color: #e60012;
+      font-size: 15px;
+    }
+    .trace-survey-result .trace-final-chips span {
+      display: grid;
+      color: #007250;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .criteria-stack {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+    .criteria-stack div {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border: 2px solid #1264ad;
+      background: #f7fbff;
+      box-shadow: 0 3px 0 rgba(18, 100, 173, .16);
+    }
+    .criteria-stack b {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #1264ad;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .criteria-stack span {
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+    .final-push-box {
+      margin: 6px 0 14px;
+      padding: 14px 13px;
+      border: 3px solid #f3151e;
+      background: #fff8e5;
+      text-align: center;
+      box-shadow: 0 5px 0 rgba(243, 21, 30, .15);
+    }
+    .cta-final-offer-image {
+      margin: 10px -3px 12px;
+    }
+    .cta-final-offer-image .actual-visual img {
+      border: 1px solid rgba(39, 16, 85, .18);
+      border-radius: 8px;
+      box-shadow: 0 7px 0 rgba(39, 16, 85, .14);
+    }
+    .final-push-compact {
+      margin-top: 10px;
+      padding: 14px 13px 16px;
+    }
+    .final-push-box p {
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+    .final-push-compact p {
+      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .final-push-box strong {
+      display: block;
+      color: #d90000;
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 800;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+    }
+    .final-note {
+      text-align: center;
+    }
+    .offer-last-push,
+    .cta-push-copy,
+    .cta-note {
+      text-align: center;
+      font-weight: 800;
+    }
+    .offer-last-push strong,
+    .cta-push-copy strong {
+      color: #d90000;
+      font-weight: 800;
+      background: linear-gradient(transparent 58%, #fff000 58%);
+    }
+    .big-down-arrow {
+      display: grid;
+      place-items: center;
+      gap: 0;
+      margin: 6px 0 12px;
+    }
+    .big-down-arrow span {
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 34px solid transparent;
+      border-right: 34px solid transparent;
+      border-top: 42px solid #f3151e;
+      filter: drop-shadow(0 5px 0 rgba(0, 0, 0, .12));
+      animation: bounceDown 1.15s ease-in-out infinite;
+    }
+    .big-down-arrow span:nth-child(2) { opacity: .72; animation-delay: .12s; }
+    .big-down-arrow span:nth-child(3) { opacity: .45; animation-delay: .24s; }
+    @keyframes ctaPulse {
+      0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+      50% { transform: translateY(-2px) scale(1.015); filter: brightness(1.06); }
+    }
+    .effect-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      margin: -4px 0 10px;
+      opacity: .68;
+    }
+    .effect-arrow span {
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 14px solid var(--red);
+      filter: drop-shadow(0 4px 4px rgba(216, 57, 43, .22));
+      animation: bounceDown 1.25s ease-in-out infinite;
+    }
+    .effect-arrow span:first-child {
+      opacity: .42;
+      transform: scale(.76);
+      animation-delay: .12s;
+    }
+    .effect-arrow.effect-arrow-large {
+      gap: 5px;
+      margin: 4px 0 15px;
+      opacity: .95;
+    }
+    .effect-arrow.effect-arrow-large span {
+      border-left-width: 20px;
+      border-right-width: 20px;
+      border-top-width: 26px;
+      filter: drop-shadow(0 5px 0 rgba(216, 57, 43, .22));
+    }
+    .effect-arrow.effect-arrow-large span:first-child {
+      transform: scale(.84);
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(7px); }
+    }
+    @keyframes popPulse {
+      0%, 100% { transform: scale(1) rotate(-4deg); }
+      50% { transform: scale(1.08) rotate(4deg); }
+    }
+    .legal-footer {
+      margin: 24px 0 0;
+      padding: 18px 16px 22px;
+      border-top: 1px solid #e7dfd3;
+      background: #f8f4ec;
+      text-align: center;
+    }
+    .legal-footer a {
+      display: inline-block;
+      margin: 4px 8px;
+      color: #4c4741;
+      font-size: 12px;
+      line-height: 1.5;
+      text-decoration: underline;
+      text-underline-offset: .18em;
+    }
+    .body-copy > .inline-image-plan,
+    .body-copy > .lumina-video-card,
+    .body-copy > .client-831-media,
+    .trace-offer-theater > .inline-image-plan,
+    .trace-offer-theater > .lumina-video-card {
+      margin-left: calc(var(--body-pad-x) * -1);
+      margin-right: calc(var(--body-pad-x) * -1);
+    }
+    .trace-reassurance-box .inline-image-plan,
+    .trace-survey-widget .inline-image-plan,
+    .trace-final-ticket .inline-image-plan {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .effect-arrow span,
+      .big-down-arrow span,
+      .jagged-burst { animation: none; }
+    }
+    @media (max-width: 460px) {
+      .page {
+        max-width: none;
+        box-shadow: none;
+      }
+      .article-head {
+        --head-pad-x: 14px;
+        padding: 13px var(--head-pad-x) 0;
+      }
+      .body-copy {
+        --body-pad-x: 16px;
+        padding-left: var(--body-pad-x);
+        padding-right: var(--body-pad-x);
+        font-size: 21px;
+      }
+      .fv-notes {
+        font-size: 9px;
+        line-height: 1.42;
+      }
+    }
+  
+    .authority-source-note,
+    .researcher-source-note {
+      color: #6a625b;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    </style>
+</head>
+<body>
+  <main class="page">
+    <header class="article-head">
+      <p class="pr-line">PR：株式会社ファーマフーズ</p>
+      <figure class="fv-catch">
+        <img src="lutein_g_image2_assets/fv/fv_eye_cognition_catch_v2_4x3.webp" alt="老眼の放置絶対やめて！知る人ぞ知る「見る力」と「認知機能」の知られざる関係性とは？" width="1200" height="900">
+      </figure>
+      <div class="fv-video-strip" aria-label="見えづらさを表す動画">
+        
+        <div class="fv-video-tile">
+          <video src="lutein_g_fv_video_assets/phone_blur.mp4" poster="lutein_g_fv_video_assets/thumbs/phone_blur.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        
+
+        <div class="fv-video-tile">
+          <video src="lutein_g_fv_video_assets/eye_test.mp4" poster="lutein_g_fv_video_assets/thumbs/eye_test.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        
+
+        <div class="fv-video-tile">
+          <video src="lutein_g_fv_video_assets/driving_blur.mp4" poster="lutein_g_fv_video_assets/thumbs/driving_blur.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        
+      </div>
+      <div class="fv-notes" aria-label="ファーストビュー注釈">
+        <p><b>※1 見る力：</b>コントラスト感度（ぼやけの軽減によりくっきり見る力）</p>
+        <p><b>※2 認知機能：</b>加齢によって低下する認知機能の一部である記憶力、空間認知力、論理的思考力、持続的注意力、ワーキングメモリーを維持する機能</p>
+      </div>
+    </header>
+    
+      <section class="reader-section">
+        <div class="body-copy"><p>私も最初は、<br><strong class="text-hot">「老眼だし、もう仕方ないか」</strong>って思っていました。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I01_fv_hook_4x3.png" alt="老眼はもう仕方ない、と思っていませんか？" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>新聞は読み飛ばす。<br>スマホは自然と文字を大きくする。</p>
+<p><strong class="text-marker">これ、地味にイヤですよね？</strong></p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="新聞の文字がぼやけて見えない悩み">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_1_blur_newspaper.mp4" poster="lutein_g_article_assets/client_831_optimized/831_1_blur_newspaper_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    
+<p class="bullet-line"><span class="bullet-mark">・</span><span class="bullet-text">夕方のスマホがぼやける</span></p>
+<p class="bullet-line"><span class="bullet-mark">・</span><span class="bullet-text">夜のライトや標識が見づらい</span></p>
+<p>こんなことまで増えているなら、<br><strong class="text-emphasis">「ただの老眼」で片づけるのは早い</strong>かもしれません。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client_831_optimized/831_2_evening_phone_warning.webp" alt="夕方スマホがぼやける…これ地味にイヤですよね" loading="lazy" width="1080" height="810">
+          
+        </div>
+        
+      </figure>
+    
+
+      <div class="effect-arrow" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+    
+<p>目は、光を受け取り、毎日のリズムや脳への情報入力にも関わる大切な感覚なんです。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch03_refine/S03_light_information_16x9.png" alt="光・リズム・情報入力 目から毎日が始まる" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    </div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>私が本当にイヤだと思ったのは、<br>見えづらさそのものより、<strong class="text-emphasis">見えづらいから行動をやめること</strong>でした。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch03_refine/S02_table_reading_hassle_4x3.png" alt="新聞もスマホも、読むのが少し面倒に" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>読むのを後回しにする。<br>外出前に調べるのが面倒になる。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch02/S02_life_gets_smaller_4x3.png" alt="見えづらいから読まない。読まないから生活が小さくなる" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>こうして目の不便は、<br><strong class="text-hot">少しずつ生活を小さくしていく</strong>んですよね。</p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="見えづらさで夜の過ごし方まで小さくなる不安">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_3_life_small_night.mp4" poster="lutein_g_article_assets/client_831_optimized/831_3_life_small_night_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch03_refine/S02_table_choices_16x9.png" alt="目の不便は、毎日の選択肢を減らしていく" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>「年齢だから」で済ませる前に、<br>できることは減らしたくないと思いませんか？</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>目って、見えればいい場所だと思っていませんか？</p>
+<p><span class="text-underline">でも実は、目は「見るため」だけの場所ではありません。</span></p>
+
+      <div class="effect-arrow effect-arrow-large" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I04_eye_gateway_16x9.png" alt="目は、毎日の入口" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>目から入る光は毎日のリズムに、<br>目から入る情報は読む・探す・判断するといった動きに関わります。</p>
+<p>見えづらさと、眠りやうっかりの悩みを同じ原因と決めつけることはできません。<br>でも、<strong class="text-emphasis">老眼鏡で読めれば十分</strong>だけで見てしまうのは、もったいないと思いませんか？</p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="老眼鏡任せでいいのかと考えるきっかけ">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_4_glasses_limit.mp4" poster="lutein_g_article_assets/client_831_optimized/831_4_glasses_limit_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    </div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>もちろん、老眼鏡も目薬も必要な時に頼れるものです。<br>私も普通に使います。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I05_glasses_limit_16x9.png" alt="老眼鏡だけで、毎日の冴えまで見ていますか？" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>ただ、老眼鏡は文字を読みやすくするもの。<br>目薬は乾きや不快感に使うもの。</p>
+<p>字は読めても、夕方にはどっと疲れる。<br>朝からぼんやりして、<strong class="text-marker">「最近こういう日が増えたな」</strong>と感じる。</p>
+
+      <figure class="inline-image-plan real-image-plan client-831-media client-831-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client_831_optimized/831_5_eye_fatigue_day.webp" alt="目を使った後に疲れてしまう日常" loading="lazy" width="1080" height="720">
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch02/S04_inner_support_16x9.png" alt="読む対策から、内側から支える発想へ" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>そんな時は、<strong class="text-marker">読むための対策だけで終わらせない発想</strong>も必要なんです。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>私が気になったのが、<br><strong class="text-emphasis">ぼやけの軽減により、くっきり見る力</strong>です。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I06_contrast_night_steps_4x3.png" alt="薄い文字・夜のライト・段差が気になる方へ" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>視力というより、<br>「輪郭がにじむ」「薄い文字がつらい」という感じ、ありませんか？</p>
+
+      <figure class="inline-image-plan real-image-plan client-831-media client-831-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client_831_optimized/831_6_contrast_phone.webp" alt="スマホ画面のぼんやりとくっきりの違い" loading="lazy" width="1080" height="862">
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch02/S05_clear_contrast_4x3.png" alt="薄い文字、夜のライト、段差…くっきり見分ける力" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>年齢とともに減りやすい<strong class="text-emphasis">目の黄斑色素</strong>。<br>その量を増やす機能が報告されているのが、ルテインとゼアキサンチンです。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/official_lutein_zeaxanthin_top_16x9.jpg" alt="ルテインとゼアキサンチン" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+
+      <figure class="lumina-video-card">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_lumina_video_assets/lumina_v02_retina_support_20260829.mp4" poster="lutein_g_image2_assets/lumina_refs/LUMINA_REF_V02_retina_support_flow_16x9.png" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="lumina-video-label"><span>ルテイン・ゼアキサンチンが目の奥へ</span></div>
+        </div>
+      </figure>
+    
+<p>名前は難しくても、<br>目の奥で、光の刺激やぼやけ感が気になる世代の「くっきり見る力」に関わる成分なんです。</p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="目の奥の見え方を意識するきっかけ">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_extra_1_eye_depth.mp4" poster="lutein_g_article_assets/client_831_optimized/831_extra_1_eye_depth_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I07_lutein_cannot_make_4x3.png" alt="目の奥のくっきり成分は体内で作れません" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>しかも、この2つは体の中で作ることができません。<br>だからこそ、<strong class="text-marker">毎日の習慣で補う発想</strong>が大切になります。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>ここまで調べて出てきたのが、<br>機能性表示食品<strong class="text-emphasis">「ルテインG」</strong>でした。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/fv.jpg" alt="機能性表示食品 ルテインG" loading="lazy" width="750" height="1117">
+          
+        </div>
+        
+      </figure>
+    
+<p><strong class="text-emphasis">ルテイン・ゼアキサンチン・GABA</strong>を配合。<br>見え方の不安を入口に、眠りやうっかり、毎日の活力まで見ていく設計です。</p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="見え方の不安から毎日の活力まで見直すイメージ">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_extra_2_eye_anxiety_entry.mp4" poster="lutein_g_article_assets/client_831_optimized/831_extra_2_eye_anxiety_entry_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    
+<p>ただ、私が次に気になったのが、<br><strong class="text-emphasis">「どんな会社が作っているの？」</strong>ということでした。</p>
+<p>そこで調べると、ファーマフーズでは多くの研究員が研究開発を続けています。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client/researcher_team_16x9.jpg" alt="ファーマフーズの研究開発体制" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p class="micro-note researcher-source-note">※日々、研究開発に取り組むファーマフーズの研究員（提供素材）</p>
+<p>さらに、<strong class="text-emphasis">GABAマーケットシェア世界No.1<span class="inline-footnote-mark">※</span></strong>のファーマフーズグループ。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_032.png" alt="GABAマーケットシェア世界No.1" loading="lazy" width="750" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p class="micro-note authority-source-note">※Market share GLOBAL GABA MARKET SIZE, STATUS AND FORECAST TO 2030. Verified Market Research 2023.調べ</p>
+<p>しかも、<strong class="text-emphasis">東証プライム上場企業</strong>です。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_034.png" alt="東証プライム上場企業" loading="lazy" width="750" height="590">
+          
+        </div>
+        
+      </figure>
+    
+<p>この研究開発の取り組みは、TBS系列「がっちりマンデー!!」（2025年8月24日放送）でも紹介されました。<br><strong class="text-marker">研究開発の背景まで見えること</strong>が、私には安心材料でした。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>では、3つの成分は何を支えるのでしょうか。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I09_three_perspectives_4x3.png" alt="目だけで終わらないのがルテインG" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p><strong class="text-emphasis">ルテインとゼアキサンチン</strong>には、<br>加齢とともに減少する目の黄斑色素量を増やし、ぼやけの軽減によりくっきり見る力を改善し、ブルーライトや紫外線などの光ストレスから目を保護する機能が報告されています。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch03_refine/S07_three_ingredients_16x9.png" alt="ルテイン・ゼアキサンチン・GABAをまとめて" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p><strong class="text-emphasis">GABA</strong>には、一時的な精神的ストレスや疲労感の緩和、睡眠の質、肌の弾力の維持、加齢によって低下する認知機能の一部の維持、中高齢者の活力感や心の健康の維持に役立つ機能が報告されています。</p>
+
+      <figure class="inline-image-plan real-image-plan client-831-media client-831-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client_831_optimized/831_7_gaba_health.webp" alt="GABAが睡眠の質や健康維持に役立つイメージ" loading="lazy" width="1080" height="720">
+        </div>
+      </figure>
+    
+<p>つまり、成分ごとの届出機能を、<br><strong class="text-marker">1袋で毎日の習慣にしやすくした</strong>のがルテインGなんです。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch02/S07_daily_three_4x3.png" alt="くっきり、眠り、うっかり不安、活力まで" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>ここが、私にはかなり大きく感じました。</p>
+
+      <figure class="lumina-video-card">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_lumina_video_assets/lumina_v01_eye_brain_flow_20260829.mp4" poster="lutein_g_image2_assets/lumina_refs/LUMINA_REF_V01_eye_brain_flow_16x9.png" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="lumina-video-label"><span>目も脳も、内側から支える発想</span></div>
+        </div>
+      </figure>
+    </div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>もちろん、食事を整えることは大切です。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch01/I08_food_limit_16x9.png" alt="食事だけで毎日続けるのは、正直かなり大変" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>でも、体内で作れないルテインとゼアキサンチンを意識しながら、GABAまで毎日続けるのは大変ですよね。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/batch02/S08_daily_habit_16x9.png" alt="目的に応じた目安量で、毎日の習慣へ" loading="lazy" width="1280" height="720">
+          
+        </div>
+        
+      </figure>
+    
+<p>完璧な食事を目指して続かなくなるより、<br><strong class="text-marker">毎日の習慣にしやすい形</strong>を選ぶ方が現実的なんです。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>初回は30粒入り1袋。<br>毎日決めた時間に、水などで飲むだけです。</p>
+<p>朝食後など、忘れにくい時間に置いておけば、<br><strong class="text-marker">「今日も飲んでおこう」と続けやすい</strong>んです。</p>
+
+      <figure class="lumina-video-card client-831-media client-831-video" aria-label="朝の習慣としてサプリを飲むイメージ">
+        <div class="lumina-video-visual">
+          <video src="lutein_g_article_assets/client_831_optimized/831_8_daily_habit.mp4" poster="lutein_g_article_assets/client_831_optimized/831_8_daily_habit_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client/product_capsules_4x3.jpg" alt="水などで飲むだけ。忘れにくい時間に" loading="lazy" width="1200" height="900">
+          
+        </div>
+        
+      </figure>
+    
+<p>頑張る対策より、<br>生活に入れやすい対策の方が続けやすいですよね。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy"><p>実際に試した人は、どう感じているのでしょうか。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_027.png" alt="実感の声が続々！ご愛用者さまの声" loading="lazy" width="750" height="300">
+          
+        </div>
+        
+      </figure>
+    
+<p>公式サイトには、<br><strong class="text-emphasis">「1日1回だから続けやすい」</strong>という声が載っています。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_028.png" alt="1日1回だから、毎日続けやすいです！" loading="lazy" width="750" height="1110">
+          
+        </div>
+        
+      </figure>
+    
+<p>年齢とともに気になり始めた目の悩みや、<br>毎日の睡眠まで気にしている方の声もありました。</p>
+<p>同じことを気にしている人がいると、<br>少し安心しますよね。</p>
+
+      <figure class="inline-image-plan real-image-plan client-831-media client-831-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client_831_optimized/831_9_user_voice_reassurance.webp" alt="見える、眠れる、続く日々への期待" loading="lazy" width="1080" height="720">
+        </div>
+      </figure>
+    
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_029.png" alt="年齢とともに気になる目の悩みに" loading="lazy" width="750" height="1050">
+          
+        </div>
+        
+      </figure>
+    
+<p>大切なのは若い頃に戻ることではなく、<br><strong class="text-marker">毎日を少しでもラクに、前向きに過ごすための習慣</strong>を持つことなんです。</p>
+
+      <figure class="inline-image-plan real-image-plan">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/official/luteing_lp_030.png" alt="毎日の睡眠までサポートしてくれる！" loading="lazy" width="750" height="1085">
+          
+        </div>
+        
+      </figure>
+    
+<p>※公式サイト掲載の個人の感想です。感じ方には個人差があります。</p></div>
+      </section>
+    
+
+      <section class="reader-section">
+        <div class="body-copy">
+      <div class="trace-offer-theater" id="offer-v2">
+        <div class="trace-voice-block">
+          <p>良さそうだけど…</p>
+          <p><strong>「今度Amazonで<br>買えばいいかな…」</strong></p>
+          <p>そう考えている方！</p>
+        </div>
+
+        
+      <figure class="inline-image-plan real-image-plan offer-vault-gif trace-wait-alert">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_vault_assets/02_wait_strip_2x1.gif" alt="待って" loading="lazy" width="390" height="195">
+        </div>
+      </figure>
+    
+
+        <div class="trace-date-band">
+          <span>本日</span>
+          <strong data-today-label>8月31日（月）</strong>
+          <em>このページから進んだ方は、<br>簡単なアンケート回答後に特別価格へ進めます。</em>
+        </div>
+
+        
+      <div class="trace-down trace-first-arrow" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    
+
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-special-reward">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/01_lutein_g_special_reward_16x9.webp" alt="ここまで読んだ方へ 特別価格をご案内" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+        <p class="trace-offer-copy">ルテインGも、このページからのお申込みで、<br><strong class="text-hot">通常定価2,500円(税込)</strong>が...</p>
+        <div class="trace-price-text-hit" aria-label="初回限定価格980円税込">
+          <span>なんと、初回</span>
+          <strong>980円<small>（税込）</small></strong>
+        </div>
+
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image offer-main-image offer-client-price-image trace-price-card">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client/client_offer_cr_3x2.png" alt="ルテインG 定期初回価格980円 約60%OFF 送料無料 1世帯1回限り" loading="lazy" width="1536" height="1024">
+        </div>
+      </figure>
+    
+        <p class="micro-note trace-note">※定期コース初回限定価格。初めての方に限り1世帯1回限り。2回目は翌月、以降2ヶ月毎に4袋9,000円(税込)送料無料。別途1回の発送につき梱包手数料200円(税込)。1回で解約した場合の総額は1,480円(税込・送料無料・梱包手数料含む)です。</p>
+        <p class="trace-thus-copy">つまり！</p>
+        
+      <div class="trace-down trace-big-arrow trace-per-day-arrow" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    
+
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-per-day">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/03_lutein_g_per_day_16x9.webp" alt="初回980円なら1日約33円 30日で割った目安" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+        <p class="micro-note trace-note">※1袋30粒を1日1粒目安として、定期初回価格980円(税込)を30日で割った目安です。</p>
+
+        <p class="trace-alert-copy"><strong>が、しかし！</strong><br>ただ1つ注意点があります。</p>
+        <p>「あとでAmazonで探そう」と思う方もいますよね。<br>でも実際にAmazonでは、<strong class="text-emphasis">2,610円(税込)</strong>の表示が確認できました。</p>
+
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image amazon-proof-image trace-amazon-proof">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/reference/amazon_lutein_g_price_20260829_crop.jpg" alt="AmazonでのルテインG参考価格 2610円表示のキャプチャ" loading="lazy" width="1818" height="1115">
+        </div>
+      </figure>
+    
+
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-amazon-comparison">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/04_lutein_g_amazon_comparison_4x3.webp" alt="価格比較 Amazon参考価格2610円 初回限定価格980円 差額1630円" loading="lazy" width="1024" height="768">
+        </div>
+      </figure>
+    
+        <p class="micro-note trace-note">※Amazon参考価格は2026年8月29日に保存した表示キャプチャをもとにしています。価格は変動する場合があります。</p>
+
+        <p class="trace-loss-copy">あとで探せばいいか...で閉じると、<br><strong>1,630円分 損します！</strong></p>
+
+        <div class="trace-reassurance-box">
+          <p><strong>よくある「何回以上続けないとダメ」みたいな契約ではありません。</strong></p>
+          
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-subscription-card">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/05_lutein_g_subscription_cancel_16x9.webp" alt="定期回数縛りなし 簡単手続きで解約可能" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+          <p class="micro-note trace-note">※簡単手続きで解約可能：定期お届けコースのお休み・変更・解約は、次回お届け予定日の10日前までにお電話・メール・お問合せフォームでお手続きできます。</p>
+
+          
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-shipping-strip">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/06_lutein_g_free_shipping_2x1.webp" alt="送料無料 追加送料0円" loading="lazy" width="1536" height="768">
+        </div>
+      </figure>
+    
+          <p class="micro-note trace-note">※送料無料とは送料当社負担のことです。別途1回の発送につき梱包手数料200円(税込)。</p>
+        </div>
+
+        <p><strong class="text-emphasis">クレジットカードがなくても大丈夫。</strong><br>商品を受け取ってから、コンビニで後払いも選べます。</p>
+        
+      <figure class="inline-image-plan real-image-plan offer-sequence-image trace-postpay-card">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_sequence_20260829/webp/07_lutein_g_postpay_16x9.webp" alt="クレカ不要 コンビニ後払いOK 代金引換も選べる" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+        <p class="micro-note trace-note">※コンビニ後払いは発送日から14日以内にお支払い。期日を過ぎると回収事務手数料297円(税込)が加算される場合があります。</p>
+
+        <p class="trace-survey-lead">ここまで読んで、<br><strong>「これ、自分にも関係あるかも...」</strong><br>と思った方へ。<br><strong>まずは今の目の状態を選んでください。</strong></p>
+        
+      <div class="trace-down trace-big-arrow trace-survey-arrow" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    
+        
+      <figure class="inline-image-plan real-image-plan survey-start-title-image trace-survey-start-card">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/survey_start_4q_20260830/webp/survey_start_eye_now_check_4q_16x9.webp" alt="30秒で完了 目の今チェック 4問だけ選んでください" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+
+        <div class="diagnosis-widget trace-survey-widget" data-diagnosis>
+          <div class="diagnosis-head trace-survey-choice-head">
+            <span>選択式</span>
+            <strong>当てはまるものをタップしてください</strong>
+          </div>
+
+          <div class="diagnosis-question" data-question data-intent-tag="NOW_PAIN_SELF_IDENTIFICATION" data-image2-slot="QUESTION_Q1_NOW_PAIN_EYE_MOMENT">
+            <span class="question-kicker">1問目 / 全4問</span>
+            <p>最近、目のことで一番気になる瞬間はどれですか？</p>
+            
+      <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q1-image">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/survey_q_images_rag_ver2_20260830/webp/survey_q1_now_pain_eye_moment_16x9.webp" alt="夕方のスマホや小さい文字が見えづらく感じる女性" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+            <button type="button" class="diagnosis-option">夕方になるとスマホや小さい文字がつらい</button>
+            <button type="button" class="diagnosis-option">夜のライトや標識がぼやけて不安</button>
+            <button type="button" class="diagnosis-option">薬や説明書の細かい文字が面倒</button>
+            <button type="button" class="diagnosis-option">まだ我慢できるけど前より気になる</button>
+          </div>
+
+          <div class="diagnosis-question" data-question data-intent-tag="CURRENT_COUNTERMEASURE_GAP" data-image2-slot="QUESTION_Q2_COUNTERMEASURE_GAP">
+            <span class="question-kicker">2問目 / 全4問</span>
+            <p>今まで、どうやってごまかしてきましたか？</p>
+            
+      <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q2-image">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/survey_q_images_rag_ver2_20260830/webp/survey_q2_countermeasure_gap_16x9.webp" alt="老眼鏡や目薬など今までの対策を並べたテーブル" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+            <button type="button" class="diagnosis-option">老眼鏡や拡大表示でなんとかしている</button>
+            <button type="button" class="diagnosis-option">目薬やブルーベリー系を試したことがある</button>
+            <button type="button" class="diagnosis-option">休めば戻ると思って放置している</button>
+            <button type="button" class="diagnosis-option">何を選べばいいかわからない</button>
+          </div>
+
+          <div class="diagnosis-question" data-question data-intent-tag="FEATURE_VALUE_SELECTION" data-image2-slot="QUESTION_Q3_VALUE_SELECTION_EYE_BRAIN">
+            <span class="question-kicker">3問目 / 全4問</span>
+            <p>目のサポートで、今いちばん欲しいのはどれですか？</p>
+            
+      <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q3-image">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/survey_q_images_rag_ver2_20260830/webp/survey_q3_value_selection_eye_brain_16x9.webp" alt="目と脳をやさしくつなぐマリーゴールド色のイメージ" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+            <button type="button" class="diagnosis-option">ぼやけを軽減し、くっきり見る力を支えたい</button>
+            <button type="button" class="diagnosis-option">記憶力や注意力など、年齢とともに気になる冴えも支えたい</button>
+            <button type="button" class="diagnosis-option">1日1粒目安で続けやすいものがいい</button>
+            <button type="button" class="diagnosis-option">会社や根拠がしっかりしたものを選びたい</button>
+          </div>
+
+          <div class="diagnosis-question" data-question data-intent-tag="SOFT_COMMITMENT_TO_TRIAL" data-image2-slot="QUESTION_Q4_SOFT_TRIAL_PERMISSION">
+            <span class="question-kicker">4問目 / 全4問</span>
+            <p>定期回数縛りなし・後払いも選べる初回980円なら、まず試してみたいですか？</p>
+            
+      <figure class="inline-image-plan real-image-plan diagnosis-question-image trace-survey-question-image trace-survey-q4-image">
+        <div class="actual-visual">
+          <img src="lutein_g_image2_assets/survey_q_images_rag_ver2_20260830/webp/survey_q4_soft_trial_permission_16x9.webp" alt="申込前の不安を落ち着いて整理する手元" loading="lazy" width="1536" height="864">
+        </div>
+      </figure>
+    
+            <button type="button" class="diagnosis-option">はい、今の条件で始めたい</button>
+            <button type="button" class="diagnosis-option">もう少し詳しく見てから決めたい</button>
+          </div>
+
+          <div class="diagnosis-result trace-survey-result" data-diagnosis-result>
+            
+      <figure class="inline-image-plan real-image-plan offer-vault-gif trace-answer-thanks">
+        <div class="actual-visual">
+          <img src="lutein_g_offer_vault_assets/09_answer_thanks_banner_16x9.gif" alt="ご回答ありがとうございます" loading="lazy" width="390" height="219">
+        </div>
+      </figure>
+    
+            <p class="trace-after-survey">1つでも当てはまった方は、<br>お得な金額で今すぐ始めてみてください！</p>
+            
+      <div class="trace-final-ticket" aria-label="ルテインG 初回条件のまとめ">
+        <div class="trace-final-ribbon">このページから申込みの方へ</div>
+        
+      <figure class="inline-image-plan real-image-plan trace-final-offer-card-image">
+        <div class="actual-visual">
+          <img src="lutein_g_article_assets/client/client_offer_cr_3x2.png" alt="ルテインG 定期初回価格980円 約60%OFF 送料無料 1世帯1回限り" loading="lazy" width="1536" height="1024">
+        </div>
+      </figure>
+    
+        <p class="trace-final-title">初回限定条件をまとめると</p>
+        <div class="trace-final-price-row">
+          <span>通常定価 2,500円(税込)</span>
+          <strong>980円<small>(税込)</small></strong>
+        </div>
+        <div class="trace-final-chips">
+          <span>約60%OFF</span>
+          <span>送料無料</span>
+          <span>定期回数縛りなし</span>
+        </div>
+      </div>
+    
+            <p class="trace-after-survey">↓ 下のボタンから ↓</p>
+            <strong>初回980円の申込画面へ進めます！</strong>
+            <span class="diagnosis-result-message trace-result-message">このまま下のボタンから申し込んでください。</span>
+            
+      <div class="trace-direct-cta trace-answer-cta">
+        
+      <a class="image-cta-link" href="https://egg.tamagokichi.com/sc/products/product_connect/YToyOntzOjM6Im54diI7czoxOiIyIjtzOjc6InByb2R1Y3QiO2E6MTp7aTowO2E6Mjp7czoyOiJpZCI7czozOiIxNzUiO3M6MzoicXR5IjtzOjE6IjEiO319fQ" target="_blank" rel="noopener" data-sb-tracking="true">
+        <figure class="inline-image-plan real-image-plan cta-main-image cta-standard-button trace-image2-cta">
+          <div class="actual-visual">
+            <img src="lutein_g_cta_button_ver2_20260830/webp/cta_lutein_g_green_3x1.webp" alt="初回980円で申込画面へ進む" loading="lazy" width="1536" height="512">
+          </div>
+        </figure>
+      </a>
+    
+      </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+      </section>
+    
+    <footer class="legal-footer" aria-label="運営情報">
+      <a href="https://shop.tamagokichi.com/company/" target="_blank" rel="noopener">会社概要</a>
+      <a href="https://shop.tamagokichi.com/law/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+    </footer>
+  </main>
+  
+  <script>
+    const formatTodayJst = () => {
+      const parts = new Intl.DateTimeFormat('ja-JP-u-ca-gregory', {
+        timeZone: 'Asia/Tokyo',
+        month: 'numeric',
+        day: 'numeric',
+        weekday: 'short'
+      }).formatToParts(new Date());
+      const getPart = (type) => {
+        const item = parts.find((part) => part.type === type);
+        return item ? item.value : '';
+      };
+      return `${getPart('month')}月${getPart('day')}日（${getPart('weekday')}）`;
+    };
+    document.querySelectorAll('[data-today-label]').forEach((element) => {
+      element.textContent = formatTodayJst();
+    });
+
+    document.querySelectorAll('[data-diagnosis]').forEach((widget) => {
+      const questions = Array.from(widget.querySelectorAll('[data-question]'));
+      const result = widget.querySelector('[data-diagnosis-result]');
+      widget.querySelectorAll('.diagnosis-option').forEach((button) => {
+        button.addEventListener('click', () => {
+          const question = button.closest('[data-question]');
+          question.querySelectorAll('.diagnosis-option').forEach((sibling) => sibling.classList.remove('is-selected'));
+          button.classList.add('is-selected');
+          const selectedCount = questions.filter((item) => item.querySelector('.diagnosis-option.is-selected')).length;
+          if (result) {
+            if (selectedCount >= questions.length) {
+              result.classList.add('is-visible');
+              const resultMessage = result.querySelector('.diagnosis-result-message');
+              if (resultMessage) {
+                resultMessage.textContent = result.dataset.finalMessage || 'このまま下のボタンから申し込んでください。';
+              }
+              result.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+            } else {
+              result.classList.remove('is-visible');
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
