@@ -1930,6 +1930,49 @@
         line-height: 1.42;
       }
     }
+    .micro-note.initial-price-note {
+      margin: 6px 0 10px !important;
+      text-align: center;
+    }
+
+    .attention-arrows {
+      --arrow-width: clamp(56px, 21vw, 88px);
+      --arrow-drop: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 0 0 var(--arrow-drop);
+      margin: 18px 0 16px;
+      pointer-events: none;
+      contain: layout style;
+    }
+    .attention-arrows > span {
+      display: block;
+      flex: 0 0 var(--arrow-width);
+      width: var(--arrow-width);
+      height: calc(var(--arrow-width) * 1.15);
+      background: #b5090d;
+      clip-path: polygon(33% 0, 67% 0, 67% 55%, 100% 55%, 50% 100%, 0 55%, 33% 55%);
+      animation: attentionArrowDown 1s ease-in-out infinite;
+    }
+    .attention-arrows.is-motion-managed > span {
+      animation-play-state: paused;
+    }
+    .attention-arrows.is-motion-managed.is-in-view > span {
+      animation-play-state: running;
+    }
+    .attention-arrows-cta {
+      margin: 10px 0 8px;
+    }
+    @keyframes attentionArrowDown {
+      0%, 100% { transform: translateY(var(--arrow-drop)); }
+      50% { transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .attention-arrows > span { animation: none; }
+      .attention-arrows { padding-bottom: 0; }
+    }
   </style>
 </head>
 <body>
@@ -1937,7 +1980,7 @@
     <header class="article-head">
       <p class="pr-line">PR：株式会社ファーマフーズ</p>
       <figure class="fv-catch">
-        <img src="lutein_g_image2_assets/fv/fv_eye_cognition_catch_v2_4x3.webp" alt="老眼の放置絶対やめて！知る人ぞ知る「見る力」と「認知機能」の知られざる関係性とは？" width="1200" height="900">
+        <img src="rev20260911_fv_supplied.png" alt="その目のぼやけ、放置しちゃダメ!? 50代・60代が知っておきたい くっきり見る力の新対策とは？" width="1448" height="1086">
       </figure>
       <div class="fv-video-strip" aria-label="見えづらさを表す動画">
         
@@ -1958,16 +2001,15 @@
       </div>
       <div class="fv-notes" aria-label="ファーストビュー注釈">
         <p><b>※1 見る力：</b>コントラスト感度（ぼやけの軽減によりくっきり見る力）</p>
-        <p><b>※2 認知機能：</b>加齢によって低下する認知機能の一部である記憶力、空間認知力、論理的思考力、持続的注意力、ワーキングメモリーを維持する機能</p>
       </div>
     </header>
     
       <section class="reader-section">
-        <div class="body-copy"><p>私も最初は、<br><strong class="text-hot">「老眼だし、もう仕方ないか」</strong>って思っていました。</p>
+        <div class="body-copy"><p>私も最初は、<br><strong class="text-hot">「歳とったし、<br>そりゃ見にくくなるか」</strong>って思っていました。</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
-          <img src="lutein_g_image2_assets/batch01/I01_fv_hook_4x3.png" alt="老眼はもう仕方ない、と思っていませんか？" loading="lazy" width="1200" height="900">
+          <img src="rev20260911_eye_blur_hook.png" alt="目のぼやけ、仕方ないと思っていませんか？" loading="lazy" width="1200" height="900">
           
         </div>
         
@@ -1987,23 +2029,22 @@
 <p class="bullet-line"><span class="bullet-mark">・</span><span class="bullet-text">夜の標識やライトが見づらい</span></p>
 <p class="bullet-line"><span class="bullet-mark">・</span><span class="bullet-text">朝から頭がぼんやりする</span></p>
 <p class="bullet-line"><span class="bullet-mark">・</span><span class="bullet-text">人の名前や予定が出てこない</span></p>
-<p>こんなことまで増えているなら、<br><strong class="text-hot">「ただの老眼」で片づけるのは、少し早い</strong>と思いませんか？</p>
+<p>こんなことまで増えているなら、<br><strong class="text-hot">「ただのぼやけ」で片づけるのは、少し早い</strong>と思いませんか？</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
-          <img src="lutein_g_article_assets/client_831_optimized/831_2_evening_phone_warning.webp" alt="夕方スマホがぼやける…これ地味にイヤですよね" loading="lazy" width="1080" height="810">
+          <img src="rev20260911_evening_blur_warning.png" alt="夕方スマホがぼやける…これ地味にイヤですよね" loading="lazy" width="1080" height="810">
           
         </div>
         
       </figure>
     
 
-      <div class="effect-arrow" aria-hidden="true">
-        <span></span>
-        <span></span>
+      <div class="attention-arrows" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
     
-<p>調べてみてハッとしたんですが、<br>ここには、ただの老眼だけでは片づけにくい話がありました。</p>
+<p>調べてみてハッとしたんですが、<br>ここには、ただの「ぼやけ」だけでは片づけにくい話がありました。</p>
 <p>というのも、目は、<br><strong class="text-marker">光を受け取り、毎日のリズムや脳への情報入力にも関わる</strong><br>大切な感覚なんです。</p>
 
       <figure class="inline-image-plan real-image-plan">
@@ -2068,9 +2109,8 @@
 <p>目って「見えればいい場所」だと思っていませんか？</p>
 <p><span class="text-underline">でも実は、目は「見るため」だけの場所ではありません。</span></p>
 
-      <div class="effect-arrow effect-arrow-large" aria-hidden="true">
-        <span></span>
-        <span></span>
+      <div class="attention-arrows" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
     
 
@@ -2213,7 +2253,10 @@
     
 
       <section class="reader-section">
-        <div class="body-copy"><p>ここまで調べて出てきたのが、<br>機能性表示食品<strong class="text-emphasis">「ルテインG」</strong>でした。</p>
+        <div class="body-copy"><div class="attention-arrows" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+<p>ここまで調べて出てきたのが、<br>機能性表示食品<strong class="text-emphasis">「ルテインG」</strong>でした。</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
@@ -2244,9 +2287,8 @@
       </figure>
     
 
-      <div class="effect-arrow" aria-hidden="true">
-        <span></span>
-        <span></span>
+      <div class="attention-arrows" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
     
 <p>特に、目だけでなく眠りや認知機能まで関わる話となると、<br><strong class="text-hot">情報元が弱いものは選びたくない</strong>ですよね。</p>
@@ -2261,11 +2303,11 @@
       </figure>
     
 <p class="micro-note authority-source-note">※Market share GLOBAL GABA MARKET SIZE, STATUS AND FORECAST TO 2030. Verified Market Research 2023.調べ</p>
-<p>さらに、消費者庁へ届出された機能性表示食品。</p>
+<p>この知見が評判となり、テレビでも紹介されている会社なんです。</p>
 
       <figure class="inline-image-plan real-image-plan">
         <div class="actual-visual">
-          <img src="lutein_g_image2_assets/batch03_refine/S06_j84_trust_16x9.png" alt="ファーマフーズの機能性表示食品" loading="lazy" width="1280" height="720">
+          <img src="rev20260911_tv_gacchiri_monday_supplied.jpg" alt="TBSテレビ全国放送 がっちりマンデー!!で紹介されました！ 2025年8月24日放送" loading="lazy" width="750" height="406">
           
         </div>
         
@@ -2381,7 +2423,7 @@
         </div>
       </figure>
     
-<p>「老眼だから仕方ない」と思っていた方ほど、<br>がんばる対策より、<strong class="text-emphasis">こういう続けやすい対策</strong>の方が向いているかもしれません。</p></div>
+<p>「歳だから仕方ない」と思っていた方ほど、<br>がんばる対策より、<strong class="text-emphasis">こういう続けやすい対策</strong>の方が向いているかもしれません。</p></div>
       </section>
     
 
@@ -2467,7 +2509,7 @@
         </div>
 
         
-      <div class="trace-down trace-first-arrow" aria-hidden="true">
+      <div class="attention-arrows" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
     
@@ -2484,6 +2526,7 @@
           <span>なんと、初回</span>
           <strong>980円<small>（税込）</small></strong>
         </div>
+        <p class="micro-note initial-price-note">※１世帯１回限り、定期初回限定、初回価格</p>
 
         
       <figure class="inline-image-plan real-image-plan offer-sequence-image offer-main-image offer-client-price-image trace-price-card">
@@ -2495,7 +2538,7 @@
         <p class="micro-note trace-note">※定期コース初回限定価格。初めての方に限り1世帯1回限り。2回目は翌月、以降2ヶ月毎に4袋9,000円(税込)送料無料。別途1回の発送につき梱包手数料200円(税込)。1回で解約した場合の総額は1,480円(税込・送料無料・梱包手数料含む)です。</p>
         <p class="trace-thus-copy">つまり！</p>
         
-      <div class="trace-down trace-big-arrow trace-per-day-arrow" aria-hidden="true">
+      <div class="attention-arrows" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
     
@@ -2564,7 +2607,7 @@
 
         <p class="trace-survey-lead">ここまで読んで、<br><strong>「これ、自分にも関係あるかも...」</strong><br>と思った方へ。<br><strong>まずは今の目の状態を選んでください。</strong></p>
         
-      <div class="trace-down trace-big-arrow trace-survey-arrow" aria-hidden="true">
+      <div class="attention-arrows" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
     
@@ -2674,6 +2717,7 @@
           <span>通常定価 2,500円(税込)</span>
           <strong>980円<small>(税込)</small></strong>
         </div>
+        <p class="micro-note initial-price-note">※１世帯１回限り、定期初回限定、初回価格</p>
         <div class="trace-final-chips">
           <span>約60%OFF</span>
           <span>送料無料</span>
@@ -2684,6 +2728,9 @@
           <p class="trace-after-survey">↓ 下のボタンから ↓</p>
           <strong class="trace-open-cta-head">初回980円の申込画面へ進めます！</strong>
           
+      <div class="attention-arrows attention-arrows-cta" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
       <div class="trace-direct-cta trace-open-after-survey-cta">
         
       <a class="image-cta-link" href="https://egg.tamagokichi.com/sc/products/product_connect/YToyOntzOjM6Im54diI7czoxOiIyIjtzOjc6InByb2R1Y3QiO2E6MTp7aTowO2E6Mjp7czoyOiJpZCI7czozOiIxNzUiO3M6MzoicXR5IjtzOjE6IjEiO319fQ" target="_blank" rel="noopener" data-sb-tracking="true">
@@ -2693,7 +2740,7 @@
           </div>
         </figure>
       </a>
-    
+      <p class="micro-note initial-price-note">※１世帯１回限り、定期初回限定、初回価格</p>
       </div>
     
         </div>
@@ -2750,6 +2797,29 @@
         });
       });
     });
+
+    // Pause decorative arrows outside the viewport and when the tab is hidden.
+    if ('IntersectionObserver' in window) {
+      const arrows = [...document.querySelectorAll('.attention-arrows')];
+      const visibleArrows = new Set();
+      const syncArrowMotion = () => {
+        arrows.forEach((arrow) => {
+          arrow.classList.toggle('is-in-view', !document.hidden && visibleArrows.has(arrow));
+        });
+      };
+      const arrowObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleArrows.add(entry.target);
+          else visibleArrows.delete(entry.target);
+        });
+        syncArrowMotion();
+      }, { threshold: 0 });
+      arrows.forEach((arrow) => {
+        arrow.classList.add('is-motion-managed');
+        arrowObserver.observe(arrow);
+      });
+      document.addEventListener('visibilitychange', syncArrowMotion);
+    }
   </script>
 
 </body>
