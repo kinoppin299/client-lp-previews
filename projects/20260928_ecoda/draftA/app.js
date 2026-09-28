@@ -52,7 +52,6 @@ function renderQuestion(move=false){
   if(move)moveTo(quiz,title);
 }
 previous.addEventListener('click',()=>{if(step>0&&!inTransition){step--;renderQuestion(true);}});
-document.getElementById('restart').addEventListener('click',()=>{step=0;responses.length=0;inTransition=false;renderQuestion(true);});
 renderQuestion();
 function syncFixed(){
   const height=innerHeight;
