@@ -1,0 +1,28 @@
+:root{color-scheme:light;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:#f3f5f3;color:#183c34}*{box-sizing:border-box}body{margin:0}.lp{width:100%;max-width:520px;margin:0 auto;background:#fff}.lp section,.lp footer{margin:0;padding:0}img{display:block;width:100%;height:auto}a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}.image-cta{display:block;line-height:0;background:#fff}.image-cta:focus-visible{outline:4px solid #155d98;outline-offset:-6px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:fixed;top:-100px;left:12px;z-index:100;padding:16px;background:#fff;color:#183c34;font-size:18px}.skip:focus{top:12px}[hidden]{display:none!important}.question-panel{position:relative;background:#fff;scroll-margin-top:12px}.answer-hotspot{position:absolute;border:0;background:transparent;color:transparent;padding:0;cursor:pointer;border-radius:6px}.answer-hotspot:hover{background:#0c56430a}.answer-hotspot:focus-visible{outline:4px solid #155d98;outline-offset:-3px}.utility-button{border:1px solid #cbd8d0;background:#fff;color:#305448;width:56px;height:56px;display:grid;place-items:center;margin:8px auto 16px;border-radius:50%;cursor:pointer}.utility-button svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.utility-button:focus-visible{outline:3px solid #155d98;outline-offset:3px}.fixed-cta{position:fixed;z-index:20;left:0;right:0;bottom:0;background:#fff;box-shadow:0 -2px 14px #173d3515;padding-bottom:env(safe-area-inset-bottom)}.fixed-cta .image-cta{max-width:520px;margin:0 auto}.noscript{font-size:18px;line-height:1.7;margin:0;padding:24px;background:#fff}#quiz,#result{scroll-margin-top:12px}@media(min-width:700px){body{padding:24px 0}.lp{box-shadow:0 8px 40px #183c3408}.fixed-cta{left:50%;right:auto;transform:translateX(-50%);width:520px}}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+.preparedness-crop{aspect-ratio:1024/1408;overflow:hidden}.preparedness-crop img{width:100%;height:auto}
+
+/* アンケート導入と各ブロックを余白で分離 */
+.lp #diagnosis{padding-top:32px;padding-bottom:32px}
+#survey-intro{width:calc(100% - 32px);margin:0 auto;border-radius:12px;box-shadow:0 5px 18px #8f661a20}
+.survey-arrows{display:flex;justify-content:center;gap:15px;padding:26px 0 30px;height:132px}
+.survey-arrows svg{display:block;flex:0 0 56px;width:56px;height:70px;fill:#ed850b;filter:drop-shadow(0 4px 0 #f8d78e)}
+.image-cta{position:relative;overflow:hidden}
+.image-cta::after{content:"";position:absolute;inset:18% 2.5% 27%;border-radius:90px;pointer-events:none;background:linear-gradient(110deg,transparent 38%,#fff9 48%,transparent 58%);background-size:280% 100%;background-position:180% 0;opacity:0}
+.lp #notes{padding:20px 22px 28px;background:#f7f8f6;border-top:1px solid #e4e8e0}
+.footnotes{font-size:12px;line-height:1.85;color:#60665e}
+.footnotes p{margin:0 0 8px}
+.footer-links{display:flex;justify-content:center;gap:20px;margin-top:16px;padding-top:12px;border-top:1px solid #dce1d7}
+.footer-links a{display:flex;align-items:center;min-height:44px;color:#465841;font-size:13px;line-height:1.6;text-decoration:underline;text-underline-offset:4px}
+.footer-links a:focus-visible{outline:3px solid #155d98;outline-offset:4px}
+@media(prefers-reduced-motion:no-preference){
+ .survey-arrows svg{animation:survey-down 1.65s ease-in-out infinite}
+ .survey-arrows svg:nth-child(2){animation-delay:.15s}
+ .survey-arrows svg:nth-child(3){animation-delay:.3s}
+ .image-cta img{animation:cta-pulse 2.6s ease-in-out infinite;transform-origin:center}
+ .image-cta::after{animation:cta-shine 3.9s ease-in-out infinite}
+ .image-cta:hover img,.image-cta:focus-visible img{animation-play-state:paused}
+}
+@keyframes survey-down{0%,100%{transform:translateY(-5px);opacity:.72}50%{transform:translateY(7px);opacity:1}}
+@keyframes cta-pulse{0%,100%{transform:scale(.965)}50%{transform:scale(1)}}
+@keyframes cta-shine{0%,40%{background-position:180% 0;opacity:0}44%{opacity:.8}65%{background-position:-80% 0;opacity:0}100%{background-position:-80% 0;opacity:0}}
