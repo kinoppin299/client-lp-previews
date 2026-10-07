@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=9b538c6800c4';
-import {appendRichText,plainText} from './rich-text.js?build=9b538c6800c4';
-import {renderOfferCard} from './offer-card.js?build=9b538c6800c4';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=9b538c6800c4';
+import registry from './scenarios.js?build=c8cc3de842fe';
+import {appendRichText,plainText} from './rich-text.js?build=c8cc3de842fe';
+import {renderOfferCard} from './offer-card.js?build=c8cc3de842fe';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=c8cc3de842fe';
 const $ = id => document.getElementById(id);
 const query = new URLSearchParams(location.search);
 const campaign = query.get('scenario') || 'demo', variant = query.get('v') || 'a';

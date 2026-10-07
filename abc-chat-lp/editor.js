@@ -1,8 +1,8 @@
-import registry from './scenarios.js?build=9b538c6800c4';
-import {route,validateScenario} from './core.js?build=9b538c6800c4';
-import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=9b538c6800c4';
-import {appendRichText,plainText,formatSelection} from './rich-text.js?build=9b538c6800c4';
-import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=9b538c6800c4';
+import registry from './scenarios.js?build=c8cc3de842fe';
+import {route,validateScenario} from './core.js?build=c8cc3de842fe';
+import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=c8cc3de842fe';
+import {appendRichText,plainText,formatSelection} from './rich-text.js?build=c8cc3de842fe';
+import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=c8cc3de842fe';
 
 const $=id=>document.getElementById(id);
 const query=new URLSearchParams(location.search);
@@ -19,7 +19,7 @@ try {
 
 const topic={a:'皮のかぶり',b:'長さ',c:'太さ',d:'早く終わる悩み'};
 const kinds={image:'画像',image_message:'画像と吹き出し',question:'質問',message:'吹き出し',offer:'オファー',cta:'CTA',emphasis:'強調',explanation:'説明',html:'説明'};
-const names={clinic_intro:'ABCの実績・施術時間',fv:'ファーストビュー',welcome:'最初の声かけ',welcome_coupon:'クーポンの案内',q1:'Q1 · 気になること',q2:'Q2 · 知りたいこと',q3:'Q3 · クーポンを受け取る？',offer_details:'クーポンの詳しい案内',cost_a:'料金 · 皮のかぶり',cost_other:'料金 · 長さ／太さ／早く終わる悩み',cost_total:'総額の確認',consult_1:'相談だけでもいい？',consult_2:'相談から始める',privacy_1:'プライバシー',privacy_2:'連絡・通い方',offer_intro:'オファーへのひと言',offer:'長茎術が実質無料',coupon:'クーポンの受取方法',close:'最後のひと押し',final_cta:'LINEへ進むCTA'};
+const names={clinic_intro:'ABCの実績・施術時間',fv:'ファーストビュー',welcome:'最初の声かけ',welcome_coupon:'クーポンの案内',q1:'Q1 · 気になること',q2:'Q2 · 知りたいこと',q3:'Q3 · クーポンを受け取る？',offer_details:'クーポンの詳しい案内',cost_a:'料金 · 皮のかぶり',cost_other:'料金 · 長さ／太さ／早く終わる悩み',cost_total:'総額の確認',consult_1:'相談だけでもいい？',consult_2:'相談から始める',privacy_1:'プライバシー',privacy_2:'連絡・通い方',offer_intro:'オファーへのひと言',offer:'よくばりキャンペーン',coupon:'クーポンの受取方法',close:'最後のひと押し',final_cta:'LINEへ進むCTA'};
 function name(step) {
   if (names[step.id]) return names[step.id];
   const first=step.id.match(/^reply_1([a-d])$/);

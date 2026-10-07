@@ -1,8 +1,8 @@
-// Copy supplied by Kinoppin in abc-scenario-edited(2).js. Offer image replacement awaits final copy.
+// Copy supplied by Kinoppin; generated raster offer image uses approved campaign copy.
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "variant": "a",
     "title": "ABCクリニック｜悩みとクーポンのご案内",
     "brand": "ABCクリニック ご案内",
@@ -333,22 +333,11 @@ export default {
         "id": "offer",
         "type": "offer",
         "title": "このクーポンを使えば、包茎治療や長茎術など、対象の治療が[color=#c6233b]**実質無料**[/color]で受けられます！",
-        "note": "\n",
         "next": "coupon",
-        "src": "./campaigns/abc/assets/offer.svg",
-        "width": 800,
-        "height": 600,
-        "alt": "2つの治療を同時に受けると、長茎術10万円が10万円OFFで実質0円。一緒に受けるもう1つの治療費は別途かかります。",
-        "offerCard": {
-          "badge": "治療に使えるLINEクーポン",
-          "condition": "2つの治療を同時に受けると",
-          "regularPrice": "長茎術 10万円",
-          "discount": "10万円OFF",
-          "lead": "長茎術が",
-          "price": "実質0円",
-          "footnoteLine1": "一緒に受けるもう1つの治療費は",
-          "footnoteLine2": "別途かかります。"
-        }
+        "src": "./campaigns/abc/assets/yokubari-campaign-v1.png",
+        "width": 1254,
+        "height": 1254,
+        "alt": "よくばりキャンペーン。クーポンのご利用で対象の治療が実質無料。2つの治療で10万円OFF。3つの治療で15万円OFF。"
       },
       {
         "id": "coupon",
