@@ -1,8 +1,8 @@
-import registry from './scenarios.js?build=ce5c4c255bf5';
-import {route,validateScenario} from './core.js?build=ce5c4c255bf5';
-import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=ce5c4c255bf5';
-import {appendRichText,plainText,formatSelection} from './rich-text.js?build=ce5c4c255bf5';
-import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=ce5c4c255bf5';
+import registry from './scenarios.js?build=9b538c6800c4';
+import {route,validateScenario} from './core.js?build=9b538c6800c4';
+import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=9b538c6800c4';
+import {appendRichText,plainText,formatSelection} from './rich-text.js?build=9b538c6800c4';
+import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=9b538c6800c4';
 
 const $=id=>document.getElementById(id);
 const query=new URLSearchParams(location.search);
@@ -19,7 +19,7 @@ try {
 
 const topic={a:'皮のかぶり',b:'長さ',c:'太さ',d:'早く終わる悩み'};
 const kinds={image:'画像',image_message:'画像と吹き出し',question:'質問',message:'吹き出し',offer:'オファー',cta:'CTA',emphasis:'強調',explanation:'説明',html:'説明'};
-const names={fv:'ファーストビュー',welcome:'最初の声かけ',welcome_coupon:'クーポンの案内',q1:'Q1 · 気になること',q2:'Q2 · 知りたいこと',q3:'Q3 · クーポンを受け取る？',offer_details:'クーポンの詳しい案内',cost_a:'料金 · 皮のかぶり',cost_other:'料金 · 長さ／太さ／早く終わる悩み',cost_total:'総額の確認',consult_1:'相談だけでもいい？',consult_2:'相談から始める',privacy_1:'プライバシー',privacy_2:'連絡・通い方',offer_intro:'オファーへのひと言',offer:'長茎術が実質無料',coupon:'クーポンの受取方法',close:'最後のひと押し',final_cta:'LINEへ進むCTA'};
+const names={clinic_intro:'ABCの実績・施術時間',fv:'ファーストビュー',welcome:'最初の声かけ',welcome_coupon:'クーポンの案内',q1:'Q1 · 気になること',q2:'Q2 · 知りたいこと',q3:'Q3 · クーポンを受け取る？',offer_details:'クーポンの詳しい案内',cost_a:'料金 · 皮のかぶり',cost_other:'料金 · 長さ／太さ／早く終わる悩み',cost_total:'総額の確認',consult_1:'相談だけでもいい？',consult_2:'相談から始める',privacy_1:'プライバシー',privacy_2:'連絡・通い方',offer_intro:'オファーへのひと言',offer:'長茎術が実質無料',coupon:'クーポンの受取方法',close:'最後のひと押し',final_cta:'LINEへ進むCTA'};
 function name(step) {
   if (names[step.id]) return names[step.id];
   const first=step.id.match(/^reply_1([a-d])$/);
@@ -123,7 +123,7 @@ function renderOutline() {
   for(const node of graph.nodes){
     const step=node.step;
     if(search && ![name(step),step.title,step.message,step.label,...(step.options || []).map(o=>o.label)].filter(Boolean).join('\n').includes(search))continue;
-    const group=['fv','welcome','welcome_coupon','q1'].includes(step.id)?0:step.id.startsWith('reply_1')?1:step.id==='q2'?2:step.id==='q3'?4:['offer_intro','offer_details','offer','coupon','close','final_cta'].includes(step.id)?5:3;
+    const group=['fv','welcome','welcome_coupon','clinic_intro','q1'].includes(step.id)?0:step.id.startsWith('reply_1')?1:step.id==='q2'?2:step.id==='q3'?4:['offer_intro','offer_details','offer','coupon','close','final_cta'].includes(step.id)?5:3;
     if(group!==previous){nav.append(element('div','outline-group',['導入・最初の質問','悩みへの返答','2つ目の質問','疑問への返答','3つ目の質問','オファー・LINE'][group]));previous=group;}
     const button=element('button','outline-item');button.type='button';button.setAttribute('aria-current',String(selected===step.id));
     button.append(element('small','',kinds[step.type]),element('span','',name(step)));button.addEventListener('click',()=>select(step.id,true));nav.append(button);

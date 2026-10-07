@@ -1,8 +1,8 @@
-// Local copy supplied by Kinoppin. Offer card copy is editable.
+// Copy supplied by Kinoppin in abc-scenario-edited(2).js. Offer image replacement awaits final copy.
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "variant": "a",
     "title": "ABCクリニック｜悩みとクーポンのご案内",
     "brand": "ABCクリニック ご案内",
@@ -54,13 +54,22 @@ export default {
       {
         "id": "welcome",
         "type": "message",
-        "message": "おめでとうございます！\nあなたのアソコをお得にアップグレードする大チャンスです！",
+        "message": "**おめでとうございます！**\nあなたのアソコをお得に[color=#c6233b]**アップグレード**[/color]する大チャンスです！",
         "next": "welcome_coupon"
       },
       {
         "id": "welcome_coupon",
         "type": "message",
-        "message": "LINE登録して簡単アンケートに答えると、もれなく治療に使えるクーポンが発行されます！",
+        "message": "LINE登録して簡単アンケートに答えると、もれなく治療に使える[color=#2457b7]**クーポン**[/color]が発行されます！",
+        "next": "clinic_intro"
+      },
+      {
+        "id": "clinic_intro",
+        "type": "image",
+        "src": "./campaigns/abc/assets/clinic-intro.png",
+        "width": 938,
+        "height": 268,
+        "alt": "ABCクリニック美容外科。施術時間は最短30分、2段階麻酔で痛みはほぼ0、治療実績178,205件（2009年7月〜2025年12月）。",
         "next": "q1"
       },
       {
@@ -71,22 +80,22 @@ export default {
         "options": [
           {
             "id": "a",
-            "label": "包茎/仮性包茎",
+            "label": "**包茎/仮性包茎**",
             "next": "reply_1a"
           },
           {
             "id": "b",
-            "label": "長さ",
+            "label": "**長さ**",
             "next": "reply_1b"
           },
           {
             "id": "c",
-            "label": "太さ",
+            "label": "**太さ**",
             "next": "reply_1c"
           },
           {
             "id": "d",
-            "label": "早漏気味",
+            "label": "**早漏気味**",
             "next": "reply_1d"
           }
         ]
@@ -133,27 +142,27 @@ export default {
       {
         "id": "q2",
         "type": "question",
-        "message": "先に知っておきたいのは、どれですか？",
+        "message": "不安に思うことはありますか？",
         "hint": "気になる疑問を1つ選んでください",
         "options": [
           {
             "id": "a",
-            "label": "あとから高くならない？",
+            "label": "**あとから高くならない？**",
             "next": "cost_branch"
           },
           {
             "id": "b",
-            "label": "相談だけでもいい？",
+            "label": "**相談だけでもいい？**",
             "next": "consult_1"
           },
           {
             "id": "c",
-            "label": "痛みや治療後が心配",
+            "label": "**痛みや治療後が心配**",
             "next": "pain_branch"
           },
           {
             "id": "e",
-            "label": "周りに知られたくない",
+            "label": "**周りに知られたくない**",
             "next": "privacy_1"
           }
         ]
@@ -173,19 +182,19 @@ export default {
       {
         "id": "cost_a",
         "type": "message",
-        "message": "ABCでは、施術料金以外の追加料金はかかりません。",
+        "message": "ABCでは、**施術料金以外の追加料金はかかりません。**",
         "next": "cost_total"
       },
       {
         "id": "cost_other",
         "type": "message",
-        "message": "ABCでは、施術料金以外の追加料金はかかりません。",
+        "message": "ABCでは、**施術料金以外の追加料金はかかりません。**",
         "next": "cost_total"
       },
       {
         "id": "cost_total",
         "type": "message",
-        "message": "麻酔代、術後の薬代、縫合糸代、アフターケア代などがすべて提示された治療費に含まれているのでご安心ください。",
+        "message": "麻酔代、術後の薬代、縫合糸代、アフターケア代などがすべて**提示された治療費に含まれている**のでご安心ください。",
         "next": "fees_image"
       },
       {
@@ -200,7 +209,7 @@ export default {
       {
         "id": "consult_1",
         "type": "message",
-        "message": "はい。ABCは、カウンセリングだけで悩みが解消することも大切にしています。\n治療前のカウンセリングは無料です。\n公式LINEでも細かい内容の確認ができます！",
+        "message": "はい。ABCは、カウンセリングだけで悩みが解消することも大切にしています。\n治療前のカウンセリングは[color=#2457b7]**無料**[/color]です。\n公式LINEでも細かい内容の確認ができます！",
         "next": "consult_2"
       },
       {
@@ -234,7 +243,7 @@ export default {
       {
         "id": "pain_a_1",
         "type": "message",
-        "message": "痛みは気になるところですよね。\nABCの包茎治療では、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので痛みはほぼありません。",
+        "message": "痛みは気になるところですよね。\nABCの包茎治療では、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので[color=#2457b7]**痛みはほぼありません**[/color]。",
         "next": "pain_a_2"
       },
       {
@@ -246,7 +255,7 @@ export default {
       {
         "id": "pain_b_1",
         "type": "message",
-        "message": "痛みは気になるところですよね。\nでも、ABCクリニックは徹底した減痛治療を追求しているので痛みはほぼありません。",
+        "message": "痛みは気になるところですよね。\nでも、ABCクリニックは徹底した減痛治療を追求しているので[color=#2457b7]**痛みはほぼありません**[/color]。",
         "next": "pain_b_2"
       },
       {
@@ -258,7 +267,7 @@ export default {
       {
         "id": "pain_c_1",
         "type": "message",
-        "message": "痛みは気になるところですよね。\nABCでは、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので痛みはほぼありません。",
+        "message": "痛みは気になるところですよね。\nABCでは、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので[color=#2457b7]**痛みはほぼありません**[/color]。",
         "next": "pain_c_2"
       },
       {
@@ -270,7 +279,7 @@ export default {
       {
         "id": "pain_d_1",
         "type": "message",
-        "message": "痛みは気になるところですよね。\nABCでは、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので痛みはほぼありません。",
+        "message": "痛みは気になるところですよね。\nABCでは、先に皮膚へ麻酔をしてから注射する、二段階麻酔を行っているので[color=#2457b7]**痛みはほぼありません**[/color]。",
         "next": "pain_d_2"
       },
       {
@@ -282,7 +291,7 @@ export default {
       {
         "id": "privacy_1",
         "type": "message",
-        "message": "誰にもバレずに治療したい方にはABCクリニックはピッタリです。\n\n泌尿器科医だけでなく、形成外科専門医の資格を持つ医師が在籍・監修を行っているので、丁寧な縫合や、目立ちにくい独自の手術法（全周埋没縫合や特殊な吸収糸など）を取り入れています。",
+        "message": "**誰にもバレずに治療したい方にはABCクリニックはピッタリです。**\n\n泌尿器科医だけでなく、形成外科専門医の資格を持つ医師が在籍・監修を行っているので、丁寧な縫合や、目立ちにくい独自の手術法（全周埋没縫合や特殊な吸収糸など）を取り入れています。",
         "next": "privacy_2"
       },
       {
@@ -294,11 +303,11 @@ export default {
       {
         "id": "q3",
         "type": "question",
-        "message": "治療に使えるお得なクーポンを受け取ってみませんか？",
+        "message": "治療に使えるお得な**クーポン**を受け取ってみませんか？",
         "options": [
           {
             "id": "yes",
-            "label": "はい",
+            "label": "**はい**",
             "next": "offer_intro"
           },
           {
@@ -311,7 +320,7 @@ export default {
       {
         "id": "offer_details",
         "type": "message",
-        "message": "2つの治療を同時に受けると、長茎術10万円が10万円OFF。\n長茎術が実質無料になる特典があります。",
+        "message": "いまABCでは**「よくばりキャンペーン」**を開催中！\n2つの治療を同時に受けると[color=#2457b7]**10万円OFF**[/color]。\n3つの治療を同時に受けると[color=#c6233b]**15万円OFF**[/color]という、超お得なクーポンなんです。",
         "next": "offer"
       },
       {
@@ -323,8 +332,8 @@ export default {
       {
         "id": "offer",
         "type": "offer",
-        "title": "クーポン利用すれば実質無料で受けられるキャンペーンを開催中",
-        "note": "自由診療です。\n2つの治療をすると10万円割引\n3つの治療をすると15万円割引\n",
+        "title": "このクーポンを使えば、包茎治療や長茎術など、対象の治療が[color=#c6233b]**実質無料**[/color]で受けられます！",
+        "note": "\n",
         "next": "coupon",
         "src": "./campaigns/abc/assets/offer.svg",
         "width": 800,
@@ -356,7 +365,7 @@ export default {
       {
         "id": "final_cta",
         "type": "cta",
-        "title": "まずはお得なクーポンを受け取ってみて！",
+        "title": "**今すぐお得なクーポンを受け取ってみてください！**",
         "message": "LINE追加後の簡単なアンケートに回答すると、クーポンを受け取れます。",
         "label": "LINEでお得なクーポンを受け取る",
         "disclosure": {
