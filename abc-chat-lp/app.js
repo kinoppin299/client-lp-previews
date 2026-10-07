@@ -1,5 +1,5 @@
-import registry from './scenarios.js';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js';
+import registry from './scenarios.js?build=3352595cae2e';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=3352595cae2e';
 const $ = id => document.getElementById(id);
 const query = new URLSearchParams(location.search);
 const campaign = query.get('scenario') || 'demo', variant = query.get('v') || 'a';
@@ -79,6 +79,20 @@ function disclosure(data) {
   const details = element('details','conditions');
   details.append(element('summary','',data.label),element('p','',data.text)); return details;
 }
+function campaignFooter() {
+  if (!scenario.footer) return null;
+  const footer = element('div','campaign-footer');
+  footer.setAttribute('role','contentinfo'); footer.setAttribute('aria-label','フッター');
+  const img = element('img','');
+  for (const key of ['src','alt','width','height']) img[key] = scenario.footer[key];
+  img.loading = 'lazy'; img.decoding = 'async'; footer.append(img);
+  if (scenario.footer.privacyURL) {
+    const link = element('a','privacy-link','プライバシーポリシー');
+    link.href = scenario.footer.privacyURL; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    footer.append(link);
+  }
+  return footer;
+}
 function ctaLink(step, compact = false) {
   const link = element('a','primary',step.image && !compact ? '' : step.label);
   if (step.image && !compact) {
@@ -154,7 +168,7 @@ function buildStep(step) {
     if (step.note) content.append(element('p','small-note',step.note));
     if (step.disclosure) content.append(disclosure(step.disclosure));
   }
-  turn.append(speaker);
+  if (bubble.childElementCount || mediaCaption?.childElementCount) turn.append(speaker);
   if (bubble.childElementCount) turn.append(bubble);
   if (chatMedia) turn.append(chatMedia);
   if (mediaCaption?.childElementCount) turn.append(mediaCaption);
@@ -214,8 +228,10 @@ async function render({focus = false, rewind = false, animate = true, opening = 
   const path = route(scenario,answers), visible = path.filter(s => !['branch','delay'].includes(s.type));
   const previousAll = lastFullPath; lastFullPath = path.map(s => s.id);
   const transcript = $('transcript');
+  let footer = transcript.querySelector('.campaign-footer');
+  if (!footer) { footer = campaignFooter(); if (footer) transcript.append(footer); }
   // Retain the shared conversation prefix. Do not flash/rebuild the entire history.
-  const oldNodes = [...transcript.children];
+  const oldNodes = [...transcript.children].filter(node => node.dataset.step);
   let common = 0;
   while (common < oldNodes.length && oldNodes[common].dataset.step === visible[common]?.id) common++;
   for (const node of oldNodes.slice(common)) node.remove();
@@ -246,6 +262,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     if (!cancelScroll) node.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'nearest'});
   };
   let waited = 0, explicitWait = 0;
+  const waitBudget = scenario.conversation?.maxWaitMs ?? 600;
   for (const step of path) {
     if (token !== generation) return;
     if (step.type === 'branch') {
@@ -256,23 +273,25 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     }
     if (step.type === 'delay') {
       if (animate && !rewind && !reduced && !previousAll.includes(step.id) && explicitWait < 200) {
-        const ms = Math.min(step.ms,200-explicitWait,600-waited); explicitWait += ms; waited += ms;
+        const ms = Math.max(0,Math.min(step.ms,200-explicitWait,waitBudget-waited)); explicitWait += ms; waited += ms;
         await new Promise(resolve => setTimeout(resolve,ms));
       }
       continue;
     }
     if (visible.indexOf(step) < common) continue;
-    const wait = conversationWait(scenario,waited,{instant:step.layout === 'fullbleed' || !animate || rewind || reduced});
+    const wait = conversationWait(scenario,waited,{step,instant:step.layout === 'fullbleed' || step.type === 'cta' || !animate || rewind || reduced});
     if (wait) {
-      const typing = typingIndicator(); transcript.append(typing); follow(typing);
+      const mediaOnly = ['image','video'].includes(step.type) && !step.title && !step.message && !step.note;
+      const typing = mediaOnly ? null : typingIndicator();
+      if (typing) { transcript.insertBefore(typing,footer); follow(typing); }
       waited += wait;
       await new Promise(resolve => setTimeout(resolve,wait));
-      typing.remove();
+      typing?.remove();
       if (token !== generation) return;
     }
     const node = buildStep(step);
     if (wait) node.classList.add('arriving');
-    transcript.append(node); observer.observe(node);
+    transcript.insertBefore(node,footer); observer.observe(node);
     if (responseScroll && !opening && !firstReply && !cancelScroll) {
       node.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'}); firstReply = node;
     } else follow(node);
@@ -285,19 +304,6 @@ async function render({focus = false, rewind = false, animate = true, opening = 
   if (token !== generation) return;
   const terminal = path.at(-1);
   if (terminal.type === 'cta') {
-    if (scenario.footer) {
-      const footer = element('div','campaign-footer');
-      footer.setAttribute('role','contentinfo'); footer.setAttribute('aria-label','フッター');
-      const img = element('img','');
-      for (const key of ['src','alt','width','height']) img[key] = scenario.footer[key];
-      img.loading = 'lazy'; img.decoding = 'async'; footer.append(img);
-      if (scenario.footer.privacyURL) {
-        const link = element('a','privacy-link','プライバシーポリシー');
-        link.href = scenario.footer.privacyURL; link.target = '_blank'; link.rel = 'noopener noreferrer';
-        footer.append(link);
-      }
-      transcript.append(footer);
-    }
     $('progress-label').textContent = '確認ポイントがまとまりました';
     if (!seen.has('chat_complete')) { seen.add('chat_complete'); emit('chat_complete',terminal); }
     if (scenario.stickyCTA) {

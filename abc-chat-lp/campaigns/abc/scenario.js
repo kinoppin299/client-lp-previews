@@ -2,7 +2,7 @@
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.10.0",
+    "version": "0.11.0",
     "variant": "a",
     "title": "ABCクリニック｜悩みとクーポンのご案内",
     "brand": "ABCクリニック ご案内",
@@ -25,7 +25,8 @@ export default {
     "resume": false,
     "stickyCTA": true,
     "conversation": {
-      "typingMs": 250,
+      "typingMs": 1000,
+      "maxWaitMs": 8000,
       "scrollTo": "response"
     },
     "conversion": {

@@ -59,7 +59,8 @@ export function validateScenario(s) {
   if (!ID.test(s.id || '') || !/^[a-zA-Z0-9_.-]{1,64}$/.test(s.version || '') || !ID.test(s.variant || '')) err('id/version/variant must be short IDs');
   if (!s.title || !s.hero?.title || !s.hero?.startLabel) err('title and hero title/startLabel required');
   if (!s.conversion?.url || !safeURL(s.conversion.url)) err('CTA URL missing or unsafe');
-  if (s.conversation && !(Number.isInteger(s.conversation.typingMs) && s.conversation.typingMs >= 0 && s.conversation.typingMs <= 300)) err('conversation.typingMs must be 0..300ms');
+  if (s.conversation && !(Number.isInteger(s.conversation.typingMs) && s.conversation.typingMs >= 0 && s.conversation.typingMs <= 1800)) err('conversation.typingMs must be 0..1800ms');
+  if (s.conversation?.maxWaitMs !== undefined && !(Number.isInteger(s.conversation.maxWaitMs) && s.conversation.maxWaitMs >= 0 && s.conversation.maxWaitMs <= 10000)) err('conversation.maxWaitMs must be 0..10000ms');
   if (s.autoStart && !(s.steps[0]?.id === s.start && s.steps[0]?.type === 'image' && s.steps[0]?.layout === 'fullbleed')) err('autoStart requires a fullbleed image as the first step');
   if (s.avatarImage && !safeURL(s.avatarImage)) err('Avatar URL unsafe');
   if (s.footer && (!safeURL(s.footer.src) || !s.footer.alt || !(s.footer.width > 0 && s.footer.height > 0))) err('Footer image incomplete/unsafe');
@@ -127,9 +128,17 @@ export function validateScenario(s) {
   return {errors:[...new Set(errors)],warnings};
 }
 
-// Per-bubble cadence; the whole response never adds more than 600ms of waiting.
-export function conversationWait(scenario, spent = 0, {instant = false} = {}) {
+// A campaign may opt into a conversational cadence with a bounded response budget.
+export function conversationWait(scenario, spent = 0, {instant = false, step = null} = {}) {
   if (instant) return 0;
   const configured = scenario.conversation?.typingMs ?? 200;
-  return Math.max(0,Math.min(configured,300,600-spent));
+  const budget = scenario.conversation?.maxWaitMs ?? 600;
+  let duration = configured;
+  if (configured && scenario.conversation?.maxWaitMs && step) {
+    if (step.type === 'cta') return 0;
+    if (step.type === 'question') duration *= .65;
+    else if (['image','video'].includes(step.type)) duration *= .3;
+    else duration += Math.min(700,(step.message || step.title || '').length * 4);
+  }
+  return Math.max(0,Math.min(Math.round(duration),1800,budget-spent));
 }

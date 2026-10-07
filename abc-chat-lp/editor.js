@@ -1,6 +1,6 @@
-import registry from './scenarios.js';
-import {route,validateScenario} from './core.js';
-import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js';
+import registry from './scenarios.js?build=3352595cae2e';
+import {route,validateScenario} from './core.js?build=3352595cae2e';
+import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=3352595cae2e';
 
 const $=id=>document.getElementById(id);
 const query=new URLSearchParams(location.search);
