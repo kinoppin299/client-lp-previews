@@ -1,11 +1,11 @@
-// Copy supplied by Kinoppin; generated raster offer image uses approved campaign copy.
+// Copy supplied in abc-scenario-edited(3).js; compact guide header and generated CTA.
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "variant": "a",
     "title": "ABCクリニック｜悩みとクーポンのご案内",
-    "brand": "ABCクリニック ご案内",
+    "brand": "アソコのお悩みガイド",
     "avatar": "A",
     "avatarImage": "./campaigns/abc/assets/guide.jpg",
     "autoStart": true,
@@ -49,12 +49,13 @@ export default {
         "width": 1024,
         "height": 1084,
         "alt": "ABCクリニック美容外科。LINE登録と簡単なアンケート回答で治療クーポン。参照LPの実質無料キャンペーン画像。",
-        "next": "welcome"
+        "next": "welcome",
+        "adLabel": "PR：ABCクリニック"
       },
       {
         "id": "welcome",
         "type": "message",
-        "message": "**おめでとうございます！**\nあなたのアソコをお得に[color=#c6233b]**アップグレード**[/color]する大チャンスです！",
+        "message": "LINE登録後、簡単なアンケートに答えればもれなくもらえますよ！",
         "next": "welcome_coupon"
       },
       {
@@ -80,22 +81,22 @@ export default {
         "options": [
           {
             "id": "a",
-            "label": "**包茎/仮性包茎**",
+            "label": "包茎/仮性包茎",
             "next": "reply_1a"
           },
           {
             "id": "b",
-            "label": "**長さ**",
+            "label": "長さ",
             "next": "reply_1b"
           },
           {
             "id": "c",
-            "label": "**太さ**",
+            "label": "太さ",
             "next": "reply_1c"
           },
           {
             "id": "d",
-            "label": "**早漏気味**",
+            "label": "早漏気味",
             "next": "reply_1d"
           }
         ]
@@ -147,22 +148,22 @@ export default {
         "options": [
           {
             "id": "a",
-            "label": "**あとから高くならない？**",
+            "label": "あとから高くならない？",
             "next": "cost_branch"
           },
           {
             "id": "b",
-            "label": "**相談だけでもいい？**",
+            "label": "相談だけでもいい？",
             "next": "consult_1"
           },
           {
             "id": "c",
-            "label": "**痛みや治療後が心配**",
+            "label": "痛みや治療後が心配",
             "next": "pain_branch"
           },
           {
             "id": "e",
-            "label": "**周りに知られたくない**",
+            "label": "周りに知られたくない",
             "next": "privacy_1"
           }
         ]
@@ -332,7 +333,7 @@ export default {
       {
         "id": "offer",
         "type": "offer",
-        "title": "このクーポンを使えば、包茎治療や長茎術など、対象の治療が[color=#c6233b]**実質無料**[/color]で受けられます！",
+        "title": "",
         "next": "coupon",
         "src": "./campaigns/abc/assets/yokubari-campaign-v1.png",
         "width": 1254,
@@ -360,6 +361,12 @@ export default {
         "disclosure": {
           "label": "ほかに気になることを見る",
           "text": "【相談だけを希望したいとき】\n予約するときに「今回は相談だけを希望しています」と先に伝える方法があります。\n\n【仕事は休む必要がある？】\n治療方法によって変わります。普段の動きに合わせて医師へ確認してください。\n\n【LINEの通知が気になる】\n通知OFFやプレビューの設定を確認してください。"
+        },
+        "image": {
+          "src": "./campaigns/abc/assets/coupon-cta-v1.png",
+          "width": 2172,
+          "height": 724,
+          "alt": "LINEでお得なクーポンを受け取る"
         }
       }
     ],

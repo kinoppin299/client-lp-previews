@@ -1,8 +1,9 @@
-import registry from './scenarios.js?build=c8cc3de842fe';
-import {appendRichText,plainText} from './rich-text.js?build=c8cc3de842fe';
-import {renderOfferCard} from './offer-card.js?build=c8cc3de842fe';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=c8cc3de842fe';
+import registry from './scenarios.js?build=703bf93b1ff2';
+import {appendRichText,plainText} from './rich-text.js?build=703bf93b1ff2';
+import {renderOfferCard} from './offer-card.js?build=703bf93b1ff2';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=703bf93b1ff2';
 const $ = id => document.getElementById(id);
+const backControl = $('back');
 const query = new URLSearchParams(location.search);
 const campaign = query.get('scenario') || 'demo', variant = query.get('v') || 'a';
 // Only the explicit authoring iframe uses copy drafts. Ordinary ad visitors never read them.
@@ -95,9 +96,9 @@ function campaignFooter() {
   }
   return footer;
 }
-function ctaLink(step, compact = false) {
-  const link = element('a','primary',step.image && !compact ? '' : step.label);
-  if (step.image && !compact) {
+function ctaLink(step) {
+  const link = element('a','primary',step.image ? '' : step.label);
+  if (step.image) {
     link.classList.add('image-cta');
     const img = element('img',''); Object.assign(img,step.image); img.decoding = 'async';
     link.append(img); link.setAttribute('aria-label',plainText(step.label));
@@ -127,6 +128,8 @@ function buildStep(step) {
   if (step.layout === 'fullbleed') {
     const img = element('img','fv-image'); img.src = step.src; img.alt = step.alt; img.width = step.width; img.height = step.height;
     img.loading = 'eager'; img.fetchPriority = 'high'; img.decoding = 'async'; turn.append(img);
+    if (step.adLabel) turn.append(element('span','fv-ad-label',step.adLabel));
+    turn.append(element('span','entry-guide-note','選択式の自動ガイド'));
     if (step.disclosure) turn.append(disclosure(step.disclosure));
     const trigger = element('div','entry-trigger'); trigger.setAttribute('aria-hidden','true'); turn.append(trigger);
     return turn;
@@ -231,6 +234,8 @@ async function render({focus = false, rewind = false, animate = true, opening = 
   const path = route(scenario,answers), visible = path.filter(s => !['branch','delay'].includes(s.type));
   const previousAll = lastFullPath; lastFullPath = path.map(s => s.id);
   const transcript = $('transcript');
+  // Keep one back control/listener while its previous question is replaced.
+  if (scenario.autoStart) document.querySelector('.progress-copy').append(backControl);
   let footer = transcript.querySelector('.campaign-footer');
   if (!footer) { footer = campaignFooter(); if (footer) transcript.append(footer); }
   // Retain the shared conversation prefix. Do not flash/rebuild the entire history.
@@ -246,7 +251,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
   $('progress-label').textContent = `${count}問回答済み / 最大${total}問`;
   $('progress').setAttribute('aria-valuemax',total); $('progress').setAttribute('aria-valuenow',count);
   $('progress-fill').style.width = `${count / total * 100}%`;
-  $('back').disabled = true;
+  backControl.disabled = true;
   $('status').textContent = animate && !rewind && !reduced ? '自動ガイドの案内を準備中です。' : '';
   observer = new IntersectionObserver(items => {
     for (const item of items) if (item.isIntersecting) {
@@ -284,7 +289,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     if (visible.indexOf(step) < common) continue;
     const wait = conversationWait(scenario,waited,{step,instant:step.layout === 'fullbleed' || step.type === 'cta' || !animate || rewind || reduced});
     if (wait) {
-      const mediaOnly = ['image','video'].includes(step.type) && !step.title && !step.message && !step.note;
+      const mediaOnly = ['image','video','offer'].includes(step.type) && !step.title && !step.message && !step.note;
       const typing = mediaOnly ? null : typingIndicator();
       if (typing) { transcript.insertBefore(typing,footer); follow(typing); }
       waited += wait;
@@ -310,13 +315,18 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     $('progress-label').textContent = '確認ポイントがまとまりました';
     if (!seen.has('chat_complete')) { seen.add('chat_complete'); emit('chat_complete',terminal); }
     if (scenario.stickyCTA) {
-      $('sticky').replaceChildren(ctaLink(terminal,true)); $('sticky').dataset.step = terminal.id;
+      $('sticky').replaceChildren(ctaLink(terminal)); $('sticky').dataset.step = terminal.id;
       $('sticky').hidden = false; document.body.classList.add('has-sticky'); observer.observe($('sticky'));
     }
   }
   $('status').textContent = terminal.type === 'question' ? plainText(terminal.message) : '確認ポイントがまとまりました。公式ページへ進めます。';
-  busy = false; openingActive = false; $('back').disabled = !entries.length; store();
+  busy = false; openingActive = false; backControl.disabled = !entries.length; store();
   const destination = transcript.querySelector(`[data-step="${terminal.id}"]`);
+  if (scenario.autoStart) {
+    backControl.hidden = !entries.length;
+    backControl.classList.add('back-control');
+    if (entries.length) destination.append(backControl);
+  }
   if (!cancelScroll) {
     if (responseScroll && firstReply) firstReply.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'});
     else if (!responseScroll) follow(destination);
@@ -343,10 +353,14 @@ function init() {
   }
   document.title = scenario.title;
   document.body.classList.toggle('image-entry',scenario.autoStart === true);
-  if (scenario.avatarImage) document.querySelector('.brand-icon').classList.add('abc-brand');
   for (const [key,value] of Object.entries(scenario.theme || {})) document.documentElement.style.setProperty(`--${key}`,value);
   $('brand').textContent = scenario.brand;
-  document.querySelector('.brand-icon').textContent = scenario.avatar || '案';
+  const brandIcon = document.querySelector('.brand-icon');
+  if (scenario.avatarImage) brandIcon.replaceChildren(avatar());
+  else brandIcon.textContent = scenario.avatar || '案';
+  if (scenario.autoStart) {
+    new ResizeObserver(()=>document.body.style.setProperty('--sticky-height',`${$('sticky').getBoundingClientRect().height}px`)).observe($('sticky'));
+  }
   $('eyebrow').textContent = scenario.hero.eyebrow; $('hero-title').textContent = scenario.hero.title; $('hero-description').textContent = scenario.hero.description;
   $('start-note').textContent = scenario.hero.note; $('start').textContent = scenario.hero.startLabel; $('start').disabled = false; $('demo-note').hidden = !scenario.demo;
   if (['127.0.0.1','localhost','[::1]'].includes(location.hostname) && query.get('debug') === '1') {
@@ -355,7 +369,7 @@ function init() {
   }
   load(); emit('lp_view');
   $('start').addEventListener('click',event => { if (started) return; started = true; emit('chat_start'); store(); render({focus:event.detail === 0}); });
-  $('back').addEventListener('click',event => {
+  backControl.addEventListener('click',event => {
     if (busy || !entries.length) return;
     entries.pop(); ({answers,entries} = replay(scenario,entries));
     emit('chat_back',route(scenario,answers).at(-1)); render({focus:event.detail === 0,rewind:true});

@@ -64,3 +64,23 @@
 .image-entry .campaign-footer .privacy-link{display:flex;align-items:center;justify-content:center;min-height:44px;margin:12px;font-size:12px;color:#344d6b;text-decoration:underline;text-underline-offset:3px}
 .image-entry .latest{left:auto;right:max(12px,calc((100vw - 540px)/2 + 12px));transform:none;border:0;border-radius:12px;box-shadow:0 2px 9px #304a6c25;color:#334b66}
 .image-entry .offer .bubble>p.small-note{font-size:11px;font-weight:400;line-height:1.75;color:#69766b}
+/* Compact guide identity; advertiser disclosure belongs to the opening artwork. */
+.image-entry .topbar{height:50px;padding:8px 14px;border-bottom:1px solid #e9edf2}
+.image-entry .wordmark{font-size:16px;line-height:1.35;gap:9px;font-weight:700}
+.image-entry .brand-status,.image-entry .topbar>.ad-label,.image-entry .progress-copy{display:none}
+.image-entry .brand-icon,.image-entry .brand-icon>.avatar{position:relative;width:30px;height:30px;background:#fff;border-radius:50%;overflow:hidden}
+.image-entry .brand-icon .avatar img{position:absolute;left:8%;top:-7%;width:84%;height:auto;max-width:none;object-fit:initial}
+.image-entry .progress-bar{padding:0;background:#fff;box-shadow:none}
+.image-entry #progress{height:2px;border-radius:0}
+.image-entry #transcript{padding-top:0}
+.image-entry .fullbleed{position:relative}
+.fv-ad-label{position:absolute;top:8px;right:8px;padding:2px 6px;border-radius:3px;background:#fffffff0;color:#30383c;font-size:10px;line-height:1.5;font-weight:500}
+.entry-guide-note{display:block;padding:7px 12px 0;font-size:10px;text-align:center;color:#344c69}
+.image-entry .back-control{grid-column:2 / -1;justify-self:start;min-height:36px;margin-top:4px;font-size:12px;color:#425a74;text-underline-offset:3px}
+.image-entry .campaign-footer{margin-top:84px}
+.image-entry .turn.cta .bubble{grid-column:1 / -1}
+.image-entry .cta .primary.image-cta,.image-entry .sticky .primary.image-cta{padding:0;min-height:44px;border:0;border-radius:0;background:transparent;box-shadow:none;line-height:0}
+.image-entry .primary.image-cta img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent;border-radius:0;margin:0}
+.image-entry .sticky{padding:4px 12px calc(4px + env(safe-area-inset-bottom))}
+.is-chat.image-entry.has-sticky #transcript{padding-bottom:calc(var(--sticky-height,150px) + 24px)}
+.image-entry.has-sticky .latest{bottom:calc(var(--sticky-height,150px) + 12px)}
