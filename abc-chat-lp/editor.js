@@ -1,6 +1,8 @@
-import registry from './scenarios.js?build=3352595cae2e';
-import {route,validateScenario} from './core.js?build=3352595cae2e';
-import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=3352595cae2e';
+import registry from './scenarios.js?build=ce5c4c255bf5';
+import {route,validateScenario} from './core.js?build=ce5c4c255bf5';
+import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=ce5c4c255bf5';
+import {appendRichText,plainText,formatSelection} from './rich-text.js?build=ce5c4c255bf5';
+import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=ce5c4c255bf5';
 
 const $=id=>document.getElementById(id);
 const query=new URLSearchParams(location.search);
@@ -26,7 +28,7 @@ function name(step) {
   if(match) return `${match[1]==='pain'?'痛み・治療後':'仕上がり'} · ${topic[match[2]]} ${match[3]}`;
   return step.title || step.message?.slice(0,25) || kinds[step.type] || '吹き出し';
 }
-function copy(step){return step.title || step.message || (step.type==='image'?'FV画像からチャットが始まります':name(step));}
+function copy(step){return plainText(step.title || step.message || (step.type==='image'?'画像パーツを表示':name(step)));}
 function element(tag,className,text) {
   const node=document.createElement(tag);if(className)node.className=className;if(text)node.textContent=text;return node;
 }
@@ -50,13 +52,30 @@ function updateCopy(step) {
   renderOutline();check();scheduleSave();
 }
 function field(label,value,set,{multiline=true,optional=false,help='',choice=false}={}) {
-  const wrap=element('label',`field${choice?' choice':''}`),heading=element('span','',label),count=element('small','count',`${value.length}字`);
+  const wrap=element('div',`field${choice?' choice':''}`),heading=element('span','',label),count=element('small','count',`${plainText(value).length}字`);
   heading.append(count);wrap.append(heading);
   const input=element(multiline?'textarea':'input');
   if(multiline)input.rows=Math.min(10,Math.max(3,Math.ceil(value.length/20)+1));else input.type='text';
   input.value=value;input.setAttribute('aria-label',label);input.spellcheck=false;
   if(!optional)input.required=true;
-  input.addEventListener('input',()=>{set(input.value);count.textContent=`${input.value.length}字`;});wrap.append(input);
+  const toolbar=element('div','format-toolbar'),preview=element('div','field-preview');
+  toolbar.setAttribute('role','group');toolbar.setAttribute('aria-label',`${label}の文字装飾`);
+  preview.setAttribute('aria-label',`${label}の見え方`);
+  const refresh=()=>{preview.replaceChildren();appendRichText(preview,input.value);};
+  const apply=(kind,color)=>{
+    const result=formatSelection(input.value,input.selectionStart,input.selectionEnd,kind,color);
+    if(!result){notify('装飾する文字を選択してください。');return;}
+    input.value=result.value;input.focus();input.setSelectionRange(result.start,result.end);
+    input.dispatchEvent(new Event('input',{bubbles:true}));
+  };
+  for(const [text,kind,color] of [['太字','bold'],['赤','color','#c6233b'],['緑','color','#16743f'],['青','color','#2457b7'],['装飾解除','clear']]){
+    const button=element('button','format-button',text);button.type='button';button.setAttribute('aria-label',`${label}：${text}`);
+    if(color)button.style.color=color;
+    button.addEventListener('pointerdown',event=>event.preventDefault());button.addEventListener('click',()=>apply(kind,color));toolbar.append(button);
+  }
+  const color=element('input','format-color');color.type='color';color.value='#c6233b';color.setAttribute('aria-label',`${label}：文字色を選ぶ`);color.title='文字色を選ぶ';
+  color.addEventListener('change',()=>apply('color',color.value));toolbar.append(color);
+  input.addEventListener('input',()=>{set(input.value);count.textContent=`${plainText(input.value).length}字`;refresh();});wrap.append(toolbar,input,preview);refresh();
   if(help)wrap.append(element('small','',help));return wrap;
 }
 function context(step) {
@@ -71,9 +90,17 @@ function context(step) {
 }
 function renderFields() {
   const step=scenario.steps.find(s=>s.id===selected);
-  $('step-kind').textContent=kinds[step.type] || '吹き出し';$('step-name').textContent=name(step);$('step-context').textContent=context(step);
+  $('step-kind').textContent=kinds[step.type] || '吹き出し';$('step-name').textContent=name(step);$('step-context').textContent=plainText(context(step));
   const fields=$('fields');fields.replaceChildren();
-  if(step.src){
+  if(step.offerCard){
+    const panel=element('section','offer-copy-panel'),preview=element('div','offer-copy-preview');
+    preview.append(renderOfferCard(step.offerCard));
+    panel.append(element('h3','','オファー画像内の文言'),preview,element('p','format-help','各項目を編集すると、この画像の文字も変わります。'));
+    for(const {key,label} of OFFER_FIELDS)panel.append(field(label,step.offerCard[key],value=>{
+      step.offerCard[key]=value;preview.replaceChildren(renderOfferCard(step.offerCard));updateCopy(step);
+    },{multiline:false,optional:true}));
+    fields.append(panel);
+  } else if(step.src){
     const img=element('img');img.src=step.src;img.alt=step.alt || '';fields.append(img,element('p','draft-help','画像内の文字は、元画像の差し替えで変更できます。'));
   }
   if(step.title!==undefined)fields.append(field('見出し',step.title,value=>{step.title=value;updateCopy(step);},{multiline:false}));
@@ -113,7 +140,7 @@ function renderEdges() {
     const x1=from.x+238,y1=from.y+56,x2=to.x,y2=to.y+56;
     const path=document.createElementNS(ns,'path');path.setAttribute('d',`M${x1},${y1} C${x1+27},${y1} ${x2-27},${y2} ${x2},${y2}`);path.setAttribute('class','connection');svg.append(path);
     if(link.label){
-      const label=document.createElementNS(ns,'text');label.setAttribute('x',x2-10);label.setAttribute('y',y2-9);label.setAttribute('text-anchor','end');label.setAttribute('class','edge-label');label.textContent=link.label;svg.append(label);
+      const label=document.createElementNS(ns,'text');label.setAttribute('x',x2-10);label.setAttribute('y',y2-9);label.setAttribute('text-anchor','end');label.setAttribute('class','edge-label');label.textContent=plainText(link.label);svg.append(label);
     }
   }
 }

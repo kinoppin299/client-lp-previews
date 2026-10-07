@@ -1,4 +1,4 @@
-import {edges,validateScenario} from './core.js?build=3352595cae2e';
+import {edges,validateScenario} from './core.js?build=ce5c4c255bf5';
 
 export function draftKey(base,campaign,variant) {
   return `chat-lp:copy-editor:${new URL('.',base).pathname}:${campaign}:${variant}`;
@@ -19,6 +19,7 @@ export function restoreCopyDraft(stored,original) {
       if(typeof value==='string')option.label=value;
     }
     if(step.disclosure)for(const key of ['label','text'])if(typeof saved.disclosure?.[key]==='string')step.disclosure[key]=saved.disclosure[key];
+    if(step.offerCard)for(const key of Object.keys(step.offerCard))if(typeof saved.offerCard?.[key]==='string')step.offerCard[key]=saved.offerCard[key];
   }
   return restored;
 }

@@ -1,4 +1,4 @@
-// Local copy supplied by Kinoppin. Reference LP image parts added on 2026-10-08.
+// Local copy supplied by Kinoppin. Offer card copy is editable.
 export default {
   "a": {
     "id": "abc-chat",
@@ -329,7 +329,17 @@ export default {
         "src": "./campaigns/abc/assets/offer.svg",
         "width": 800,
         "height": 600,
-        "alt": "2つの治療を同時に受けると、長茎術10万円が10万円OFFで実質0円。一緒に受けるもう1つの治療費は別途かかります。"
+        "alt": "2つの治療を同時に受けると、長茎術10万円が10万円OFFで実質0円。一緒に受けるもう1つの治療費は別途かかります。",
+        "offerCard": {
+          "badge": "治療に使えるLINEクーポン",
+          "condition": "2つの治療を同時に受けると",
+          "regularPrice": "長茎術 10万円",
+          "discount": "10万円OFF",
+          "lead": "長茎術が",
+          "price": "実質0円",
+          "footnoteLine1": "一緒に受けるもう1つの治療費は",
+          "footnoteLine2": "別途かかります。"
+        }
       },
       {
         "id": "coupon",

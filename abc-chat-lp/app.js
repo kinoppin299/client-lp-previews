@@ -1,5 +1,7 @@
-import registry from './scenarios.js?build=3352595cae2e';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=3352595cae2e';
+import registry from './scenarios.js?build=ce5c4c255bf5';
+import {appendRichText,plainText} from './rich-text.js?build=ce5c4c255bf5';
+import {renderOfferCard} from './offer-card.js?build=ce5c4c255bf5';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=ce5c4c255bf5';
 const $ = id => document.getElementById(id);
 const query = new URLSearchParams(location.search);
 const campaign = query.get('scenario') || 'demo', variant = query.get('v') || 'a';
@@ -55,7 +57,7 @@ function load() {
   } catch { /* Malformed storage falls back to a new guide. */ }
 }
 function element(tag, className, text) {
-  const node = document.createElement(tag); if (className) node.className = className; if (text) node.textContent = text; return node;
+  const node = document.createElement(tag); if (className) node.className = className; if (text) appendRichText(node,text); return node;
 }
 function customHTML(html) {
   // Inert parsing and rebuilding; no raw HTML is inserted into the live document.
@@ -98,7 +100,7 @@ function ctaLink(step, compact = false) {
   if (step.image && !compact) {
     link.classList.add('image-cta');
     const img = element('img',''); Object.assign(img,step.image); img.decoding = 'async';
-    link.append(img); link.setAttribute('aria-label',step.label);
+    link.append(img); link.setAttribute('aria-label',plainText(step.label));
   }
   link.href = conversionURL(scenario.conversion,attribution,location.href);
   if (editorPreview) {
@@ -139,9 +141,10 @@ function buildStep(step) {
   } else {
     if (step.title) bubble.append(element('h2','',step.title));
     if (['image','image_message','video'].includes(step.type) || step.type === 'offer' && step.src) {
-      const media = document.createElement(step.type === 'video' ? 'video' : 'img');
-      media.src = step.src; media.width = step.width; media.height = step.height;
-      if (step.type === 'video') {
+      const media = step.offerCard ? renderOfferCard(step.offerCard) : document.createElement(step.type === 'video' ? 'video' : 'img');
+      if (!step.offerCard) {media.src = step.src; media.width = step.width; media.height = step.height;}
+      if (step.offerCard) { /* Editable text in a code-native SVG card. */ }
+      else if (step.type === 'video') {
         media.controls = true; media.playsInline = true; media.preload = 'none';
         const track = document.createElement('track'); track.kind = 'captions'; track.src = step.captions; track.srclang = 'ja'; track.label = '日本語'; media.append(track);
         if (step.poster && safeURL(step.poster)) media.poster = step.poster;
@@ -311,7 +314,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
       $('sticky').hidden = false; document.body.classList.add('has-sticky'); observer.observe($('sticky'));
     }
   }
-  $('status').textContent = terminal.type === 'question' ? terminal.message : '確認ポイントがまとまりました。公式ページへ進めます。';
+  $('status').textContent = terminal.type === 'question' ? plainText(terminal.message) : '確認ポイントがまとまりました。公式ページへ進めます。';
   busy = false; openingActive = false; $('back').disabled = !entries.length; store();
   const destination = transcript.querySelector(`[data-step="${terminal.id}"]`);
   if (!cancelScroll) {

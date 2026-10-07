@@ -73,6 +73,7 @@ export function validateScenario(s) {
     if (ids.has(step.id)) err(`Duplicate ID: ${step.id}`);
     ids.add(step.id); byId.set(step.id, step);
     if (!TYPES.includes(step.type)) err(`Unknown type: ${step.id}`);
+    if (step.offerCard && (step.type!=='offer' || !['badge','condition','regularPrice','discount','lead','price','footnoteLine1','footnoteLine2'].every(key=>typeof step.offerCard[key]==='string' && step.offerCard[key].length<=500))) err(`Offer card text incomplete: ${step.id}`);
     if (!['branch','cta','question'].includes(step.type) && !step.next) err(`next missing: ${step.id}`);
     if (step.type === 'question') {
       if (!step.message || !step.options?.length) err(`Question empty: ${step.id}`);
