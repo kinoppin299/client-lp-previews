@@ -2,9 +2,9 @@
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.15.0",
+    "version": "0.16.0",
     "variant": "a",
-    "title": "ABCクリニック｜悩みとクーポンのご案内",
+    "title": "アソコのお悩みガイド",
     "brand": "アソコのお悩みガイド",
     "avatar": "A",
     "avatarImage": "./campaigns/abc/assets/guide.jpg",
