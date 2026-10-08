@@ -81,6 +81,11 @@
 .image-entry .turn.cta .bubble{grid-column:1 / -1}
 .image-entry .cta .primary.image-cta,.image-entry .sticky .primary.image-cta{padding:0;min-height:44px;border:0;border-radius:0;background:transparent;box-shadow:none;line-height:0}
 .image-entry .primary.image-cta img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent;border-radius:0;margin:0}
-.image-entry .sticky{padding:4px 12px calc(4px + env(safe-area-inset-bottom))}
+.image-entry .sticky{padding:4px 12px calc(4px + env(safe-area-inset-bottom));background:transparent;border:0;box-shadow:none}
+.image-entry .has-image-cta>.image-cta,.image-entry .cta-details{grid-column:1 / -1}
+.image-entry .has-image-cta>.image-cta{margin-top:10px}
+.image-entry .cta-details .conditions{margin-top:0}
+.primary.image-cta.cropped-cta{position:relative;overflow:hidden}
+.image-entry .primary.image-cta.cropped-cta img{position:absolute;height:auto;max-width:none}
 .is-chat.image-entry.has-sticky #transcript{padding-bottom:calc(var(--sticky-height,150px) + 24px)}
 .image-entry.has-sticky .latest{bottom:calc(var(--sticky-height,150px) + 12px)}

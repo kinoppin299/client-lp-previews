@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=703bf93b1ff2';
-import {appendRichText,plainText} from './rich-text.js?build=703bf93b1ff2';
-import {renderOfferCard} from './offer-card.js?build=703bf93b1ff2';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=703bf93b1ff2';
+import registry from './scenarios.js?build=027094968716';
+import {appendRichText,plainText} from './rich-text.js?build=027094968716';
+import {renderOfferCard} from './offer-card.js?build=027094968716';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=027094968716';
 const $ = id => document.getElementById(id);
 const backControl = $('back');
 const query = new URLSearchParams(location.search);
@@ -100,7 +100,17 @@ function ctaLink(step) {
   const link = element('a','primary',step.image ? '' : step.label);
   if (step.image) {
     link.classList.add('image-cta');
-    const img = element('img',''); Object.assign(img,step.image); img.decoding = 'async';
+    const img = element('img','');
+    for (const key of ['src','alt','width','height']) img[key] = step.image[key];
+    img.decoding = 'async';
+    if (step.image.crop) {
+      const {x,y,width,height} = step.image.crop;
+      link.classList.add('cropped-cta');
+      link.style.aspectRatio = `${width} / ${height}`;
+      img.style.width = `${step.image.width / width * 100}%`;
+      img.style.left = `${-x / width * 100}%`;
+      img.style.top = `${-y / height * 100}%`;
+    }
     link.append(img); link.setAttribute('aria-label',plainText(step.label));
   }
   link.href = conversionURL(scenario.conversion,attribution,location.href);
@@ -137,7 +147,7 @@ function buildStep(step) {
   if (step.type === 'question') turn.dataset.answerId = answers[step.id] || '';
   const speaker = element('div','speaker'); speaker.append(avatar(),element('span','',scenario.brand));
   const bubble = element('div','bubble');
-  let chatMedia = null, mediaCaption = null;
+  let chatMedia = null, mediaCaption = null, standaloneCTA = null, ctaDetails = null;
   if (step.type === 'question') {
     const heading = element('h2','',step.message); heading.id = `heading-${step.id}`; bubble.append(heading); turn.setAttribute('aria-labelledby',heading.id);
     if (step.hint) bubble.append(element('div','hint',step.hint));
@@ -170,14 +180,22 @@ function buildStep(step) {
     const content = mediaCaption || bubble;
     if (step.type === 'html') content.append(customHTML(step.html));
     if (step.message) content.append(element('p','',step.message));
-    if (step.type === 'cta') content.append(ctaLink(step));
+    if (step.type === 'cta') {
+      if (scenario.autoStart && step.image) {
+        standaloneCTA = ctaLink(step);
+        ctaDetails = element('div','cta-details');
+        turn.classList.add('has-image-cta');
+      } else content.append(ctaLink(step));
+    }
     if (step.note) content.append(element('p','small-note',step.note));
-    if (step.disclosure) content.append(disclosure(step.disclosure));
+    if (step.disclosure) (ctaDetails || content).append(disclosure(step.disclosure));
   }
   if (bubble.childElementCount || mediaCaption?.childElementCount) turn.append(speaker);
   if (bubble.childElementCount) turn.append(bubble);
   if (chatMedia) turn.append(chatMedia);
   if (mediaCaption?.childElementCount) turn.append(mediaCaption);
+  if (standaloneCTA) turn.append(standaloneCTA);
+  if (ctaDetails?.childElementCount) turn.append(ctaDetails);
   if (step.type === 'question') {
     const selected = step.options.find(o => o.id === answers[step.id]);
     if (selected) turn.append(element('p','answer',selected.label));

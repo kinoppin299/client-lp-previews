@@ -97,6 +97,10 @@ export function validateScenario(s) {
     if (step.layout && (step.layout !== 'fullbleed' || step.type !== 'image' || step.id !== s.start)) err(`fullbleed is only valid for the opening image: ${step.id}`);
     if (step.disclosure && (!step.disclosure.label || !step.disclosure.text)) err(`Disclosure incomplete: ${step.id}`);
     if (step.image && (step.type !== 'cta' || !safeURL(step.image.src) || !step.image.alt || !(step.image.width > 0 && step.image.height > 0))) err(`CTA image incomplete/unsafe: ${step.id}`);
+    if (step.image?.crop) {
+      const {x,y,width,height} = step.image.crop;
+      if (![x,y,width,height].every(Number.isFinite) || x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > step.image.width || y + height > step.image.height) err(`CTA image crop out of bounds: ${step.id}`);
+    }
     if (step.type === 'delay'  && !(Number.isInteger(step.ms) && step.ms >= 0 && step.ms <= 200)) err(`Delay must be 0..200ms: ${step.id}`);
     if (step.type === 'cta' && (!step.label || step.next)) err(`CTA label required; CTA must be terminal: ${step.id}`);
     if (step.type === 'html' && (!step.html || /<\/?(?!p\b|h[23]\b|strong\b|em\b|ul\b|ol\b|li\b|br\b|span\b)[a-z]|<[^>]+\s+[a-z][\w-]*\s*=/i.test(step.html))) err(`HTML must use allowed text tags without attributes: ${step.id}`);

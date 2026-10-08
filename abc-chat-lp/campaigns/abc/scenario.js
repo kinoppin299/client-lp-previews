@@ -2,7 +2,7 @@
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.14.0",
+    "version": "0.15.0",
     "variant": "a",
     "title": "ABCクリニック｜悩みとクーポンのご案内",
     "brand": "アソコのお悩みガイド",
@@ -55,7 +55,7 @@ export default {
       {
         "id": "welcome",
         "type": "message",
-        "message": "LINE登録後、簡単なアンケートに答えればもれなくもらえますよ！",
+        "message": "**おめでとうございます！**\nあなたのアソコをお得に[color=#c6233b]**アップグレード**[/color]する大チャンスです！",
         "next": "welcome_coupon"
       },
       {
@@ -366,6 +366,7 @@ export default {
           "src": "./campaigns/abc/assets/coupon-cta-v1.png",
           "width": 2172,
           "height": 724,
+          "crop": {"x": 0, "y": 74, "width": 2172, "height": 560},
           "alt": "LINEでお得なクーポンを受け取る"
         }
       }
