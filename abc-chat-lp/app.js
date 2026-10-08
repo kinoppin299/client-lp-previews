@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=350f97d231de';
-import {appendRichText,plainText} from './rich-text.js?build=350f97d231de';
-import {renderOfferCard} from './offer-card.js?build=350f97d231de';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=350f97d231de';
+import registry from './scenarios.js?build=7d86b60f8937';
+import {appendRichText,plainText} from './rich-text.js?build=7d86b60f8937';
+import {renderOfferCard} from './offer-card.js?build=7d86b60f8937';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=7d86b60f8937';
 const $ = id => document.getElementById(id);
 const backControl = $('back');
 const query = new URLSearchParams(location.search);
