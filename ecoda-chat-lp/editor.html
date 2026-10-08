@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>東京都の補助金レポートガイド｜会話マップ・文言編集</title>
+<link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./editor.css?build=7ec9228d5147">
+<script type="module" src="./editor.js?build=7ec9228d5147"></script>
+</head>
+<body>
+<header class="toolbar">
+  <div class="identity"><span class="brand-mark">✳</span><div><h1>会話マップ <span>東京都の補助金レポートガイド</span></h1><p>吹き出しを選んで文言編集。文字を選択して太字・色を変更。</p></div></div>
+  <div class="toolbar-actions"><span id="save-status" role="status">読み込み中</span><button id="import" class="quiet">原稿を読み込む</button><button id="export" class="primary">変更を書き出す ↓</button><input id="import-file" type="file" accept=".js,.json" hidden></div>
+</header>
+<div class="workspace">
+  <aside class="outline"><label class="search-label" for="search">文言を探す</label><input id="search" type="search" placeholder="例：特典、料金"><nav id="outline" aria-label="吹き出し一覧"></nav><button id="reset" class="quiet reset">元の原稿に戻す</button></aside>
+  <main class="canvas-area">
+    <div class="canvas-toolbar"><div class="tabs" role="tablist"><button id="map-tab" role="tab" aria-selected="true">分岐マップ</button><button id="preview-tab" role="tab" aria-selected="false">会話プレビュー</button></div><div class="zoom-controls"><button id="zoom-out" aria-label="縮小">−</button><span id="zoom-label">75%</span><button id="zoom-in" aria-label="拡大">＋</button><button id="fit">全体を見る</button></div></div>
+    <div id="map-panel" class="map-panel" tabindex="0" aria-label="会話の分岐マップ。背景をドラッグして移動できます。"><div id="map-space"><div id="map-content"><svg id="connections" aria-hidden="true"></svg><div id="nodes"></div></div></div></div>
+    <div id="preview-panel" class="preview-panel" hidden><div class="preview-toolbar"><p>右側で編集した文言を、実際のチャットで確認できます。</p><button id="refresh-preview" class="primary">編集内容で再スタート ↻</button></div><iframe id="preview" title="編集したチャットLPのスマホプレビュー"></iframe><p class="preview-caption">編集プレビュー · CTAは外部へ遷移しません</p></div>
+    <div class="map-hint" id="map-hint">背景をドラッグして移動 · ＋／−で拡大縮小 · 吹き出しをクリックして編集</div>
+  </main>
+  <aside class="inspector" aria-label="選んだ吹き出しの編集"><div class="inspector-heading"><span id="step-kind" class="kind">吹き出し</span><h2 id="step-name">文言を選んでください</h2><p id="step-context"></p></div><div id="fields"></div><div id="validation" role="status"></div><p class="draft-help">文字を選んで「太字」や色を押すと、下の見え方に反映されます。<br>編集内容はこのブラウザに下書き保存されます。<br>「変更を書き出す」で原稿を保存し、このチャットへ渡せばLP本体へ反映できます。</p></aside>
+</div>
+<div id="toast" role="status" hidden></div>
+</body>
+</html>
