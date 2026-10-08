@@ -2,7 +2,7 @@
 export default {
   "a": {
     "id": "abc-chat",
-    "version": "0.16.0",
+    "version": "0.17.0",
     "variant": "a",
     "title": "アソコのお悩みガイド",
     "brand": "アソコのお悩みガイド",
@@ -27,7 +27,8 @@ export default {
     "conversation": {
       "typingMs": 1000,
       "maxWaitMs": 8000,
-      "scrollTo": "response"
+      "scrollTo": "response",
+      "imageAdvanceMs": 1500
     },
     "conversion": {
       "url": "https://s8affi.net/link.php?i=pidb1iykk8h4&m=midb1m7wfqj5",
@@ -358,10 +359,6 @@ export default {
         "title": "**今すぐお得なクーポンを受け取ってみてください！**",
         "message": "LINE追加後の簡単なアンケートに回答すると、クーポンを受け取れます。",
         "label": "LINEでお得なクーポンを受け取る",
-        "disclosure": {
-          "label": "ほかに気になることを見る",
-          "text": "【相談だけを希望したいとき】\n予約するときに「今回は相談だけを希望しています」と先に伝える方法があります。\n\n【仕事は休む必要がある？】\n治療方法によって変わります。普段の動きに合わせて医師へ確認してください。\n\n【LINEの通知が気になる】\n通知OFFやプレビューの設定を確認してください。"
-        },
         "image": {
           "src": "./campaigns/abc/assets/coupon-cta-v1.png",
           "width": 2172,

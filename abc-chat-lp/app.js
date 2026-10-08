@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=7d27fa7ee7c7';
-import {appendRichText,plainText} from './rich-text.js?build=7d27fa7ee7c7';
-import {renderOfferCard} from './offer-card.js?build=7d27fa7ee7c7';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=7d27fa7ee7c7';
+import registry from './scenarios.js?build=6b907f13524a';
+import {appendRichText,plainText} from './rich-text.js?build=6b907f13524a';
+import {renderOfferCard} from './offer-card.js?build=6b907f13524a';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=6b907f13524a';
 const $ = id => document.getElementById(id);
 const backControl = $('back');
 const query = new URLSearchParams(location.search);
@@ -139,7 +139,6 @@ function buildStep(step) {
     const img = element('img','fv-image'); img.src = step.src; img.alt = step.alt; img.width = step.width; img.height = step.height;
     img.loading = 'eager'; img.fetchPriority = 'high'; img.decoding = 'async'; turn.append(img);
     if (step.adLabel) turn.append(element('span','fv-ad-label',step.adLabel));
-    turn.append(element('span','entry-guide-note','選択式の自動ガイド'));
     if (step.disclosure) turn.append(disclosure(step.disclosure));
     const trigger = element('div','entry-trigger'); trigger.setAttribute('aria-hidden','true'); turn.append(trigger);
     return turn;
@@ -242,6 +241,14 @@ async function waitForEntry(node) {
     watch.observe(node.querySelector('.entry-trigger'));
   });
 }
+async function decodeChatImage(node) {
+  const img = node.querySelector('img.chat-media, .chat-media img');
+  if (!img) return;
+  let timeout;
+  try {
+    await Promise.race([img.decode().catch(() => {}),new Promise(resolve => { timeout = setTimeout(resolve,1500); })]);
+  } finally { clearTimeout(timeout); }
+}
 async function render({focus = false, rewind = false, animate = true, opening = false} = {}) {
   openingActive = opening;
   const token = ++generation; busy = true; cancelScroll = false;
@@ -281,10 +288,10 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     }
   },{threshold:0.2});
   for (const node of transcript.children) observer.observe(node);
-  let firstReply = null;
+  let firstReply = null, afterImage = false, followAfterImage = false;
   const responseScroll = scenario.conversation?.scrollTo === 'response';
   const follow = node => {
-    if (opening || (responseScroll && firstReply)) return;
+    if (!followAfterImage && (opening || (responseScroll && firstReply))) return;
     if (!cancelScroll) node.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'nearest'});
   };
   let waited = 0, explicitWait = 0;
@@ -305,25 +312,35 @@ async function render({focus = false, rewind = false, animate = true, opening = 
       continue;
     }
     if (visible.indexOf(step) < common) continue;
-    const wait = conversationWait(scenario,waited,{step,instant:step.layout === 'fullbleed' || step.type === 'cta' || !animate || rewind || reduced});
+    const wait = conversationWait(scenario,waited,{step,afterImage,instant:step.layout === 'fullbleed' || step.type === 'cta' || !animate || rewind || reduced});
     if (wait) {
       const mediaOnly = ['image','video','offer'].includes(step.type) && !step.title && !step.message && !step.note;
       const typing = mediaOnly ? null : typingIndicator();
-      if (typing) { transcript.insertBefore(typing,footer); follow(typing); }
-      waited += wait;
+      if (typing) { transcript.insertBefore(typing,footer); if (!afterImage) follow(typing); }
+      if (!afterImage) waited += wait;
       await new Promise(resolve => setTimeout(resolve,wait));
       typing?.remove();
       if (token !== generation) return;
     }
+    afterImage = false;
     const node = buildStep(step);
     if (wait) node.classList.add('arriving');
     transcript.insertBefore(node,footer); observer.observe(node);
     if (responseScroll && !opening && !firstReply && !cancelScroll) {
       node.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'}); firstReply = node;
     } else follow(node);
+    if (scenario.conversation?.imageAdvanceMs && animate && !rewind && step.layout !== 'fullbleed' && ['image','image_message','offer'].includes(step.type)) {
+      // Bring lazy images into view so decoding does not wait on an offscreen asset.
+      if (!cancelScroll) node.scrollIntoView({behavior:'auto',block:'nearest'});
+      await decodeChatImage(node);
+      if (token !== generation) return;
+      followAfterImage = true;
+      afterImage = true;
+    }
     if (opening && step.layout === 'fullbleed') {
       await waitForEntry(node);
       if (token !== generation) return;
+      openingActive = false;
       emit('chat_start');
     }
   }
@@ -346,7 +363,8 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     if (entries.length) destination.append(backControl);
   }
   if (!cancelScroll) {
-    if (responseScroll && firstReply) firstReply.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'});
+    if (followAfterImage) destination.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'nearest'});
+    else if (responseScroll && firstReply) firstReply.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'});
     else if (!responseScroll) follow(destination);
     if (focus) { const target = destination.querySelector('button,a') || destination; if (target === destination) target.tabIndex = -1; target.focus({preventScroll:true}); }
   }
@@ -394,7 +412,7 @@ function init() {
   });
   $('latest').addEventListener('click',() => { moveTo([...$('transcript').querySelectorAll('[data-step]')].at(-1)); $('latest').hidden = true; });
   for (const event of ['wheel','touchstart']) window.addEventListener(event,() => { if (busy && !openingActive) cancelScroll = true; },{passive:true});
-  // User scrolls are never continuously corrected. Only explicit answers initiate a scroll.
+  // Manual scrolling pauses automatic following until the next explicit answer.
   window.addEventListener('pageshow',event => { if (event.persisted) { $('latest').hidden = true; } });
   if (started) { emit('chat_resume'); render({animate:false}); }
   else if (scenario.autoStart) { started = true; render({opening:true}); }

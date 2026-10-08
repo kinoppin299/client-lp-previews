@@ -61,6 +61,7 @@ export function validateScenario(s) {
   if (!s.conversion?.url || !safeURL(s.conversion.url)) err('CTA URL missing or unsafe');
   if (s.conversation && !(Number.isInteger(s.conversation.typingMs) && s.conversation.typingMs >= 0 && s.conversation.typingMs <= 1800)) err('conversation.typingMs must be 0..1800ms');
   if (s.conversation?.maxWaitMs !== undefined && !(Number.isInteger(s.conversation.maxWaitMs) && s.conversation.maxWaitMs >= 0 && s.conversation.maxWaitMs <= 10000)) err('conversation.maxWaitMs must be 0..10000ms');
+  if (s.conversation?.imageAdvanceMs !== undefined && !(Number.isInteger(s.conversation.imageAdvanceMs) && s.conversation.imageAdvanceMs >= 0 && s.conversation.imageAdvanceMs <= 3000)) err('conversation.imageAdvanceMs must be 0..3000ms');
   if (s.autoStart && !(s.steps[0]?.id === s.start && s.steps[0]?.type === 'image' && s.steps[0]?.layout === 'fullbleed')) err('autoStart requires a fullbleed image as the first step');
   if (s.avatarImage && !safeURL(s.avatarImage)) err('Avatar URL unsafe');
   if (s.footer && (!safeURL(s.footer.src) || !s.footer.alt || !(s.footer.width > 0 && s.footer.height > 0))) err('Footer image incomplete/unsafe');
@@ -134,8 +135,10 @@ export function validateScenario(s) {
 }
 
 // A campaign may opt into a conversational cadence with a bounded response budget.
-export function conversationWait(scenario, spent = 0, {instant = false, step = null} = {}) {
+export function conversationWait(scenario, spent = 0, {instant = false, step = null, afterImage = false} = {}) {
   if (instant) return 0;
+  // The image-reading pause replaces typing delay, independent of its budget.
+  if (afterImage && scenario.conversation?.imageAdvanceMs) return scenario.conversation.imageAdvanceMs;
   const configured = scenario.conversation?.typingMs ?? 200;
   const budget = scenario.conversation?.maxWaitMs ?? 600;
   let duration = configured;
