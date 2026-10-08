@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=6b907f13524a';
-import {appendRichText,plainText} from './rich-text.js?build=6b907f13524a';
-import {renderOfferCard} from './offer-card.js?build=6b907f13524a';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=6b907f13524a';
+import registry from './scenarios.js?build=350f97d231de';
+import {appendRichText,plainText} from './rich-text.js?build=350f97d231de';
+import {renderOfferCard} from './offer-card.js?build=350f97d231de';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=350f97d231de';
 const $ = id => document.getElementById(id);
 const backControl = $('back');
 const query = new URLSearchParams(location.search);
@@ -222,6 +222,9 @@ function moveTo(node, focus = false) {
   node.scrollIntoView({behavior:'auto',block:'start'});
   if (focus) { const target = node.querySelector('button,a') || node; if (target === node) target.tabIndex = -1; target.focus({preventScroll:true}); }
 }
+function updateStickyHeight() {
+  document.body.style.setProperty('--sticky-height',`${$('sticky').getBoundingClientRect().height}px`);
+}
 function typingIndicator() {
   const turn = element('div','turn typing-turn');
   turn.setAttribute('aria-hidden','true');
@@ -352,6 +355,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     if (scenario.stickyCTA) {
       $('sticky').replaceChildren(ctaLink(terminal)); $('sticky').dataset.step = terminal.id;
       $('sticky').hidden = false; document.body.classList.add('has-sticky'); observer.observe($('sticky'));
+      updateStickyHeight();
     }
   }
   $('status').textContent = terminal.type === 'question' ? plainText(terminal.message) : '確認ポイントがまとまりました。公式ページへ進めます。';
@@ -395,7 +399,7 @@ function init() {
   if (scenario.avatarImage) brandIcon.replaceChildren(avatar());
   else brandIcon.textContent = scenario.avatar || '案';
   if (scenario.autoStart) {
-    new ResizeObserver(()=>document.body.style.setProperty('--sticky-height',`${$('sticky').getBoundingClientRect().height}px`)).observe($('sticky'));
+    new ResizeObserver(updateStickyHeight).observe($('sticky'));
   }
   $('eyebrow').textContent = scenario.hero.eyebrow; $('hero-title').textContent = scenario.hero.title; $('hero-description').textContent = scenario.hero.description;
   $('start-note').textContent = scenario.hero.note; $('start').textContent = scenario.hero.startLabel; $('start').disabled = false; $('demo-note').hidden = !scenario.demo;

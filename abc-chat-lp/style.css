@@ -86,4 +86,5 @@
 .primary.image-cta.cropped-cta{position:relative;overflow:hidden}
 .image-entry .primary.image-cta.cropped-cta img{position:absolute;height:auto;max-width:none}
 .is-chat.image-entry.has-sticky #transcript{padding-bottom:calc(var(--sticky-height,150px) + 24px)}
+.image-entry.has-sticky #transcript{scroll-padding-bottom:calc(var(--sticky-height,150px) + 24px)}
 .image-entry.has-sticky .latest{bottom:calc(var(--sticky-height,150px) + 12px)}
