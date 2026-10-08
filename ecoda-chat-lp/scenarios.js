@@ -1,2 +1,2 @@
-import scenario from './campaigns/ecoda/scenario.js?build=7ec9228d5147';
+import scenario from './campaigns/ecoda/scenario.js?build=f93669013acd';
 export default {"ecoda":scenario};

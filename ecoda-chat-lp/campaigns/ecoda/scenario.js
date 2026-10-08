@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "ecoda-chat",
-    "version": "2.2.8",
+    "version": "2.2.9",
     "variant": "a",
     "title": "東京都の戸建て向け｜無料の個別補助金レポート",
     "brand": "東京都の補助金レポートガイド",

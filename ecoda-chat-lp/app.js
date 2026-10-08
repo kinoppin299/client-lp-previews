@@ -1,7 +1,7 @@
-import registry from './scenarios.js?build=7ec9228d5147';
-import {appendRichText,plainText} from './rich-text.js?build=7ec9228d5147';
-import {renderOfferCard} from './offer-card.js?build=7ec9228d5147';
-import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=7ec9228d5147';
+import registry from './scenarios.js?build=f93669013acd';
+import {appendRichText,plainText} from './rich-text.js?build=f93669013acd';
+import {renderOfferCard} from './offer-card.js?build=f93669013acd';
+import {QUERY_KEYS,collectQuery,conversionURL,route,replay,validateScenario,safeURL,conversationWait} from './core.js?build=f93669013acd';
 const $ = id => document.getElementById(id);
 const backControl = $('back');
 const query = new URLSearchParams(location.search);
@@ -88,6 +88,7 @@ function campaignFooter() {
   footer.setAttribute('role','contentinfo'); footer.setAttribute('aria-label','フッター');
   if (scenario.footer.notes) {
     const notes = element('div','footer-notes');
+    notes.hidden = true;
     for (const text of scenario.footer.notes) notes.append(element('p','',text));
     footer.append(notes);
   } else if (scenario.footer.src) {
@@ -104,6 +105,11 @@ function campaignFooter() {
   }
   if (nav.childElementCount) footer.append(nav);
   return footer;
+}
+function updateFooterNotes(footer, transcript) {
+  const notes = footer?.querySelector('.footer-notes');
+  // Reveal only after the offer is actually rendered; the short route closes at the CTA.
+  if (notes) notes.hidden = !transcript.querySelector('.turn.offer, .turn.cta');
 }
 function ctaLink(step) {
   const link = element('a','primary',step.image ? '' : step.label);
@@ -297,6 +303,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
   let common = 0;
   while (common < oldNodes.length && oldNodes[common].dataset.step === visible[common]?.id) common++;
   for (const node of oldNodes.slice(common)) node.remove();
+  updateFooterNotes(footer,transcript);
   for (let i = 0; i < common; i++) {
     const step = visible[i], node = oldNodes[i];
     if (step.type === 'question' && node.dataset.answerId !== (answers[step.id] || '')) node.replaceWith(buildStep(step));
@@ -357,6 +364,7 @@ async function render({focus = false, rewind = false, animate = true, opening = 
     previousStep = step;
     if (wait) node.classList.add('arriving');
     transcript.insertBefore(node,footer); observer.observe(node);
+    updateFooterNotes(footer,transcript);
     if (responseScroll && !opening && !firstReply && !cancelScroll) {
       node.scrollIntoView({behavior:reduced ? 'auto' : 'smooth',block:'start'}); firstReply = node;
     } else follow(node);

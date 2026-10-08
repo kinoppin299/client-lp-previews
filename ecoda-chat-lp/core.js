@@ -1,5 +1,5 @@
 // Shared pure functions. No DOM, network, or storage side effects.
-import {plainText} from './rich-text.js?build=7ec9228d5147';
+import {plainText} from './rich-text.js?build=f93669013acd';
 export const TYPES = ['message','question','image','image_message','video','explanation','emphasis','offer','cta','end','branch','delay','html'];
 export const QUERY_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','fbclid','ttclid','gclid','gbraid','wbraid','msclkid','yclid'];
 const ID = /^[a-zA-Z0-9_-]{1,64}$/;
