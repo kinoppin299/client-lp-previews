@@ -524,3 +524,8 @@
 }
 @media(max-width:360px){.art-directed .site-header .nav-cta{padding:10px 9px;gap:5px;font-size:11px}.art-directed .site-header .nav-cta>span{font-size:16px}.art-directed .company-intro-v23 h2{font-size:22px}.company-profile-v23{padding:22px 16px}.company-profile-v23 dl>div{grid-template-columns:70px 1fr;gap:9px}}
 .art-directed .closing-message>span{display:block}.art-directed .closing-message>span+span{margin-top:6px}
+
+/* v30: remove the colored logo; retain navigation and a quiet company-name link. */
+.art-directed .site-header.header-no-logo{justify-content:flex-end;height:80px}
+.art-directed .site-footer .footer-company{font-size:14px;line-height:1.8;font-weight:500;color:#c5ccbe;text-decoration:none}
+@media(max-width:760px){.art-directed .site-header.header-no-logo{height:64px}}
