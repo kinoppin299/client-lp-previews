@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="広告運用の知見で、獲得を狙う動画をつくる。株式会社アレンジピースの動画広告制作ご提案資料。制作事例の動画もこのページでご覧いただけます。">
+  <meta name="theme-color" content="#14261d">
+  <title>動画広告制作 ご提案資料｜アレンジピース</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314261d'/%3E%3Cpath d='m25 16 25 16-25 16Z' fill='%23d8ff52'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell" id="app">
+    <header class="topbar">
+      <a class="brand" href="#p=1"><span class="brand-mark" aria-hidden="true">▶</span><span>アレンジピース<small>動画広告制作 ご提案資料</small></span></a>
+      <nav class="actions" aria-label="資料の操作">
+        <button type="button" id="examples-jump" class="primary">▶ 動画事例</button>
+        <button type="button" id="overview-open" aria-haspopup="dialog">ページ一覧</button>
+        <a id="pdf-download" download>PDFを保存 <span aria-hidden="true">↓</span></a>
+        <button type="button" id="fullscreen" class="icon-button" aria-label="資料を大きく表示" aria-pressed="false" title="拡大表示">⛶</button>
+      </nav>
+    </header>
+    <button type="button" id="exit-presentation">拡大表示を終了 ×</button>
+    <main id="main">
+      <div class="page-heading"><span id="chapter-label"></span><h1 id="page-title"></h1></div>
+      <section id="slide-stage" class="slide-stage" aria-label="提案資料のページ">
+        <img id="slide-image" width="1920" height="1080" alt="" draggable="false" fetchpriority="high">
+        <div id="slide-hotspots" class="slide-hotspots"></div>
+      </section>
+      <div id="video-quick-list" class="video-quick-list" aria-label="このページの動画"></div>
+      <details id="transcript" class="transcript"><summary>このページの内容を読む</summary><div id="transcript-content"></div></details>
+      <div class="under-note"><span id="page-note">矢印キーでもページを移動できます。</span><a id="annex-download" download>別紙：制作条件・修正対応 ↓</a></div>
+    </main>
+    <footer class="navigation">
+      <button type="button" id="prev" class="nav-button" aria-label="前のページ">← <span>前へ</span></button>
+      <div class="page-position"><label for="page-select" class="sr-only">ページを選ぶ</label><select id="page-select"></select><span id="page-count">/ 13</span><div class="progress-track" aria-hidden="true"><span id="progress"></span></div></div>
+      <button type="button" id="next" class="nav-button">次へ <span aria-hidden="true">→</span></button>
+    </footer>
+  </div>
+  <dialog id="overview-dialog" class="overview-dialog" aria-labelledby="overview-title">
+    <div class="dialog-heading"><div><p class="eyebrow">全13ページ</p><h2 id="overview-title">見たいページから、ご覧ください。</h2></div><button type="button" class="close-button" data-close="overview-dialog" aria-label="ページ一覧を閉じる">×</button></div>
+    <div id="overview-grid" class="overview-grid"></div>
+  </dialog>
+  <dialog id="video-dialog" class="video-dialog" aria-labelledby="video-title">
+    <div class="video-heading"><div><p class="eyebrow">着物買取の制作事例</p><h2 id="video-title"></h2></div><button type="button" class="close-button" data-close="video-dialog" aria-label="動画を閉じて資料に戻る">×</button></div>
+    <div class="video-layout">
+      <div class="player-wrap"><video id="player" controls playsinline preload="metadata" controlslist="nodownload" disablepictureinpicture></video><button type="button" id="play-overlay" class="play-overlay"><span aria-hidden="true">▶</span><strong>動画を再生</strong></button></div>
+      <aside class="video-details"><p id="video-caption" class="video-caption"></p><p class="sound-notice" id="sound-notice">最初は消音で再生します。音声も聞く場合は、再生後に下のボタンを押してください。</p><button type="button" id="sound-toggle" class="sound-toggle">音声をオンにする</button><p id="playback-status" role="status" class="playback-status">再生ボタンを押してください。</p><h3>他の切り口も見る</h3><div id="video-switcher" class="video-switcher"></div><p class="video-footnote">5〜6ページの医療案件とは別案件の制作例です。動画内の条件は、現在のサービス案内ではありません。</p><button type="button" id="back-to-deck" class="back-to-deck">← 提案資料に戻る</button></aside>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <noscript>資料のページ送りと動画再生にはJavaScriptが必要です。ブラウザのJavaScriptを有効にしてください。</noscript>
+</body>
+</html>
