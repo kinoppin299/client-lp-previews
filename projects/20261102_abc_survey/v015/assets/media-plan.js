@@ -75,12 +75,12 @@ window.ABC_LP_MEDIA = {
   "F04": {
     "id": "F04",
     "kind": "image",
-    "title": "男性対応・完全予約制の相談風景",
+    "title": "男性スタッフのみ・完全予約制・プライバシーに配慮（写真風イメージ）",
     "width": 1536,
     "height": 1024,
     "ratio": "1536 / 1024",
     "duration": null,
-    "src": "assets/generated/F04_privacy.webp"
+    "src": "assets/generated/F04_photo_v016.webp"
   },
   "I03": {
     "id": "I03",
@@ -101,11 +101,11 @@ window.ABC_LP_MEDIA = {
   "F01": {
     "id": "F01",
     "kind": "image",
-    "title": "治療実績178,205件。※2009年7月〜2025年12月31日",
+    "title": "治療実績178,205件。※2009年7月〜2025年12月",
     "width": 1536,
     "height": 640,
     "ratio": "1536 / 640",
     "duration": null,
-    "src": "assets/generated/F01_proof_compact.webp"
+    "src": "assets/generated/F01_period_v016.webp"
   }
 };

@@ -177,3 +177,14 @@ body.is-dialog-open{overflow:hidden}.talent-video{transform:scale(var(--talent-s
 
 /* v015: 合成済み動画を全画面表示。停止操作は文字を覆わない位置へ。 */
 .hero-composite .talent-window{inset:0!important;width:100%!important;height:100%!important;background:#082a4b}.hero-composite .talent-still,.hero-composite .talent-video{position:absolute;width:100%!important;height:100%!important;left:0!important;top:0!important;max-width:none;object-fit:contain!important;object-position:50% 50%!important;transform:none!important}.hero-composite .hero-frame,.hero-composite .fv-layout{display:none!important}.hero-playback-row{display:flex;justify-content:flex-end;background:#fff;padding:2px 8px}.hero-playback-row .hero-media-controls{position:static;margin:0;min-height:36px;font-size:12px;padding:5px 12px;box-shadow:none}.review-bar{padding:5px 10px;gap:3px 10px;line-height:1.5;font-size:11px;background:#f6f8fa;color:#52677b}.review-bar a{min-height:28px;display:inline-flex;align-items:center;text-underline-offset:3px}.media-load-fallback{display:flex;align-items:center;justify-content:center;min-height:100px;padding:20px;color:#557187;font-size:14px;text-align:center}.slot-asset-info,.model-slot-control,.hero-slot-label{display:none!important}
+
+/* v016 指定修正：末尾の受取案内とCTAは白背景で連続表示 */
+.receive-section{background:#fff}
+.receive-section .section-heading{padding:24px 8px 18px;text-align:center}
+#receive-title{font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-weight:900;font-size:clamp(24px,6.5vw,36px);line-height:1.55;letter-spacing:.01em;color:#062d4b}
+#receive-title span{color:#078f3b}
+.final-entry{background:transparent}
+.final-entry .unified-line-cta{background:transparent;border-radius:0;box-shadow:none;aspect-ratio:3/1}
+.final-entry .unified-line-cta img{width:100%;height:auto;object-fit:contain}
+.hero-composite .talent-video{cursor:pointer}
+.hero-composite .talent-video:focus-visible{outline:3px solid #d8ae50;outline-offset:-3px}

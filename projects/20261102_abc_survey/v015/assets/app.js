@@ -92,12 +92,13 @@
   heroFrame.hidden=true;one('[data-hero-html]').hidden=true;
   heroStill.src=config.media.heroPoster;heroVideo.poster=config.media.heroPoster;
   heroVideo.muted=true;heroVideo.playsInline=true;heroVideo.loop=true;heroVideo.preload='none';heroVideo.hidden=false;heroVideo.dataset.src=media.V01.src;
-  const playbackRow=document.createElement('div');playbackRow.className='hero-playback-row';
-  const control=document.createElement('button');control.type='button';control.className='hero-media-controls';control.textContent=reduce?'動画を再生':'動画を停止';playbackRow.append(control);scene.insertAdjacentElement('afterend',playbackRow);
-  control.addEventListener('click',()=>{if(heroVideo.paused){heroVideo.dataset.userPaused='false';if(!heroVideo.src)heroVideo.src=heroVideo.dataset.src;heroVideo.play().catch(()=>{});}else{heroVideo.dataset.userPaused='true';heroVideo.pause();}});
-  heroVideo.addEventListener('play',()=>control.textContent='動画を停止');heroVideo.addEventListener('pause',()=>control.textContent='動画を再生');
+  heroVideo.tabIndex=0;heroVideo.setAttribute('role','button');
+  const syncHeroLabel=()=>{heroVideo.setAttribute('aria-label',heroVideo.paused?'動画を再生':'動画を一時停止');heroVideo.setAttribute('aria-pressed',String(!heroVideo.paused));};
+  const toggleHero=()=>{if(heroVideo.paused){heroVideo.dataset.userPaused='false';if(!heroVideo.src)heroVideo.src=heroVideo.dataset.src;heroVideo.play().catch(()=>{});}else{heroVideo.dataset.userPaused='true';heroVideo.pause();}};
+  heroVideo.addEventListener('click',toggleHero);heroVideo.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleHero();}});
+  heroVideo.addEventListener('play',syncHeroLabel);heroVideo.addEventListener('pause',syncHeroLabel);syncHeroLabel();
   heroVideo.addEventListener('loadeddata',()=>{heroStill.hidden=true;heroFrame.hidden=true;one('[data-hero-html]').hidden=true;});
-  heroVideo.addEventListener('error',()=>{heroVideo.hidden=true;heroStill.hidden=false;heroFrame.hidden=true;one('[data-hero-html]').hidden=true;control.hidden=true;});
+  heroVideo.addEventListener('error',()=>{heroVideo.hidden=true;heroStill.hidden=false;heroFrame.hidden=true;one('[data-hero-html]').hidden=true;});
   registerVideo(heroVideo);
   document.addEventListener('visibilitychange',()=>{for(const v of videos){if(document.hidden)v.pause();else if(!reduce&&v.dataset.inView==='true'&&v.dataset.userPaused!=='true')v.play().catch(()=>{});}});
 
@@ -108,7 +109,7 @@
   all('[data-close-dialog]').forEach(x=>x.addEventListener('click',()=>ctaDialog.close()));
   for(const dialog of[ctaDialog]){dialog.addEventListener('close',()=>{setModalState();previousFocus?.focus({preventScroll:true});});dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();});}
   if(config.offer.confirmed&&config.offer.amount){one('[data-offer-amount]').textContent=config.offer.amount;one('[data-offer-amount]').hidden=Boolean(media.I05.src);}
-  // 指定LPのフッター注釈を原文で固定表示。追加の注釈を追記しない。
+  // 指定LPの注釈を基準に、指定期間と画像の注記をフッターに集約。
   function updateSticky(){const vh=innerHeight,inView=el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.top<vh&&r.bottom>0;},inline=all('[data-cta-inline]').some(inView),questions=all('[data-question-card]').some(inView);one('[data-sticky]').hidden=one('.hero').getBoundingClientRect().bottom>0||inView(one('.survey-offer-intro'))||inline||questions||one('.site-footer').getBoundingClientRect().top<vh||ctaDialog.open;raf=null;}
   function scheduleSticky(){if(raf===null)raf=requestAnimationFrame(updateSticky);}
   addEventListener('scroll',scheduleSticky,{passive:true});addEventListener('resize',scheduleSticky);

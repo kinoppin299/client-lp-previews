@@ -1,5 +1,5 @@
 window.ABC_LP_CONFIG = {
-  "version": "ui-v015-github-review",
+  "version": "ui-v016-github-review",
   "mode": "preview",
   "media": {
     "heroVideo": "assets/video/fv.mp4",
