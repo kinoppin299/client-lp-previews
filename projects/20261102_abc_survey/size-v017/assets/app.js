@@ -57,11 +57,20 @@
   all('[data-close-dialog]').forEach(x=>x.addEventListener('click',()=>ctaDialog.close()));
   for(const dialog of[ctaDialog]){dialog.addEventListener('close',()=>{setModalState();previousFocus?.focus({preventScroll:true});});dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();});}
   if(config.offer.confirmed&&config.offer.amount){one('[data-offer-amount]').textContent=config.offer.amount;one('[data-offer-amount]').hidden=Boolean(media.I05.src);}
-  // 指定LPの注釈を基準に、指定期間と画像の注記をフッターに集約。
-  function updateSticky(){const vh=innerHeight,inView=el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.top<vh&&r.bottom>0;},inline=all('[data-cta-inline]').some(inView),questions=all('#abc-diagnosis-root [data-lp-chat-unanswered]').some(inView);one('[data-sticky]').hidden=one('.hero').getBoundingClientRect().bottom>0||inView(one('.survey-offer-intro'))||inline||questions||one('.site-footer').getBoundingClientRect().top<vh||ctaDialog.open;raf=null;}
+  const couponResult=one('[data-result]'),couponVisual=one('.reward-keyvisual');
+  function updateSticky(){
+    const vh=innerHeight,inView=el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.top<vh&&r.bottom>0;};
+    const couponImage=couponVisual?.querySelector('img');
+    // 診断結果の表示では解除せず、読み込まれたクーポン画像の下端まで画面に出てから表示する。
+    const couponShown=Boolean(couponResult&&!couponResult.hidden&&couponVisual.classList.contains('has-asset')&&couponImage?.complete&&couponImage.naturalWidth>0&&couponVisual.getBoundingClientRect().bottom<=vh);
+    const inline=all('[data-cta-inline]').some(inView),questions=all('#abc-diagnosis-root [data-lp-chat-unanswered]').some(inView);
+    one('[data-sticky]').hidden=!couponShown||one('.hero').getBoundingClientRect().bottom>0||inView(one('.survey-offer-intro'))||inline||questions||one('.site-footer').getBoundingClientRect().top<vh||ctaDialog.open;
+    raf=null;
+  }
   function scheduleSticky(){if(raf===null)raf=requestAnimationFrame(updateSticky);}
   addEventListener('scroll',scheduleSticky,{passive:true});addEventListener('resize',scheduleSticky);
   addEventListener('diagnosischange',scheduleSticky);
+  couponVisual?.addEventListener('load',scheduleSticky,true);
   const ctaMotionObserver=new IntersectionObserver(entries=>{for(const entry of entries)entry.target.classList.toggle('cta-in-view',entry.isIntersecting);},{threshold:.2});
   all('.unified-line-cta').forEach(el=>ctaMotionObserver.observe(el));
   updateSticky();
