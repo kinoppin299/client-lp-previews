@@ -1,13 +1,13 @@
 window.ABC_LP_CONFIG = {
-  "version": "ui-v017-github-review",
+  "version": "ui-v019-github-review",
   "mode": "preview",
   "media": {
-    "heroVideo": "assets/video/fv.mp4",
-    "heroPoster": "assets/video/fv-poster.webp",
+    "heroVideo": null,
+    "heroPoster": "assets/fv/fv-banana-v019.webp",
     "heroFrame": null,
     "heroVideoPosition": "50% 50%",
-    "canvasWidth": 1080,
-    "canvasHeight": 1620,
+    "canvasWidth": 1024,
+    "canvasHeight": 1536,
     "videoWindow": {
       "left": 0,
       "top": 0,
@@ -15,7 +15,7 @@ window.ABC_LP_CONFIG = {
       "height": 100
     },
     "heroVideoScale": 1,
-    "composition": "composite",
+    "composition": "image",
     "heroFrameChromaKey": false
   },
   "offer": {

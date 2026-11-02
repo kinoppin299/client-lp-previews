@@ -1,14 +1,14 @@
 window.ABC_LP_MEDIA = {
   "V01": {
     "id": "V01",
-    "kind": "video",
-    "title": "女性Aの動画FV",
-    "width": 1080,
-    "height": 1620,
-    "ratio": "1080 / 1620",
-    "duration": "約4秒",
-    "src": "assets/video/fv.mp4",
-    "poster": "assets/video/fv-poster.webp"
+    "kind": "image",
+    "title": "男性器の長さ、調べてみませんか？ 最大7cmサイズアップ。長茎術・包茎治療。アンケート回答でLINE限定15万円OFFクーポン。対象の3治療の組合せで対象の包茎治療・長茎術が実質無料。",
+    "width": 1024,
+    "height": 1536,
+    "ratio": "1024 / 1536",
+    "src": "assets/fv/fv-banana-v019.webp",
+    "poster": "assets/fv/fv-banana-v019.webp",
+    "duration": null
   },
   "F02": {
     "id": "F02",

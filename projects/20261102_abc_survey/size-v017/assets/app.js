@@ -33,9 +33,11 @@
   all('[data-media-slot]').forEach(slot=>mountSlot(slot,media[slot.dataset.mediaSlot]));
 
   const heroVideo=one('[data-talent-video]'),heroStill=one('[data-talent-still]'),heroFrame=one('[data-hero-frame]'),scene=one('[data-media-composition]'),windowEl=one('[data-video-window]');
-  scene.style.aspectRatio='1080 / 1620';windowEl.style.inset='0';windowEl.style.width='100%';windowEl.style.height='100%';
+  scene.style.aspectRatio=(config.media.canvasWidth||1080)+' / '+(config.media.canvasHeight||1620);windowEl.style.inset='0';windowEl.style.width='100%';windowEl.style.height='100%';
   heroFrame.hidden=true;one('[data-hero-html]').hidden=true;
   heroStill.src=config.media.heroPoster;heroVideo.poster=config.media.heroPoster;
+  if(media.V01.kind==='image'){heroStill.hidden=false;heroVideo.hidden=true;heroVideo.removeAttribute('src');}
+  else{
   heroVideo.muted=true;heroVideo.playsInline=true;heroVideo.loop=true;heroVideo.preload='none';heroVideo.hidden=false;heroVideo.dataset.src=media.V01.src;
   heroVideo.tabIndex=0;heroVideo.setAttribute('role','button');
   const syncHeroLabel=()=>{heroVideo.setAttribute('aria-label',heroVideo.paused?'動画を再生':'動画を一時停止');heroVideo.setAttribute('aria-pressed',String(!heroVideo.paused));};
@@ -45,6 +47,7 @@
   heroVideo.addEventListener('loadeddata',()=>{heroStill.hidden=true;heroFrame.hidden=true;one('[data-hero-html]').hidden=true;});
   heroVideo.addEventListener('error',()=>{heroVideo.hidden=true;heroStill.hidden=false;heroFrame.hidden=true;one('[data-hero-html]').hidden=true;});
   registerVideo(heroVideo);
+  }
   document.addEventListener('visibilitychange',()=>{for(const v of videos){if(document.hidden)v.pause();else if(!reduce&&v.dataset.inView==='true'&&v.dataset.userPaused!=='true')v.play().catch(()=>{});}});
 
   const ctaDialog=one('[data-cta-dialog]');
