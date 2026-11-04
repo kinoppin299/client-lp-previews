@@ -81,9 +81,13 @@
     if(spec.kind==='video'){
       asset.hidden=false;asset.classList.add('is-pending');asset.muted=true;asset.playsInline=true;asset.loop=true;asset.preload='none';asset.dataset.src=spec.src;asset.setAttribute('aria-label',spec.title);if(spec.poster)asset.poster=spec.poster;
       asset.addEventListener('loadeddata',loaded);if(spec.poster){asset.classList.remove('is-pending');fallback.hidden=true;slot.classList.add('has-asset');}
-      const control=document.createElement('button');control.type='button';control.className='slot-controls';control.textContent=reduce?'再生':'一時停止';
-      control.addEventListener('click',()=>{if(asset.paused){asset.dataset.userPaused='false';if(!asset.src)asset.src=asset.dataset.src;asset.play().catch(()=>{});}else{asset.dataset.userPaused='true';asset.pause();}});
-      asset.addEventListener('play',()=>control.textContent='一時停止');asset.addEventListener('pause',()=>control.textContent='再生');slot.append(asset,control);registerVideo(asset);
+      slot.append(asset);
+      if(spec.id!=='V02'){
+        const control=document.createElement('button');control.type='button';control.className='slot-controls';control.textContent=reduce?'再生':'一時停止';
+        control.addEventListener('click',()=>{if(asset.paused){asset.dataset.userPaused='false';if(!asset.src)asset.src=asset.dataset.src;asset.play().catch(()=>{});}else{asset.dataset.userPaused='true';asset.pause();}});
+        asset.addEventListener('play',()=>control.textContent='一時停止');asset.addEventListener('pause',()=>control.textContent='再生');slot.append(control);
+      }
+      registerVideo(asset);
     }else{asset.alt=spec.title;asset.loading='lazy';asset.decoding='async';asset.addEventListener('load',loaded);asset.src=spec.src;slot.append(asset);}
     if(maxLabel)slot.append(maxLabel);
   }
