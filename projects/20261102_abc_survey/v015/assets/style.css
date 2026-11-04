@@ -188,3 +188,11 @@ body.is-dialog-open{overflow:hidden}.talent-video{transform:scale(var(--talent-s
 .final-entry .unified-line-cta img{width:100%;height:auto;object-fit:contain}
 .hero-composite .talent-video{cursor:pointer}
 .hero-composite .talent-video:focus-visible{outline:3px solid #d8ae50;outline-offset:-3px}
+
+/* 2026-11-04: 金額の先頭に「最大」を表示。元動画・画像は再圧縮しない。 */
+.max-off-label{position:absolute;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;box-sizing:border-box;margin:0;padding:0;border:1px solid #ead18b;border-radius:3px;background:#06233d;color:#fff0b5;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-weight:800;line-height:1.08;letter-spacing:0;pointer-events:none;box-shadow:0 1px 3px #00122688}
+.hero-scene>.max-off-label{left:5%;top:71.8%;width:6.1%;height:7.4%;font-size:clamp(12px,4.3vw,29px)}
+.hero-scene>.max-off-label.max-off-banana{left:3.9%;top:72.1%;width:4.6%;height:7%;font-size:clamp(11px,3.6vw,24px);background:#fff;color:#050505;border-color:#080808;box-shadow:1px 1px 0 #ffff00}
+.reward-keyvisual>.max-off-label{left:3.7%;top:51.8%;width:5.9%;height:7.4%;font-size:clamp(12px,4.5vw,30px)}
+[data-media-slot="I06"]>.max-off-label{left:72.5%;top:52.9%;width:8%;height:3.6%;flex-direction:row;gap:1px;font-size:clamp(7px,2.25vw,15px);line-height:1;background:#082c49;color:#fff0b5;border:0;border-radius:0;box-shadow:none}
+.fv-money>.max-off-inline{font-size:.22em;align-self:center;writing-mode:vertical-rl;letter-spacing:.1em}

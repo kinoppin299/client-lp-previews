@@ -45,7 +45,7 @@ window.ABC_LP_MEDIA = {
   "I05": {
     "id": "I05",
     "kind": "image",
-    "title": "回答後の特典受取KV・女性Aと15万円OFF",
+    "title": "回答後の特典受取KV・女性Aと最大15万円OFF",
     "width": 1024,
     "height": 1536,
     "ratio": "1024 / 1536",

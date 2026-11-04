@@ -64,6 +64,7 @@
   const observer=new IntersectionObserver(entries=>{for(const entry of entries){const video=entry.target;video.dataset.inView=String(entry.isIntersecting);if(entry.isIntersecting){if(!video.src&&video.dataset.src){video.src=video.dataset.src;video.load();}if(!reduce&&!document.hidden&&video.dataset.userPaused!=='true')video.play().catch(()=>{});}else video.pause();}},{threshold:.15});
   function registerVideo(video){videos.add(video);observer.observe(video);}
   function mountSlot(slot,spec){
+    const maxLabel=slot.querySelector('.max-off-label');
     const previous=slot.querySelector('video');if(previous){observer.unobserve(previous);previous.pause();videos.delete(previous);}
     slot.replaceChildren();slot.dataset.currentSrc=spec.src||'';slot.style.aspectRatio=spec.ratio;slot.classList.toggle('slot-is-video',spec.kind==='video');slot.classList.remove('has-asset');
     const fallback=placeholder(slot,spec);slot.append(fallback);
@@ -84,6 +85,7 @@
       control.addEventListener('click',()=>{if(asset.paused){asset.dataset.userPaused='false';if(!asset.src)asset.src=asset.dataset.src;asset.play().catch(()=>{});}else{asset.dataset.userPaused='true';asset.pause();}});
       asset.addEventListener('play',()=>control.textContent='一時停止');asset.addEventListener('pause',()=>control.textContent='再生');slot.append(asset,control);registerVideo(asset);
     }else{asset.alt=spec.title;asset.loading='lazy';asset.decoding='async';asset.addEventListener('load',loaded);asset.src=spec.src;slot.append(asset);}
+    if(maxLabel)slot.append(maxLabel);
   }
   all('[data-media-slot]').forEach(slot=>mountSlot(slot,media[slot.dataset.mediaSlot]));
 
