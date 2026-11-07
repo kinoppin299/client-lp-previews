@@ -112,3 +112,14 @@
 .secondary #intro-toggle{font-size:.8125rem;min-height:44px;padding:6px 10px;border:1px solid #a6bca8;border-radius:6px;background:#f0f4e9}
 
 .secondary{min-height:44px}#actions.pre-final-actions .intro-player{display:none}
+
+/* v1.2: tap hint for automatic dialogue and a vivid green offer button. */
+.bubble.has-tap-cue{padding-bottom:30px}
+.tap-cue{position:absolute;right:13px;bottom:7px;font-size:14px;line-height:1;pointer-events:none;color:currentColor;animation:tap-cue-blink 1.2s ease-in-out infinite}
+.tap-cue[hidden]{display:none}
+.bubble[data-cue-visible="false"] .tap-cue{animation-play-state:paused}
+@keyframes tap-cue-blink{0%,100%{opacity:1}50%{opacity:.2}}
+@media(prefers-reduced-motion:reduce){.tap-cue{animation:none;opacity:1}}
+.cta{background:#078632;box-shadow:0 3px 0 #056924}
+.cta:hover{background:#06772c}
+.cta:active{box-shadow:0 1px 0 #056924}

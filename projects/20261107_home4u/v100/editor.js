@@ -1,8 +1,8 @@
-import registry from './scenarios.js?build=7325bd175b58';
-import {route,validateScenario} from './core.js?build=7325bd175b58';
-import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=7325bd175b58';
-import {appendRichText,plainText,formatSelection} from './rich-text.js?build=7325bd175b58';
-import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=7325bd175b58';
+import registry from './scenarios.js?build=ba42018ff177';
+import {route,validateScenario} from './core.js?build=ba42018ff177';
+import {draftKey,restoreCopyDraft,exportScenario,importScenario,mapGraph} from './editor-core.js?build=ba42018ff177';
+import {appendRichText,plainText,formatSelection} from './rich-text.js?build=ba42018ff177';
+import {renderOfferCard,OFFER_FIELDS} from './offer-card.js?build=ba42018ff177';
 
 const $=id=>document.getElementById(id);
 const query=new URLSearchParams(location.search);

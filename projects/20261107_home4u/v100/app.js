@@ -1,10 +1,10 @@
-import registry from './scenarios.js?build=7325bd175b58';
-import {route,validateScenario} from './core.js?build=7325bd175b58';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=7325bd175b58';
-import {appendRichText,plainText} from './rich-text.js?build=7325bd175b58';
-import {createMotionController} from './motion.js?build=7325bd175b58';
-import {prepareTypewriter} from './typewriter.js?build=7325bd175b58';
-import {readingHold} from './playback.js?build=7325bd175b58';
+import registry from './scenarios.js?build=ba42018ff177';
+import {route,validateScenario} from './core.js?build=ba42018ff177';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=ba42018ff177';
+import {appendRichText,plainText} from './rich-text.js?build=ba42018ff177';
+import {createMotionController} from './motion.js?build=ba42018ff177';
+import {prepareTypewriter} from './typewriter.js?build=ba42018ff177';
+import {readingHold} from './playback.js?build=ba42018ff177';
 
 const $=id=>document.getElementById(id), query=new URLSearchParams(location.search);
 const campaign=query.get('scenario')||'home4u', variant=query.get('v')||'a';
@@ -84,6 +84,7 @@ $('bubble').addEventListener('click',skipIntro);
 $('bubble').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&(!writer?.complete||automatic(step()))){e.preventDefault();skipIntro();}});
 document.addEventListener('visibilitychange',()=>{autoLast=0;wakeIntro();});
 window.addEventListener('scroll',wakeIntro,{passive:true});window.addEventListener('resize',resizeIntro);window.visualViewport?.addEventListener('resize',resizeIntro);new ResizeObserver(resizeIntro).observe($('bubble'));
+new IntersectionObserver(entries=>{ $('bubble').dataset.cueVisible=String(entries[0].isIntersecting); },{threshold:0}).observe($('bubble'));
 const visualImages=new Map(),preparedImages=new WeakMap();
 function visualImage(file,alt,className,width=600,height=600){
  if(!visualImages.has(file)){
@@ -189,7 +190,7 @@ function character(role,state,rev,motion){
 
 function render({focus=true,motion=true}={}){
  const s=step();$('scene').dataset.step=s.id;revision++;costCueFired=false;sceneMotion=motion;stopIntro();reveals.reset();stopMotion();currentMotion=motion&&s.motion?{name:s.motion,role:s.motion==='surprise'?'brother':s.speaker}:null;
- document.querySelector('.shell').classList.toggle('question-mode',s.type==='question');document.querySelector('.shell').dataset.visual=s.visual;visual(s);$('bubble').className=`bubble ${s.speaker}`;$('line').replaceChildren();appendRichText($('line'),s.message);$('note').textContent=s.note||'';
+ document.querySelector('.shell').classList.toggle('question-mode',s.type==='question');document.querySelector('.shell').dataset.visual=s.visual;visual(s);$('bubble').className=`bubble ${s.speaker}${automatic(s)?' has-tap-cue':''}`;document.querySelector('.tap-cue').hidden=!automatic(s);$('line').replaceChildren();appendRichText($('line'),s.message);$('note').textContent=s.note||'';
  for(const role of ['sister','brother']){$(role).classList.toggle('idle',role!==s.speaker);character(role,s[role],revision,currentMotion?.role===role);}
  const actions=$('actions');actions.classList.toggle('pre-final-actions',!!s.showCTA);observed.unobserve(actions);if(observedCta){observed.unobserve(observedCta);observedCta=null;}actions.replaceChildren();delete actions.dataset.kind;$('notice').hidden=true;
  const intro=automatic(s);document.querySelector('.shell').classList.toggle('intro-mode',intro);

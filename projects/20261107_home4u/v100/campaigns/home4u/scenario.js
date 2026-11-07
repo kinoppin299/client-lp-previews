@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "home4u-silent",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "variant": "a",
     "title": "実家、売る前に。｜HOME4U土地活用・ローカル試作",
     "brand": "HOME4U 土地活用",
