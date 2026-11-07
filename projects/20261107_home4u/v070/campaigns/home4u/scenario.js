@@ -779,7 +779,7 @@ export default {
         "simulation": true,
         "motion": "nod",
         "next": "serious",
-        "sceneArt": "parking"
+        "sceneArt": "layout"
       },
       {
         "id": "serious",
@@ -794,7 +794,7 @@ export default {
         "editorGroup": "プラン取得後の利用イメージ",
         "simulation": true,
         "next": "protest",
-        "sceneArt": "parking"
+        "sceneArt": "layout"
       },
       {
         "id": "protest",
@@ -810,7 +810,7 @@ export default {
         "simulation": true,
         "motion": "nod",
         "next": "close",
-        "sceneArt": "parking"
+        "sceneArt": "layout"
       },
       {
         "id": "close",

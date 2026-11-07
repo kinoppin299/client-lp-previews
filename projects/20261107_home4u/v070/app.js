@@ -1,10 +1,10 @@
-import registry from './scenarios.js?build=7695960ccced';
-import {route,validateScenario} from './core.js?build=7695960ccced';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=7695960ccced';
-import {appendRichText,plainText} from './rich-text.js?build=7695960ccced';
-import {createMotionController} from './motion.js?build=7695960ccced';
-import {prepareTypewriter} from './typewriter.js?build=7695960ccced';
-import {readingHold} from './playback.js?build=7695960ccced';
+import registry from './scenarios.js?build=fe48702e4990';
+import {route,validateScenario} from './core.js?build=fe48702e4990';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=fe48702e4990';
+import {appendRichText,plainText} from './rich-text.js?build=fe48702e4990';
+import {createMotionController} from './motion.js?build=fe48702e4990';
+import {prepareTypewriter} from './typewriter.js?build=fe48702e4990';
+import {readingHold} from './playback.js?build=fe48702e4990';
 
 const $=id=>document.getElementById(id), query=new URLSearchParams(location.search);
 const campaign=query.get('scenario')||'home4u', variant=query.get('v')||'a';
@@ -93,6 +93,7 @@ const parking='<svg viewBox="0 0 80 54" aria-hidden="true"><path d="M10 48h60M17
 function plans(){const el=text('div','plans');for(const [svg,name,note]of [[building,'アパート','建築費などを確認'],[parking,'駐車場','土地に合うかを確認']]){const p=text('div','plan');p.innerHTML=svg;p.append(text('b','',name),text('span','',note));el.append(p);}return el;}
 function heading(s){const v=$('visual');v.className='visual';v.replaceChildren();if(s.simulation){v.classList.add('simulation-visual');v.append(text('p','story-label','プラン取得後の利用イメージ'));}const h=text('h1','',s.title);h.id='scene-title';v.append(h);return v;}
 const sceneArt={
+ layout:{alt:'駐車枠と車の動線が描かれた、駐車場の配置図',fallback:'駐車場の配置図'},
  car:{alt:'食卓に開いた、青い車のカタログ',fallback:'車のカタログ'},
  parking:{alt:'住宅街にある小さな駐車場の活用イメージ',fallback:'駐車場という選択肢'},
  fit:{alt:'周囲の住宅や道路に面した土地の形と広さのイメージ',fallback:'土地の広さ・立地'},
