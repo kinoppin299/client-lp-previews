@@ -1,10 +1,10 @@
-import registry from './scenarios.js?build=e99690c38fb2';
-import {route,validateScenario} from './core.js?build=e99690c38fb2';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=e99690c38fb2';
-import {appendRichText,plainText} from './rich-text.js?build=e99690c38fb2';
-import {createMotionController} from './motion.js?build=e99690c38fb2';
-import {prepareTypewriter} from './typewriter.js?build=e99690c38fb2';
-import {readingHold} from './playback.js?build=e99690c38fb2';
+import registry from './scenarios.js?build=7325bd175b58';
+import {route,validateScenario} from './core.js?build=7325bd175b58';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=7325bd175b58';
+import {appendRichText,plainText} from './rich-text.js?build=7325bd175b58';
+import {createMotionController} from './motion.js?build=7325bd175b58';
+import {prepareTypewriter} from './typewriter.js?build=7325bd175b58';
+import {readingHold} from './playback.js?build=7325bd175b58';
 
 const $=id=>document.getElementById(id), query=new URLSearchParams(location.search);
 const campaign=query.get('scenario')||'home4u', variant=query.get('v')||'a';
@@ -43,16 +43,15 @@ function triggerCostCue(){
 function completedText(){
  triggerCostCue();
  $('bubble').dataset.typing='false';
- document.querySelectorAll('#actions .choice,#actions .cta,#actions .next').forEach(b=>b.disabled=false);
+ document.querySelectorAll('#actions .choice,#actions .next').forEach(b=>b.disabled=false);
  if(!automatic(step())){$('bubble').removeAttribute('role');$('bubble').removeAttribute('aria-label');$('bubble').tabIndex=-1;}
- document.querySelector('.footnote').textContent=automatic(step())?'無音・タップで先へ ／ 一時停止もできます':step().type==='question'?'無音・気になることを選んでください':step().advanceMode==='manual'?'内容を確認して「次へ」':'無音・ボタンは仮CTAです。';
 }
 function completeTyping(){if(writer&&!writer.complete){writer.finish();typeRemaining=0;autoLast=0;completedText();wakeIntro();return true;}return false;}
 function introFrame(now){
  autoFrame=0;const s=step(),typing=writer&&!writer.complete;
- const midButton=s.ctaPosition?$('actions').querySelector('.cta'):null;
+ const midButton=s.showCTA?$('actions').querySelector('.cta'):null;
  const midVisible=midButton?(()=>{const r=midButton.getBoundingClientRect();return r.top>=0&&r.bottom<=(window.visualViewport?.height||innerHeight);})():true;
- const visible=!typing&&s.ctaPosition?midVisible:speechVisible(!typing),images=[...$('visual').querySelectorAll('img[data-required]')];
+ const visible=!typing&&s.showCTA?midVisible:speechVisible(!typing),images=[...$('visual').querySelectorAll('img[data-required]')];
  const running=!autoPaused&&!document.hidden&&visible&&(typing||images.every(image=>image.dataset.ready==='true'));
  const elapsed=running&&autoLast?now-autoLast:0;autoLast=running?now:0;
  if(running&&typing){
@@ -74,10 +73,9 @@ function beginIntro(s,{instant=false}={}){
  $('scene').dataset.holdMs=String(autoDuration);
  autoRemaining=autoDuration;typeRemaining=0;autoLast=0;autoLabel='';
  $('bubble').dataset.typing='true';
- document.querySelector('.footnote').textContent='無音・会話をタップで全文を表示';
  $('spoken-line').textContent=plainText(s.message);
  $('bubble').setAttribute('role','button');$('bubble').tabIndex=0;$('bubble').setAttribute('aria-label',`${plainText(s.message)}。タップで全文を表示。${s.advanceMode==='manual'?'次へボタンで進めます。':'表示後はもう一度タップで次へ。'}`);
- document.querySelectorAll('#actions .choice,#actions .cta,#actions .next').forEach(b=>b.disabled=true);
+ document.querySelectorAll('#actions .choice,#actions .next').forEach(b=>b.disabled=true);
  if(instant||reduced.matches){writer.finish();completedText();}
  autoFrame=requestAnimationFrame(introFrame);
 }
@@ -110,6 +108,9 @@ function processImages(){const el=text('div','process-images');for(const [i,[fil
 function whenVisualReady(callback){const rev=revision,images=[...$('visual').querySelectorAll('img[data-required]')];const ready=()=>{if(rev===revision)callback();};if(images.every(i=>i.dataset.ready==='true')){ready();return;}Promise.all(images.map(i=>preparedImages.get(i))).then(ready);}
 function heading(s){const v=$('visual');v.className='visual';v.replaceChildren();if(s.simulation){v.classList.add('simulation-visual');v.append(text('p','story-label','プラン取得後の利用イメージ'));}const h=text('h1','',s.title);h.id='scene-title';h.hidden=true;v.append(h);return v;}
 const sceneArt={
+ 'offer-art':{alt:'簡単入力で 無料で活用プランをお取り寄せ',fallback:'無料で活用プランをお取り寄せ',file:'offer-v110.webp',width:1100,height:367},
+ 'fv-house':{alt:'木々と庭に囲まれた、家族が残してくれた実家',fallback:'実家の土地',file:'fv-house-v110.webp',width:900,height:375},
+ 'net-proceeds':{alt:'家の模型と電卓、売却後に手元に残るお金を考えるイメージ',fallback:'売却後の手残り',file:'net-proceeds-v110.webp',width:900,height:375},
  layout:{alt:'駐車枠と車の動線が描かれた、駐車場の配置図',fallback:'駐車場の配置図'},
  car:{alt:'食卓に開いた、青い車のカタログ',fallback:'車のカタログ'},
  'coin-parking':{alt:'精算機とP看板があるコインパーキングの活用イメージ',fallback:'コインパーキング',file:'coin-parking-v100.webp',width:900,height:375},
@@ -154,16 +155,14 @@ function visual(s){
   v.classList.add('process-visual');v.append(processImages());
  }else if(s.visual==='offer'){
   v.classList.add('capture-visual');v.append(imageHolder('client-lp-capture-v100.webp','HOME4U土地活用 クライアントLPキャプチャー','capture-holder','client-lp-capture',1200,649));
- }else if(s.visual==='cta'){v.append(text('div','offer-number','最大10社・無料'));const flow=text('div','flow');for(const [i,label]of ['土地情報を入力','プランを比較'].entries()){if(i)flow.append(text('b','','→'));flow.append(text('span','',label));}v.append(flow);}
+ }else if(s.visual==='cta'){v.classList.add('offer-art-visual');sceneIllustration(v,'offer-art');}
 }
 let observedCta=null;
 const observed=new IntersectionObserver(entries=>{for(const e of entries){if(!e.target.isConnected||!e.isIntersecting||e.intersectionRatio<.2||document.hidden)continue;if(e.target.dataset.kind==='question')once('q1','question_view',{question_id:'q1',question_order:1});if(e.target.dataset.kind==='cta'){const position=e.target.dataset.position||'final';once(`cta:${position}`,'cta_view',{cta_position:position});if(position==='final')once('end','flow_end',{end_type:'prototype'});}}},{threshold:[.2]});
 function ctaButton(s,position){
- const button=text('button','cta',s.label);button.type='button';button.dataset.kind='cta';button.dataset.position=position;
- button.addEventListener('click',()=>{once(`cta:${position}`,'cta_view',{cta_position:position});event('cta_click',{cta_position:position,destination_type:'local_placeholder'});if(position!=='final'){autoPaused=true;autoLast=0;wakeIntro();}
-  $('notice').replaceChildren(text('span','',preview?'編集プレビューの仮CTAです。外部遷移・計測は停止しています。':'仮CTAです。正式リンクは未設定のため、外部への移動・申込・情報送信は行っていません。'));$('notice').hidden=false;
-  if(position!=='final'){const next=text('button','mid-continue','利用イメージを見る →');next.type='button';next.addEventListener('click',()=>{autoPaused=false;advance(s.next);});$('notice').append(next);}
-  $('notice').scrollIntoView({block:'nearest'});
+ const label=s.label||scenario.steps.find(n=>n.type==='cta').label,button=text('button','cta',label);button.type='button';button.dataset.kind='cta';button.dataset.position=position;
+ button.addEventListener('click',()=>{once(`cta:${position}`,'cta_view',{cta_position:position});if(position==='final')once('end','flow_end',{end_type:'prototype'});event('cta_click',{cta_position:position,destination_type:'local_placeholder'});completeTyping();autoPaused=true;autoLast=0;wakeIntro();
+  $('notice').replaceChildren(text('span','',preview?'編集プレビューの仮CTAです。外部遷移・計測は停止しています。':'仮CTAです。正式リンクは未設定のため、外部への移動・申込・情報送信は行っていません。'));$('notice').hidden=false;$('notice').scrollIntoView({block:'nearest'});
  });observedCta=button;observed.observe(button);return button;
 }
 function animate(){if(!currentMotion||!castVisible||document.hidden||reduced.matches)return;const {name,role}=currentMotion;currentMotion=null;$(role).classList.remove('surprise','nod','phone','point');void $(role).offsetWidth;$(role).classList.add(name);}
@@ -192,10 +191,10 @@ function render({focus=true,motion=true}={}){
  const s=step();$('scene').dataset.step=s.id;revision++;costCueFired=false;sceneMotion=motion;stopIntro();reveals.reset();stopMotion();currentMotion=motion&&s.motion?{name:s.motion,role:s.motion==='surprise'?'brother':s.speaker}:null;
  document.querySelector('.shell').classList.toggle('question-mode',s.type==='question');document.querySelector('.shell').dataset.visual=s.visual;visual(s);$('bubble').className=`bubble ${s.speaker}`;$('line').replaceChildren();appendRichText($('line'),s.message);$('note').textContent=s.note||'';
  for(const role of ['sister','brother']){$(role).classList.toggle('idle',role!==s.speaker);character(role,s[role],revision,currentMotion?.role===role);}
- const actions=$('actions');observed.unobserve(actions);if(observedCta){observed.unobserve(observedCta);observedCta=null;}actions.replaceChildren();delete actions.dataset.kind;$('notice').hidden=true;
+ const actions=$('actions');actions.classList.toggle('pre-final-actions',!!s.showCTA);observed.unobserve(actions);if(observedCta){observed.unobserve(observedCta);observedCta=null;}actions.replaceChildren();delete actions.dataset.kind;$('notice').hidden=true;
  const intro=automatic(s);document.querySelector('.shell').classList.toggle('intro-mode',intro);
  if(intro){
-  if(s.ctaPosition)actions.append(ctaButton(s,s.ctaPosition));
+  if(s.showCTA)actions.append(ctaButton(s,'pre_final'));
   const controls=text('div','intro-player'),toolbar=text('div','intro-toolbar'),toggle=text('button','intro-toggle','一時停止');toggle.id='intro-toggle';toggle.type='button';toggle.setAttribute('aria-pressed',String(autoPaused));toggle.addEventListener('click',()=>{autoPaused=!autoPaused;autoLast=0;wakeIntro();event('intro_pause',{paused:autoPaused});});toolbar.append(toggle);
   const track=text('div','intro-track'),progress=text('div','intro-progress');progress.id='intro-progress';track.setAttribute('aria-hidden','true');track.append(progress);controls.append(toolbar,track);actions.append(controls);
   
@@ -205,6 +204,7 @@ function render({focus=true,motion=true}={}){
  beginIntro(s,{instant:!motion});
  observed.observe(actions);
  $('back').disabled=history.length===1;$('reanswer').hidden=!answers.q1;$('position').textContent=s.type==='question'?'質問 1 / 1':s.type==='cta'||s.ctaPosition?'プランを比べる':`シーン ${history.length}`;
+ if(s.showCTA){const toggle=$('intro-toggle');if(toggle){$('position').replaceChildren(toggle);actions.querySelector('.intro-toolbar')?.remove();}}
  if(motion){
   if(lastVisual!==s.visual){
    if(s.visual==='expenses'&&!s.costStage)document.querySelectorAll('.bar-fill').forEach((el,i)=>reveals.reveal(el,[{transform:'scaleX(.04)'},{transform:'scaleX(1)'}],{duration:650,delay:i*110}));
@@ -220,7 +220,7 @@ function render({focus=true,motion=true}={}){
  if(focus){window.scrollTo(0,0);$('bubble').focus({preventScroll:true});}
  once('start','chat_start');event('scene_view',{scene_order:history.length});
 }
-function advance(id,{auto=false}={}){if(!route(scenario,answers).some(s=>s.id===id))return;const fromMid=!!step().ctaPosition;history.push(id);render({focus:!auto});if(auto&&fromMid)window.scrollTo(0,0);}
+function advance(id,{auto=false}={}){if(!route(scenario,answers).some(s=>s.id===id))return;const fromMid=!!step().showCTA;history.push(id);render({focus:!auto});if(auto&&fromMid)window.scrollTo(0,0);}
 $('back').addEventListener('click',()=>{if(history.length<2)return;autoPaused=true;history.pop();if(step().type==='question')delete answers[step().id];event('chat_back');render({motion:false});});
 $('reanswer').addEventListener('click',()=>{const q=history.indexOf('q1');if(q<0)return;history=history.slice(0,q+1);answers={};event('chat_back');render({motion:false});});
 once('lp','lp_view');render({focus:false});

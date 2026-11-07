@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "home4u-silent",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "variant": "a",
     "title": "実家、売る前に。｜HOME4U土地活用・ローカル試作",
     "brand": "HOME4U 土地活用",
@@ -87,7 +87,8 @@ export default {
         "brother": "neutral",
         "chapter": 0,
         "editorGroup": "導入・1問",
-        "next": "intro"
+        "next": "intro",
+        "sceneArt": "fv-house"
       },
       {
         "id": "intro",
@@ -100,7 +101,8 @@ export default {
         "brother": "confused",
         "chapter": 0,
         "editorGroup": "導入・1問",
-        "next": "q1"
+        "next": "q1",
+        "sceneArt": "fv-house"
       },
       {
         "id": "q1",
@@ -130,7 +132,8 @@ export default {
             "label": "土地活用という選択肢",
             "next": "reply_cost"
           }
-        ]
+        ],
+        "sceneArt": "fv-house"
       },
       {
         "id": "reply_tax",
@@ -143,7 +146,8 @@ export default {
         "brother": "confused",
         "chapter": 0,
         "editorGroup": "選択に沿った返答",
-        "next": "reply_tax_answer"
+        "next": "reply_tax_answer",
+        "sceneArt": "fv-house"
       },
       {
         "id": "reply_tax_answer",
@@ -170,7 +174,8 @@ export default {
         "chapter": 0,
         "editorGroup": "選択に沿った返答",
         "next": "reply_net_answer",
-        "advanceMode": "manual"
+        "advanceMode": "manual",
+        "sceneArt": "net-proceeds"
       },
       {
         "id": "reply_net_answer",
@@ -184,7 +189,8 @@ export default {
         "chapter": 0,
         "editorGroup": "選択に沿った返答",
         "next": "shares",
-        "advanceMode": "manual"
+        "advanceMode": "manual",
+        "sceneArt": "net-proceeds"
       },
       {
         "id": "reply_cost",
@@ -402,7 +408,8 @@ export default {
         "brother": "neutral",
         "chapter": 0,
         "editorGroup": "売却の手残り",
-        "next": "tax_burden"
+        "next": "tax_burden",
+        "sceneArt": "fv-house"
       },
       {
         "id": "tax_burden",
@@ -415,7 +422,8 @@ export default {
         "brother": "confused",
         "chapter": 1,
         "editorGroup": "土地を残す方法",
-        "next": "keep_land"
+        "next": "keep_land",
+        "sceneArt": "fv-house"
       },
       {
         "id": "keep_land",
@@ -674,13 +682,14 @@ export default {
         "chapter": 2,
         "editorGroup": "無料プラン請求へ",
         "motion": "phone",
-        "next": "final_cta"
+        "next": "final_cta",
+        "showCTA": true
       },
       {
         "id": "final_cta",
         "type": "cta",
         "title": "自分の土地の、可能性を調べる。",
-        "message": "HOME4U土地活用の**無料プラン請求**へ。自分の土地にどんな使い道があるのか、まずは調べてみましょう。",
+        "message": "1分程度の入力で土地活用の**無料プラン**が申し込めるから、自分の土地にどんな使い道があるのか、今すぐ調べてみてください。",
         "speaker": "brother",
         "visual": "cta",
         "sister": "phone",
@@ -688,7 +697,7 @@ export default {
         "chapter": 2,
         "editorGroup": "無料プラン請求へ",
         "label": "無料の活用プランを取り寄せる",
-        "note": "仮CTAです。正式リンク未設定のため、外部へ移動しません。"
+        "copyStatus": "client-provided-review"
       }
     ]
   }
