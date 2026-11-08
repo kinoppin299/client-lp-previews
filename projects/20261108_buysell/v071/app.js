@@ -1,9 +1,9 @@
-import {createCastPlayer} from './character-motion.js?build=5c33b5cae0fa';
-import registry from './scenarios.js?build=5c33b5cae0fa';
-import {appendRichText,plainText} from './rich-text.js?build=5c33b5cae0fa';
-import {prepareTypewriter} from './typewriter.js?build=5c33b5cae0fa';
-import {readingHold} from './playback.js?build=5c33b5cae0fa';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=5c33b5cae0fa';
+import {createCastPlayer} from './character-motion.js?build=0df30a36e781';
+import registry from './scenarios.js?build=0df30a36e781';
+import {appendRichText,plainText} from './rich-text.js?build=0df30a36e781';
+import {prepareTypewriter} from './typewriter.js?build=0df30a36e781';
+import {readingHold} from './playback.js?build=0df30a36e781';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=0df30a36e781';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
@@ -21,7 +21,7 @@ function hold(){return readingHold({},current,tw?.length||0,{scale:scale(),previ
 function syncCtaMotion(){const c=$('actions').querySelector('.cta[data-position=final]');if(c)c.dataset.motion=paused||!tabVisible||!onScreen||!ctaVisible||$('notice').open?'paused':'running';}
 function syncPaused(){document.documentElement.dataset.paused=String(paused||!tabVisible||!onScreen||$('notice').open);$('pause').textContent=paused?'▶':'Ⅱ';$('pause').setAttribute('aria-label',paused?'再開':'一時停止');$('pause').title=paused?'再開':'一時停止';$('pause').setAttribute('aria-pressed',String(paused));syncCtaMotion();}
 function finish(){tw?.finish();$('bubble').dataset.typing='false';elapsed=0;setEnabled();}
-function setEnabled(){for(const b of $('actions').querySelectorAll('.choice'))b.disabled=!tw?.allComplete||!ready;for(const b of $('actions').querySelectorAll('.next')){b.disabled=!tw?.complete||!ready;b.textContent=tw?.hasNextPage?'セリフの続き':'次へ';}if(tw){$('back').disabled=history.length===0&&tw.pageIndex===0;$('page-number').hidden=tw.pageCount<2;$('page-number').textContent=`${tw.pageIndex+1}/${tw.pageCount}`;$('bubble').dataset.page=String(tw.pageIndex);$('bubble').dataset.pages=String(tw.pageCount);}}
+function setEnabled(){for(const b of $('actions').querySelectorAll('.choice'))b.disabled=!tw?.allComplete||!ready;for(const b of $('actions').querySelectorAll('.next')){b.disabled=(!tw?.complete&&current.id!=='welcome')||!ready;b.textContent=tw?.hasNextPage?'セリフの続き':'次へ';}if(tw){$('back').disabled=history.length===0&&tw.pageIndex===0;$('page-number').hidden=tw.pageCount<2;$('page-number').textContent=`${tw.pageIndex+1}/${tw.pageCount}`;$('bubble').dataset.page=String(tw.pageIndex);$('bubble').dataset.pages=String(tw.pageCount);}}
 function nextTextPage(){if(tw.nextPage()){elapsed=0;charElapsed=0;$('bubble').dataset.typing='true';setEnabled();return true;}return false;}
 function renderNote(){const n=$('note');n.replaceChildren();n.hidden=!current.note;n.dataset.kind=current.id==='campaign'?'campaign':current.noteKind||'standard';if(n.hidden)return;n.setAttribute('role','note');const copy=el(current.noteUrl?'a':'span','note-copy',current.note);if(current.noteUrl){const url=new URL(current.noteUrl);if(url.protocol==='https:'){copy.href=url.href;copy.target='_blank';copy.rel='noopener noreferrer';}}n.append(copy);}
 let fitting=false;
@@ -30,7 +30,7 @@ function fitScene({preserve=false}={}){if(!tw||fitting)return;fitting=true;try{c
  const minCast=large||small?48:72,minVis=current.visual==='case'?132:current.type==='question'?(large||small?64:90):(large||small?50:78);
  // Temporarily restore full text so every page is measured at the actual font and width.
  tw.paginate(1000,{preserve});const full=line.getBoundingClientRect().height+pad;let excess=vis+cast+full+fixed-H;if(excess>0){const cut=Math.min(excess,vis-minVis);vis-=cut;excess-=cut;}if(excess>0){const cut=Math.min(excess,cast-minCast);cast-=cut;excess-=cut;}
- const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);const castNode=document.querySelector('.cast');if(current.visual==='fv-photo'){const portrait=Math.max(20,cast-13+Math.min(16,surplus*.3));cast+=surplus;castNode.style.setProperty('--opening-portrait',Math.round(portrait)+'px');castNode.dataset.compact=String(cast<170);}else{vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);}v.style.height=Math.round(vis)+'px';castNode.style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
+ const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);const castNode=document.querySelector('.cast');vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);v.style.height=Math.round(vis)+'px';castNode.style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
  }finally{fitting=false;}}
 
 const imageCache=new Map();
@@ -70,7 +70,7 @@ function visual(s){const v=$('visual');v.replaceChildren();v.className='visual';
  const d=data[s.visual]||data.intro;v.append(el('h2','',d[0]),el('p','sub',d[1]));const r=el('div','mini-list');d[2].forEach(t=>r.append(el('span','chip',t)));v.append(r);
 }
 function go(id,{back=false}={}){if(!byId.has(id))return;const token=++renderToken;previousVisual=current?.visual||null;current=byId.get(id);elapsed=0;charElapsed=0;lastTime=0;ready=false;
- $('scene').dataset.step=id;$('scene').dataset.type=current.type;$('scene').dataset.visual=current.visual;$('opening-status').hidden=current.id!=='welcome';
+ $('scene').dataset.step=id;$('scene').dataset.type=current.type;$('scene').dataset.visual=current.visual;
  $('chapter').textContent=current.type==='cta'?'05 / 着物のこれからへ':id==='welcome'||['daughter','refused','friend'].includes(id)?'01 / お茶の時間に':id==='q1'||id.startsWith('reply_')&& !['reply_fee','reply_decision'].includes(id)||id.startsWith('ack_')?'02 / 気になることから':current.visual==='case'||['q2','expert','curiosity'].includes(id)?'03 / 写真で見る実例':'04 / ご自宅で、無料査定';
  visual(current);$('bubble').dataset.speaker=current.speaker;document.querySelector('.cast').dataset.speaker=current.speaker;$('bubble').dataset.typing='true';
  $('line').replaceChildren();appendRichText($('line'),current.message);$('line').setAttribute('aria-label',plainText(current.message));tw=prepareTypewriter($('line'));for(const g of $('line').querySelectorAll('.type-char'))g.setAttribute('aria-hidden','true');
@@ -78,7 +78,7 @@ function go(id,{back=false}={}){if(!byId.has(id))return;const token=++renderToke
  for(const who of ['a','b']){const p=$('friend-'+who);p.className=who===current.speaker?'active':'';if(who===current.speaker&&current.reaction&&!back)p.classList.add(current.reaction);}
  renderNote();$('actions').replaceChildren();$('hint').textContent=current.type==='question'?'気になるものを選んでください':current.type==='cta'||current.showCTA?'出張料・査定料・キャンセル料 無料':current.advanceMode==='manual'?'内容を確認したら、次へ':'';
  if(current.type==='question'){for(const o of current.options){const b=rich(el('button','choice'),o.label);b.type='button';b.dataset.answer=o.id;b.disabled=true;b.addEventListener('click',()=>answer(o));$('actions').append(b);}}
- else if(current.advanceMode==='manual'){const b=el('button','next','次へ');b.type='button';b.disabled=true;b.addEventListener('click',()=>advance());$('actions').append(b);}
+ else if(current.advanceMode==='manual'){const b=el('button',current.id==='welcome'?'next opening-next':'next','次へ');b.type='button';b.disabled=true;b.addEventListener('click',()=>advance());$('actions').append(b);}
  if(current.type==='cta'||current.showCTA){$('actions').append(el('div','cta-sub','着物・帯・和装小物も、まとめて相談'));const c=el(preview?'button':'a','cta');c.append(rich(el('span','cta-label'),scenario.steps.find(s=>s.type==='cta').label));if(preview)c.type='button';else{const target=new URL(scenario.conversion.url);if(target.protocol!=='https:')throw Error('CTAのURLを確認してください');c.href=target.href;c.rel='sponsored nofollow';}c.dataset.position=current.type==='cta'?'final':'pre_final';c.addEventListener('click',()=>{paused=true;finish();syncPaused();if(preview)$('notice').showModal();});$('actions').append(c);ctaVisible=false;ctaObserver.disconnect();ctaObserver.observe(c);}else{ctaVisible=true;ctaObserver.disconnect();}
  $('back').disabled=history.length===0;
  fitScene();castPlayer.set(current,{instant:back,reduced:reduced.matches});if(back){paused=true;finish();}

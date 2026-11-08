@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "buysell-silent",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "variant": "a",
     "title": "母の着物、しまったまま？",
     "brand": "【大注目】古い着物が驚きの査定額に!?",
@@ -66,13 +66,7 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "openingMotion": {
-          "role": "a",
-          "kind": "hop",
-          "cue": "",
-          "delayMs": 70,
-          "durationMs": 780
-        }
+        "advanceMode": "manual"
       },
       {
         "id": "daughter",
@@ -84,13 +78,6 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "surprise"
-        },
-        "openingMotion": {
-          "role": "b",
-          "kind": "surprise",
-          "cue": "あら",
-          "delayMs": 50,
-          "durationMs": 900
         }
       },
       {
