@@ -1,4 +1,4 @@
-import data from './campaigns/buysell/motion-data.js?build=f803c6e9c77f';
+import data from './campaigns/buysell/motion-data.js?build=425ffb5d9fd7';
 const atlases=new Map(),pictures=new Map();
 async function picture(url){if(pictures.has(url))return pictures.get(url);const task=(async()=>{const img=new Image();img.src=url;await img.decode();return img;})();pictures.set(url,task);return task;}
 export function createCastPlayer(){

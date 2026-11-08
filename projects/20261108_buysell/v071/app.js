@@ -1,15 +1,15 @@
-import {createCastPlayer} from './character-motion.js?build=f803c6e9c77f';
-import registry from './scenarios.js?build=f803c6e9c77f';
-import {appendRichText,plainText} from './rich-text.js?build=f803c6e9c77f';
-import {prepareTypewriter} from './typewriter.js?build=f803c6e9c77f';
-import {readingHold} from './playback.js?build=f803c6e9c77f';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=f803c6e9c77f';
+import {createCastPlayer} from './character-motion.js?build=425ffb5d9fd7';
+import registry from './scenarios.js?build=425ffb5d9fd7';
+import {appendRichText,plainText} from './rich-text.js?build=425ffb5d9fd7';
+import {prepareTypewriter} from './typewriter.js?build=425ffb5d9fd7';
+import {readingHold} from './playback.js?build=425ffb5d9fd7';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=425ffb5d9fd7';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
 if(preview){try{const stored=localStorage.getItem(draftKey(location.href,campaign,variant));if(stored)scenario=restoreCopyDraft(JSON.parse(stored),scenario);}catch{}}
 document.title=`${scenario.title}｜バイセル`;
-document.querySelector('.brand-copy').textContent=scenario.brand;
+const brandCopy=document.querySelector('.brand-copy'),brandSplit=scenario.brand.indexOf('】')+1;brandCopy.replaceChildren();if(brandSplit>0){const prefix=document.createElement('span'),title=document.createElement('span');prefix.className='brand-prefix';title.className='brand-title';prefix.textContent=scenario.brand.slice(0,brandSplit);title.textContent=scenario.brand.slice(brandSplit);brandCopy.append(prefix,title);}else brandCopy.textContent=scenario.brand;
 const byId=new Map(scenario.steps.map(s=>[s.id,s])),cases=new Map(scenario.cases.map(c=>[c.id,c])),asset='./campaigns/buysell/assets/';
 const castPlayer=createCastPlayer();
 let current,history=[],answers={},tw,paused=false,tabVisible=!document.hidden,onScreen=true,ctaVisible=true,elapsed=0,charElapsed=0,lastTime=0,ready=false,renderToken=0,previousVisual=null;
