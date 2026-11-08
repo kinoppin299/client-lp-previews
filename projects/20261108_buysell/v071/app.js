@@ -1,9 +1,9 @@
-import {createCastPlayer} from './character-motion.js?build=1700ab7d68b8';
-import registry from './scenarios.js?build=1700ab7d68b8';
-import {appendRichText,plainText} from './rich-text.js?build=1700ab7d68b8';
-import {prepareTypewriter} from './typewriter.js?build=1700ab7d68b8';
-import {readingHold} from './playback.js?build=1700ab7d68b8';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=1700ab7d68b8';
+import {createCastPlayer} from './character-motion.js?build=5c33b5cae0fa';
+import registry from './scenarios.js?build=5c33b5cae0fa';
+import {appendRichText,plainText} from './rich-text.js?build=5c33b5cae0fa';
+import {prepareTypewriter} from './typewriter.js?build=5c33b5cae0fa';
+import {readingHold} from './playback.js?build=5c33b5cae0fa';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=5c33b5cae0fa';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
@@ -30,7 +30,7 @@ function fitScene({preserve=false}={}){if(!tw||fitting)return;fitting=true;try{c
  const minCast=large||small?48:72,minVis=current.visual==='case'?132:current.type==='question'?(large||small?64:90):(large||small?50:78);
  // Temporarily restore full text so every page is measured at the actual font and width.
  tw.paginate(1000,{preserve});const full=line.getBoundingClientRect().height+pad;let excess=vis+cast+full+fixed-H;if(excess>0){const cut=Math.min(excess,vis-minVis);vis-=cut;excess-=cut;}if(excess>0){const cut=Math.min(excess,cast-minCast);cast-=cut;excess-=cut;}
- const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);const castNode=document.querySelector('.cast');if(current.visual==='fv-photo'){cast+=surplus;const foot=cast>=170?32:14,portrait=Math.max(20,Math.min(cast-12-foot,castNode.clientWidth/2*1.04*380/224));castNode.style.setProperty('--opening-foot',foot+'px');castNode.style.setProperty('--opening-portrait',Math.round(portrait)+'px');castNode.dataset.compact=String(cast<170);}else{vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);}v.style.height=Math.round(vis)+'px';castNode.style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
+ const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);const castNode=document.querySelector('.cast');if(current.visual==='fv-photo'){const portrait=Math.max(20,cast-13+Math.min(16,surplus*.3));cast+=surplus;castNode.style.setProperty('--opening-portrait',Math.round(portrait)+'px');castNode.dataset.compact=String(cast<170);}else{vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);}v.style.height=Math.round(vis)+'px';castNode.style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
  }finally{fitting=false;}}
 
 const imageCache=new Map();
