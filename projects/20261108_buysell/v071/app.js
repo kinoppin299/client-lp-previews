@@ -1,9 +1,9 @@
-import {createCastPlayer} from './character-motion.js?build=386a1de5d6fc';
-import registry from './scenarios.js?build=386a1de5d6fc';
-import {appendRichText,plainText} from './rich-text.js?build=386a1de5d6fc';
-import {prepareTypewriter} from './typewriter.js?build=386a1de5d6fc';
-import {readingHold} from './playback.js?build=386a1de5d6fc';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=386a1de5d6fc';
+import {createCastPlayer} from './character-motion.js?build=3c4b8fc80b6c';
+import registry from './scenarios.js?build=3c4b8fc80b6c';
+import {appendRichText,plainText} from './rich-text.js?build=3c4b8fc80b6c';
+import {prepareTypewriter} from './typewriter.js?build=3c4b8fc80b6c';
+import {readingHold} from './playback.js?build=3c4b8fc80b6c';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=3c4b8fc80b6c';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');

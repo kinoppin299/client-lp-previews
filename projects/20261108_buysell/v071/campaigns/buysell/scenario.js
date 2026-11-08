@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "buysell-silent",
-    "version": "0.7.5",
+    "version": "0.7.6",
     "variant": "a",
     "title": "母の着物、しまったまま？",
     "brand": "【大注目】古い着物が驚きの査定額に!?",
@@ -66,7 +66,23 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "advanceMode": "manual"
+        "advanceMode": "manual",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "offer",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2540
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 844,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "daughter",
@@ -78,7 +94,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "surprise"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 3305
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1048,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "refused",
@@ -91,11 +123,22 @@ export default {
           "a": "confused",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-hesitate",
-          "cue": "要らない"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "ponder",
+            "pose": "anxious",
+            "delayMs": 80,
+            "durationMs": 3305
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1048,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "friend",
@@ -108,11 +151,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-nod",
-          "cue": "査定"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "explain",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3395
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1072,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "shop",
@@ -125,11 +179,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "え？"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 2720
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 892,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "buysell",
@@ -142,11 +207,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-smile",
-          "cue": "バイセル"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3125
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1000,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "old",
@@ -159,11 +235,22 @@ export default {
           "a": "confused",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-hesitate",
-          "cue": "古い"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 2810
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 916,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "expert",
@@ -178,11 +265,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-nod",
-          "cue": "査定士"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "count",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 4385
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1336,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "demand_question",
@@ -194,7 +292,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 2945
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 952,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "demand",
@@ -208,7 +322,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "explain",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 4385
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1336,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "tourists",
@@ -220,7 +350,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3035
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 976,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "market_news",
@@ -238,7 +384,23 @@ export default {
         "note": "※リユース経済新聞2025年12月11日より",
         "noteUrl": "https://www.recycle-tsushin.com/news/detail_11999.php",
         "noteKind": "source",
-        "claimScope": "2025年12月11日掲載のジャパンキモノオークションに関する報道。着物全体・現在の個別査定結果を表すものではない。"
+        "claimScope": "2025年12月11日掲載のジャパンキモノオークションに関する報道。着物全体・現在の個別査定結果を表すものではない。",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "count",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3890
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1204,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "realization",
@@ -251,11 +413,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-nod",
-          "cue": "着ない"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "relief",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3125
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1000,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "channels",
@@ -267,7 +440,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "explain",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3710
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1156,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "channels_value",
@@ -279,7 +468,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "difference_question",
@@ -291,7 +496,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 2765
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 904,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "comparison",
@@ -306,7 +527,23 @@ export default {
           "b": "smile"
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "count",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3755
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1168,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "comparison_reaction",
@@ -319,13 +556,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "同じ"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3125
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1000,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "also_accessories",
@@ -337,7 +585,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "ponder",
+            "pose": "anxious",
+            "delayMs": 80,
+            "durationMs": 3035
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 976,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_invite",
@@ -349,7 +613,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3575
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1120,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "q2",
@@ -377,7 +657,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 2585
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 856,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_kimono",
@@ -394,7 +690,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3935
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1216,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_kimono",
@@ -409,13 +721,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "160"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_obi",
@@ -432,7 +755,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3620
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1132,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_obi",
@@ -447,13 +786,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "帯"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_accessory",
@@ -470,7 +820,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_accessory",
@@ -485,13 +851,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "かんざし"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_obi_after_1",
@@ -508,7 +885,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3620
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1132,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_obi_after_1",
@@ -523,13 +916,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "帯"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_accessory_after_1",
@@ -546,7 +950,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_accessory_after_1",
@@ -561,13 +981,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "かんざし"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_kimono_after_2",
@@ -584,7 +1015,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3935
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1216,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_kimono_after_2",
@@ -599,13 +1046,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "160"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_accessory_after_2",
@@ -622,7 +1080,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_accessory_after_2",
@@ -637,13 +1111,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "かんざし"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_kimono_after_4",
@@ -660,7 +1145,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3935
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1216,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_kimono_after_4",
@@ -675,13 +1176,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "160"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_obi_after_4",
@@ -698,7 +1210,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3620
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1132,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_obi_after_4",
@@ -713,13 +1241,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "帯"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_accessory_after_3",
@@ -736,7 +1275,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_accessory_after_3",
@@ -751,13 +1306,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "かんざし"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_obi_after_5",
@@ -774,7 +1340,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3620
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1132,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_obi_after_5",
@@ -789,13 +1371,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "帯"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "case_kimono_after_6",
@@ -812,7 +1405,23 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "present",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3935
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1216,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "react_kimono_after_6",
@@ -827,13 +1436,24 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-surprise",
-          "cue": "160"
-        },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
-        "noteKind": "case"
+        "noteKind": "case",
+        "acting": [
+          {
+            "role": "a",
+            "kind": "surprise",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3485
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1096,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_1",
@@ -865,7 +1485,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_2",
@@ -897,7 +1533,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_4",
@@ -929,7 +1581,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_3",
@@ -957,7 +1625,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_5",
@@ -985,7 +1669,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_6",
@@ -1013,7 +1713,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "more_cases_7",
@@ -1032,7 +1748,23 @@ export default {
           "b": "smile"
         },
         "next": "know_first",
-        "autoHoldMs": 2200
+        "autoHoldMs": 2200,
+        "acting": [
+          {
+            "role": "b",
+            "kind": "nod",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2855
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 928,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "know_first",
@@ -1044,7 +1776,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "reassure",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2720
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 892,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "nearby",
@@ -1056,7 +1804,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "neutral"
-        }
+        },
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 2855
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 928,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "visit",
@@ -1068,7 +1832,23 @@ export default {
         "faces": {
           "a": "neutral",
           "b": "smile"
-        }
+        },
+        "acting": [
+          {
+            "role": "b",
+            "kind": "explain",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3620
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1132,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "heavy_fee",
@@ -1081,11 +1861,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-hesitate",
-          "cue": "お金"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "question",
+            "pose": "confused",
+            "delayMs": 80,
+            "durationMs": 3980
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1228,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "reply_fee",
@@ -1100,7 +1891,23 @@ export default {
           "b": "smile"
         },
         "note": "※宅配買取の場合、査定後買取希望されない場合は返送料がかかります。",
-        "noteKind": "fees"
+        "noteKind": "fees",
+        "acting": [
+          {
+            "role": "b",
+            "kind": "count",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2810
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 916,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "treasured",
@@ -1113,11 +1920,22 @@ export default {
           "a": "anxious",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-anxious",
-          "cue": "一枚"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "ponder",
+            "pose": "anxious",
+            "delayMs": 80,
+            "durationMs": 3170
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1012,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "keep_it",
@@ -1130,11 +1948,22 @@ export default {
           "a": "anxious",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-reassure",
-          "cue": "残して"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "reassure",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 4295
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "anxious",
+            "delayMs": 1312,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "relief",
@@ -1147,11 +1976,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-nod",
-          "cue": "そうね"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "relief",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3305
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1048,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "campaign",
@@ -1166,11 +2006,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-smile",
-          "cue": "5倍"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "count",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3350
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1060,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "callback",
@@ -1183,11 +2034,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-excited",
-          "cue": "ホント"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "stop",
+            "pose": "surprise",
+            "delayMs": 80,
+            "durationMs": 3575
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1120,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "first_appraisal",
@@ -1200,11 +2062,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-smile",
-          "cue": "ふふっ"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "laugh",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 2675
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 880,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "close",
@@ -1218,11 +2091,22 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "characterAction": {
-          "role": "a",
-          "clip": "a-determined",
-          "cue": "うん"
-        }
+        "acting": [
+          {
+            "role": "a",
+            "kind": "resolve",
+            "pose": "determined",
+            "delayMs": 80,
+            "durationMs": 3080
+          },
+          {
+            "role": "b",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 988,
+            "durationMs": 2100
+          }
+        ]
       },
       {
         "id": "final_cta",
@@ -1237,11 +2121,22 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "characterAction": {
-          "role": "b",
-          "clip": "b-nod",
-          "cue": "まず"
-        }
+        "acting": [
+          {
+            "role": "b",
+            "kind": "invite",
+            "pose": "smile",
+            "delayMs": 80,
+            "durationMs": 3440
+          },
+          {
+            "role": "a",
+            "kind": "listen",
+            "pose": "neutral",
+            "delayMs": 1084,
+            "durationMs": 2100
+          }
+        ]
       }
     ],
     "editorLabels": {
