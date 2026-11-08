@@ -1,9 +1,9 @@
-import {createCastPlayer} from './character-motion.js?build=968844d03a58';
-import registry from './scenarios.js?build=968844d03a58';
-import {appendRichText,plainText} from './rich-text.js?build=968844d03a58';
-import {prepareTypewriter} from './typewriter.js?build=968844d03a58';
-import {readingHold} from './playback.js?build=968844d03a58';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=968844d03a58';
+import {createCastPlayer} from './character-motion.js?build=1700ab7d68b8';
+import registry from './scenarios.js?build=1700ab7d68b8';
+import {appendRichText,plainText} from './rich-text.js?build=1700ab7d68b8';
+import {prepareTypewriter} from './typewriter.js?build=1700ab7d68b8';
+import {readingHold} from './playback.js?build=1700ab7d68b8';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=1700ab7d68b8';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
@@ -30,7 +30,7 @@ function fitScene({preserve=false}={}){if(!tw||fitting)return;fitting=true;try{c
  const minCast=large||small?48:72,minVis=current.visual==='case'?132:current.type==='question'?(large||small?64:90):(large||small?50:78);
  // Temporarily restore full text so every page is measured at the actual font and width.
  tw.paginate(1000,{preserve});const full=line.getBoundingClientRect().height+pad;let excess=vis+cast+full+fixed-H;if(excess>0){const cut=Math.min(excess,vis-minVis);vis-=cut;excess-=cut;}if(excess>0){const cut=Math.min(excess,cast-minCast);cast-=cut;excess-=cut;}
- const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);v.style.height=Math.round(vis)+'px';document.querySelector('.cast').style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
+ const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);const castNode=document.querySelector('.cast');if(current.visual==='fv-photo'){cast+=surplus;const foot=cast>=170?32:14,portrait=Math.max(20,Math.min(cast-12-foot,castNode.clientWidth/2*1.04*380/224));castNode.style.setProperty('--opening-foot',foot+'px');castNode.style.setProperty('--opening-portrait',Math.round(portrait)+'px');castNode.dataset.compact=String(cast<170);}else{vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);}v.style.height=Math.round(vis)+'px';castNode.style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
  }finally{fitting=false;}}
 
 const imageCache=new Map();
@@ -70,7 +70,7 @@ function visual(s){const v=$('visual');v.replaceChildren();v.className='visual';
  const d=data[s.visual]||data.intro;v.append(el('h2','',d[0]),el('p','sub',d[1]));const r=el('div','mini-list');d[2].forEach(t=>r.append(el('span','chip',t)));v.append(r);
 }
 function go(id,{back=false}={}){if(!byId.has(id))return;const token=++renderToken;previousVisual=current?.visual||null;current=byId.get(id);elapsed=0;charElapsed=0;lastTime=0;ready=false;
- $('scene').dataset.step=id;$('scene').dataset.type=current.type;$('scene').dataset.visual=current.visual;
+ $('scene').dataset.step=id;$('scene').dataset.type=current.type;$('scene').dataset.visual=current.visual;$('opening-status').hidden=current.id!=='welcome';
  $('chapter').textContent=current.type==='cta'?'05 / 着物のこれからへ':id==='welcome'||['daughter','refused','friend'].includes(id)?'01 / お茶の時間に':id==='q1'||id.startsWith('reply_')&& !['reply_fee','reply_decision'].includes(id)||id.startsWith('ack_')?'02 / 気になることから':current.visual==='case'||['q2','expert','curiosity'].includes(id)?'03 / 写真で見る実例':'04 / ご自宅で、無料査定';
  visual(current);$('bubble').dataset.speaker=current.speaker;document.querySelector('.cast').dataset.speaker=current.speaker;$('bubble').dataset.typing='true';
  $('line').replaceChildren();appendRichText($('line'),current.message);$('line').setAttribute('aria-label',plainText(current.message));tw=prepareTypewriter($('line'));for(const g of $('line').querySelectorAll('.type-char'))g.setAttribute('aria-hidden','true');
