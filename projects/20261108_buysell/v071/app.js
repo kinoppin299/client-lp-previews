@@ -1,9 +1,9 @@
-import {createCastPlayer} from './character-motion.js?build=425ffb5d9fd7';
-import registry from './scenarios.js?build=425ffb5d9fd7';
-import {appendRichText,plainText} from './rich-text.js?build=425ffb5d9fd7';
-import {prepareTypewriter} from './typewriter.js?build=425ffb5d9fd7';
-import {readingHold} from './playback.js?build=425ffb5d9fd7';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=425ffb5d9fd7';
+import {createCastPlayer} from './character-motion.js?build=968844d03a58';
+import registry from './scenarios.js?build=968844d03a58';
+import {appendRichText,plainText} from './rich-text.js?build=968844d03a58';
+import {prepareTypewriter} from './typewriter.js?build=968844d03a58';
+import {readingHold} from './playback.js?build=968844d03a58';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=968844d03a58';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
@@ -79,7 +79,7 @@ function go(id,{back=false}={}){if(!byId.has(id))return;const token=++renderToke
  renderNote();$('actions').replaceChildren();$('hint').textContent=current.type==='question'?'気になるものを選んでください':current.type==='cta'||current.showCTA?'出張料・査定料・キャンセル料 無料':current.advanceMode==='manual'?'内容を確認したら、次へ':'';
  if(current.type==='question'){for(const o of current.options){const b=rich(el('button','choice'),o.label);b.type='button';b.dataset.answer=o.id;b.disabled=true;b.addEventListener('click',()=>answer(o));$('actions').append(b);}}
  else if(current.advanceMode==='manual'){const b=el('button','next','次へ');b.type='button';b.disabled=true;b.addEventListener('click',()=>advance());$('actions').append(b);}
- if(current.type==='cta'||current.showCTA){$('actions').append(el('div','cta-sub','着物・帯・和装小物も、まとめて相談'));const c=el('button','cta');c.append(rich(el('span','cta-label'),scenario.steps.find(s=>s.type==='cta').label));c.type='button';c.dataset.position=current.type==='cta'?'final':'pre_final';c.addEventListener('click',()=>{paused=true;finish();syncPaused();$('notice').showModal();});$('actions').append(c);ctaVisible=false;ctaObserver.disconnect();ctaObserver.observe(c);}else{ctaVisible=true;ctaObserver.disconnect();}
+ if(current.type==='cta'||current.showCTA){$('actions').append(el('div','cta-sub','着物・帯・和装小物も、まとめて相談'));const c=el(preview?'button':'a','cta');c.append(rich(el('span','cta-label'),scenario.steps.find(s=>s.type==='cta').label));if(preview)c.type='button';else{const target=new URL(scenario.conversion.url);if(target.protocol!=='https:')throw Error('CTAのURLを確認してください');c.href=target.href;c.rel='sponsored nofollow';}c.dataset.position=current.type==='cta'?'final':'pre_final';c.addEventListener('click',()=>{paused=true;finish();syncPaused();if(preview)$('notice').showModal();});$('actions').append(c);ctaVisible=false;ctaObserver.disconnect();ctaObserver.observe(c);}else{ctaVisible=true;ctaObserver.disconnect();}
  $('back').disabled=history.length===0;
  fitScene();castPlayer.set(current,{instant:back,reduced:reduced.matches});if(back){paused=true;finish();}
  const images=[...$('visual').querySelectorAll('img')];Promise.all(images.map(img=>img.decode().catch(()=>{}))).then(()=>{if(renderToken!==token)return;ready=true;fitScene({preserve:true});setEnabled();});

@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "buysell-silent",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "variant": "a",
     "title": "母の着物、しまったまま？",
     "brand": "【大注目】古い着物が驚きの査定額に!?",
@@ -11,7 +11,7 @@ export default {
     },
     "autoStart": false,
     "conversion": {
-      "url": "https://example.com/local-placeholder",
+      "url": "https://tr.slvrbullet.com/cl/w0000673824/1261/38789/21?preport=mvlp",
       "inheritQueryParameters": false
     },
     "tracking": {
