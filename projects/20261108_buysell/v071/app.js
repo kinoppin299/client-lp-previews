@@ -1,0 +1,100 @@
+import {createCastPlayer} from './character-motion.js?build=f803c6e9c77f';
+import registry from './scenarios.js?build=f803c6e9c77f';
+import {appendRichText,plainText} from './rich-text.js?build=f803c6e9c77f';
+import {prepareTypewriter} from './typewriter.js?build=f803c6e9c77f';
+import {readingHold} from './playback.js?build=f803c6e9c77f';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=f803c6e9c77f';
+const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
+let scenario=registry[campaign]?.[variant];
+if(!scenario)throw Error('案件が見つかりません');
+if(preview){try{const stored=localStorage.getItem(draftKey(location.href,campaign,variant));if(stored)scenario=restoreCopyDraft(JSON.parse(stored),scenario);}catch{}}
+document.title=`${scenario.title}｜バイセル`;
+document.querySelector('.brand-copy').textContent=scenario.brand;
+const byId=new Map(scenario.steps.map(s=>[s.id,s])),cases=new Map(scenario.cases.map(c=>[c.id,c])),asset='./campaigns/buysell/assets/';
+const castPlayer=createCastPlayer();
+let current,history=[],answers={},tw,paused=false,tabVisible=!document.hidden,onScreen=true,ctaVisible=true,elapsed=0,charElapsed=0,lastTime=0,ready=false,renderToken=0,previousVisual=null;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)'),automatic=s=>s.type!=='question'&&s.type!=='cta'&&s.advanceMode!=='manual';
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+function rich(n,text){appendRichText(n,text);return n;}
+function scale(){return Math.max(1,parseFloat(getComputedStyle($('line')).fontSize)/18);}
+function hold(){return readingHold({},current,tw?.length||0,{scale:scale(),previousVisual});}
+function syncCtaMotion(){const c=$('actions').querySelector('.cta[data-position=final]');if(c)c.dataset.motion=paused||!tabVisible||!onScreen||!ctaVisible||$('notice').open?'paused':'running';}
+function syncPaused(){document.documentElement.dataset.paused=String(paused||!tabVisible||!onScreen||$('notice').open);$('pause').textContent=paused?'▶':'Ⅱ';$('pause').setAttribute('aria-label',paused?'再開':'一時停止');$('pause').title=paused?'再開':'一時停止';$('pause').setAttribute('aria-pressed',String(paused));syncCtaMotion();}
+function finish(){tw?.finish();$('bubble').dataset.typing='false';elapsed=0;setEnabled();}
+function setEnabled(){for(const b of $('actions').querySelectorAll('.choice'))b.disabled=!tw?.allComplete||!ready;for(const b of $('actions').querySelectorAll('.next')){b.disabled=!tw?.complete||!ready;b.textContent=tw?.hasNextPage?'セリフの続き':'次へ';}if(tw){$('back').disabled=history.length===0&&tw.pageIndex===0;$('page-number').hidden=tw.pageCount<2;$('page-number').textContent=`${tw.pageIndex+1}/${tw.pageCount}`;$('bubble').dataset.page=String(tw.pageIndex);$('bubble').dataset.pages=String(tw.pageCount);}}
+function nextTextPage(){if(tw.nextPage()){elapsed=0;charElapsed=0;$('bubble').dataset.typing='true';setEnabled();return true;}return false;}
+function renderNote(){const n=$('note');n.replaceChildren();n.hidden=!current.note;n.dataset.kind=current.id==='campaign'?'campaign':current.noteKind||'standard';if(n.hidden)return;n.setAttribute('role','note');const copy=el(current.noteUrl?'a':'span','note-copy',current.note);if(current.noteUrl){const url=new URL(current.noteUrl);if(url.protocol==='https:'){copy.href=url.href;copy.target='_blank';copy.rel='noopener noreferrer';}}n.append(copy);}
+let fitting=false;
+function fitScene({preserve=false}={}){if(!tw||fitting)return;fitting=true;try{const scene=$('scene'),v=$('visual'),cs=getComputedStyle(scene),H=scene.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),large=parseFloat(getComputedStyle($('line')).fontSize)>26,small=innerHeight<560;const ah=$('actions').getBoundingClientRect().height,nh=$('note').hidden?0:$('note').getBoundingClientRect().height,gap=parseFloat(cs.gap)||0,blocks=2+(nh?1:0)+(ah?1:0),fixed=ah+nh+gap*(blocks-1),line=$('line'),lh=parseFloat(getComputedStyle(line).lineHeight),bubbleCSS=getComputedStyle($('bubble')),pad=parseFloat(bubbleCSS.paddingTop)+parseFloat(bubbleCSS.paddingBottom)+3;
+ let cast=innerHeight>=700?172:innerHeight>=620?156:110,vis=current.visual==='case'?210:current.type==='question'?155:current.visual==='room'?166:current.visual==='offer'?155:sceneAssets[current.visual]?Math.min(215,v.clientWidth*sceneAssets[current.visual].height/sceneAssets[current.visual].width):130;
+ const minCast=large||small?48:72,minVis=current.visual==='case'?132:current.type==='question'?(large||small?64:90):(large||small?50:78);
+ // Temporarily restore full text so every page is measured at the actual font and width.
+ tw.paginate(1000,{preserve});const full=line.getBoundingClientRect().height+pad;let excess=vis+cast+full+fixed-H;if(excess>0){const cut=Math.min(excess,vis-minVis);vis-=cut;excess-=cut;}if(excess>0){const cut=Math.min(excess,cast-minCast);cast-=cut;excess-=cut;}
+ const textBudget=Math.max(lh,H-fixed-vis-cast-pad),maxLines=Math.max(1,Math.floor(textBudget/lh));tw.paginate(maxLines,{preserve});const occupied=line.getBoundingClientRect().height+pad+fixed+vis+cast,surplus=Math.max(0,H-occupied);vis+=Math.min(24,surplus*.55);cast+=Math.min(16,surplus*.3);v.style.height=Math.round(vis)+'px';document.querySelector('.cast').style.height=Math.round(cast)+'px';v.dataset.compact=String(vis<125||(current.visual==='case-choice'&&vis<150));setEnabled();scene.dataset.fit=String(Math.round(occupied)<=H+2);
+ }finally{fitting=false;}}
+
+const imageCache=new Map();
+function casePhoto(c){if(imageCache.has(c.id))return imageCache.get(c.id);const img=el('img','case-photo');img.width=420;img.height=250;img.alt=`${c.item}の掲載写真`;img.decoding='async';img.src=asset+c.file;imageCache.set(c.id,img);return img;}
+const sceneAssets={
+ 'decision-photo':{file:'decision-v069.webp',width:1200,height:600,alt:'見てもらってから、決める。着物を手元に落ち着いて考えるイメージ'},
+ 'consultation-photo':{file:'consultation-v069.webp',width:1200,height:600,alt:'着物も、帯も、小物も。まとめた着物や和装小物のイメージ'},
+ 'keep-photo':{file:'keep-or-decline-v068.webp',width:752,height:394,alt:'売却するかどうかは値段を聞いてから決めて大丈夫。買取金額に納得いかなければ断ってもOK'},
+ 'visit-photo':{file:'home-appraisal-v067.webp',width:1200,height:600,alt:'重い荷物は、そのままに。査定士が、ご自宅へ。自宅で着物を査定するイメージ'},
+ 'store-photo':{file:'buysell-store-v066.webp',width:1200,height:647,alt:'バイセルの店舗外観の写真'},
+ 'fv-photo':{file:'first-view-v065.webp',width:740,height:350,alt:'日本の家庭のタンスに眠っている着物。合計およそ8兆円分!?'},
+ 'hidden-value-photo':{file:'kimono-hidden-value-v064.webp',width:1200,height:692,alt:'家に眠る着物。想像以上の価値があるかもしれません。'},
+ 'value-photo':{file:'kimono-value-v062.webp',width:1228,height:690,alt:'高価査定できる会社には、高く売れる理由がある。着物を案内する様子'},
+ 'appraisal-choice-photo':{file:'appraisal-is-not-sale-v061.webp',width:1200,height:600,alt:'査定＝売却ではありません。'},
+ 'free-photo':{file:'free-service-v060.webp',width:1056,height:400,alt:'はじめてでも安心。出張・査定0円、キャンセル0円、クーリング・オフ対応'},
+ 'service-photo':{file:'buysell-introduction.webp',width:1000,height:523,alt:'バイセル 初心者でも安心の買取サービス。査定料・相談料・キャンセル料は無料'},
+ 'old-photo':{file:'old-kimono.webp',width:800,height:521,alt:'昔の柄、家紋入り、シミ・シワ、証紙なしなどの着物も査定対象として案内'},
+ 'demand-photo':{file:'overseas-kimono.webp',width:800,height:450,alt:'海の向こうでKIMONOとして異なる価値を感じる人たちのイメージ'},
+ 'channels-photo':{file:'sales-channels.webp',width:800,height:568,alt:'国内店舗、EC、オンライン販売など、複数の販路の紹介'},
+ 'comparison-photo':{file:'comparison-210000.webp',width:1200,height:476,alt:'本場大島紬の比較事例。A社は複数着まとめて5,000円、B社2,400円、バイセル210,000円'},
+ campaign:{file:'campaign-november.webp',width:980,height:420,alt:'バイセル 出張買取限定 抽選で5倍。11月1日から11月30日にご成約の方'}
+};
+const sceneImageCache=new Map();
+function scenePhoto(item){if(sceneImageCache.has(item.file))return sceneImageCache.get(item.file);const img=el('img','scene-photo');img.width=item.width;img.height=item.height;img.alt=item.alt;img.decoding='async';img.src=asset+item.file;sceneImageCache.set(item.file,img);return img;}
+function visual(s){const v=$('visual');v.replaceChildren();v.className='visual';
+ if(sceneAssets[s.visual]){v.classList.add('asset-card');if(s.visual==='campaign')v.classList.add('campaign-card');v.append(scenePhoto(sceneAssets[s.visual]));return;}
+ if(s.visual==='room'){v.classList.add('room');v.append(el('p','eyebrow','KIMONO / A NEW CHAPTER'),el('h1','', '母の着物、\nしまったまま？'),el('span','ribbon','その一枚の、これからを。'));v.querySelector('h1').style.whiteSpace='pre-line';return;}
+ if(s.visual==='case'){const c=cases.get(s.caseId);v.classList.add('case-visual');v.append(el('div','case-label','バイセル掲載の一例'),casePhoto(c),el('p','case-title',c.item));const n=el('div','case-amount');n.append(el('small','','査定実例'),el('strong','',c.amount.toLocaleString('ja-JP')),el('span','yen','円'));v.append(n,el('p','case-area',`${c.area} ／ 複数点の合計`));return;}
+ if(s.visual==='case-choice'){v.classList.add('case-choice-visual');const row=el('div','case-options');for(const c of scenario.cases){const card=el('div','case-option'),image=el('img','category-art');image.src=asset+`category-${c.id}.webp`;image.alt='';image.width=480;image.height=320;image.decoding='async';const seen=s.seenCases?.includes(c.id),label=c.id==='kimono'?'着物と帯':c.id==='obi'?'袋帯':'和装小物';card.append(image,el('span','category-label',(seen?'✓ ':'')+label));if(seen)card.dataset.reviewed='true';row.append(card);}v.append(row);return;}
+ if(s.visual==='offer'){v.classList.add('offer-visual');v.append(el('p','service','バイセルの着物出張査定'),el('h2','','大切にしまってきた着物。\nまずは、価値を知る。'));v.querySelector('h2').style.whiteSpace='pre-line';const r=el('div','offer-steps');['01 申込む','02 日程の案内','03 ご自宅で査定'].forEach(t=>r.append(el('span','',t)));v.append(r,el('p','sub','出張料・査定料・キャンセル料 0円'));return;}
+ v.classList.add('diagram');
+ if(s.visual==='authority'){v.append(el('p','authority-kicker','運営会社は東証グロース上場（7685）'),el('p','authority-title','バイセル'),el('p','sub','研修を経た査定士が、一枚ずつ確認。'));const r=el('div','authority-flow');['大切な着物','→','査定士','→','国内の販路'].forEach(t=>r.append(el('span','',t)));v.append(r);return;}
+ if(s.visual==='comparison'){v.append(el('h2','','頼む先で、こんな違いも。'));const row=el('div','comparison-grid');for(const [label,value]of [['他社の例','5,000円'],['バイセルの例','210,000円']]){const cell=el('div','');cell.append(el('span','',label),el('strong','',value));row.append(cell);}v.append(row);return;}
+ if(s.visual==='demand'||s.visual==='channels'){v.append(el('h2','',s.visual==='demand'?'着物の、次の持ち主へ。':'しまっていた着物を、次へつなぐ。'));const row=el('div','authority-flow');for(const label of (s.visual==='demand'?['たんすの着物','→','国内外の人へ']:['着物','→','査定','→','国内外の販路']))row.append(el('span','',label));v.append(row);return;}
+ if(s.visual==='free'){v.append(el('h2','','ご自宅での査定に、3つの無料。'));const r=el('div','zero-grid');for(const t of ['出張料','査定料','キャンセル料']){const d=el('div','',t);d.append(el('strong','','0円'));r.append(d);}v.append(r);return;}
+ const data={intro:['着物に詳しい人に、見てもらう。','しまったままの一枚にも、次の選択を。',['バイセル','出張査定']],concerns:['気になることから、確かめる。','残すことも、相談することも。',['古い着物','持ち運び','思い出']],old:['古い柄も、証紙がなくても。','まずは相談。種類や状態を見て判断します。',['証紙なし','古い柄','家紋付き']],visit:['重い荷物は、そのままに。','査定士が、ご自宅へ。',['着物','帯','和装小物']],memory:['残したい一枚は、残す。','査定を受けたあとで、考えられます。',['思い出を大切に','相談から']],decision:['見てもらってから、決める。','査定内容を聞いて、お断りすることも可能です。',['相談だけでも','キャンセル料0円']]};
+ const d=data[s.visual]||data.intro;v.append(el('h2','',d[0]),el('p','sub',d[1]));const r=el('div','mini-list');d[2].forEach(t=>r.append(el('span','chip',t)));v.append(r);
+}
+function go(id,{back=false}={}){if(!byId.has(id))return;const token=++renderToken;previousVisual=current?.visual||null;current=byId.get(id);elapsed=0;charElapsed=0;lastTime=0;ready=false;
+ $('scene').dataset.step=id;$('scene').dataset.type=current.type;$('scene').dataset.visual=current.visual;
+ $('chapter').textContent=current.type==='cta'?'05 / 着物のこれからへ':id==='welcome'||['daughter','refused','friend'].includes(id)?'01 / お茶の時間に':id==='q1'||id.startsWith('reply_')&& !['reply_fee','reply_decision'].includes(id)||id.startsWith('ack_')?'02 / 気になることから':current.visual==='case'||['q2','expert','curiosity'].includes(id)?'03 / 写真で見る実例':'04 / ご自宅で、無料査定';
+ visual(current);$('bubble').dataset.speaker=current.speaker;document.querySelector('.cast').dataset.speaker=current.speaker;$('bubble').dataset.typing='true';
+ $('line').replaceChildren();appendRichText($('line'),current.message);$('line').setAttribute('aria-label',plainText(current.message));tw=prepareTypewriter($('line'));for(const g of $('line').querySelectorAll('.type-char'))g.setAttribute('aria-hidden','true');
+ $('bubble').querySelector('.tap-cue').hidden=!automatic(current);
+ for(const who of ['a','b']){const p=$('friend-'+who);p.className=who===current.speaker?'active':'';if(who===current.speaker&&current.reaction&&!back)p.classList.add(current.reaction);}
+ renderNote();$('actions').replaceChildren();$('hint').textContent=current.type==='question'?'気になるものを選んでください':current.type==='cta'||current.showCTA?'出張料・査定料・キャンセル料 無料':current.advanceMode==='manual'?'内容を確認したら、次へ':'';
+ if(current.type==='question'){for(const o of current.options){const b=rich(el('button','choice'),o.label);b.type='button';b.dataset.answer=o.id;b.disabled=true;b.addEventListener('click',()=>answer(o));$('actions').append(b);}}
+ else if(current.advanceMode==='manual'){const b=el('button','next','次へ');b.type='button';b.disabled=true;b.addEventListener('click',()=>advance());$('actions').append(b);}
+ if(current.type==='cta'||current.showCTA){$('actions').append(el('div','cta-sub','着物・帯・和装小物も、まとめて相談'));const c=el('button','cta');c.append(rich(el('span','cta-label'),scenario.steps.find(s=>s.type==='cta').label));c.type='button';c.dataset.position=current.type==='cta'?'final':'pre_final';c.addEventListener('click',()=>{paused=true;finish();syncPaused();$('notice').showModal();});$('actions').append(c);ctaVisible=false;ctaObserver.disconnect();ctaObserver.observe(c);}else{ctaVisible=true;ctaObserver.disconnect();}
+ $('back').disabled=history.length===0;
+ fitScene();castPlayer.set(current,{instant:back,reduced:reduced.matches});if(back){paused=true;finish();}
+ const images=[...$('visual').querySelectorAll('img')];Promise.all(images.map(img=>img.decode().catch(()=>{}))).then(()=>{if(renderToken!==token)return;ready=true;fitScene({preserve:true});setEnabled();});
+ if(!images.length){ready=true;setEnabled();}window.scrollTo({top:0,behavior:'instant'});syncPaused();
+}
+function advance(){if(!tw.complete){finish();return;}if(nextTextPage())return;if(current.type==='question'||current.type==='cta'||!ready)return;const next=current.next;if(!next)return;history.push(current.id);go(next);}
+function answer(o){if(!tw.allComplete||!ready)return;answers[current.id]=o.id;history.push(current.id);paused=false;go(o.next);}
+function rewindQuestion(id){const i=history.lastIndexOf(id);if(i<0&&current.id!==id)return;history=i<0?history:history.slice(0,i);const keep=new Set(history);for(const q of Object.keys(answers))if(!keep.has(q))delete answers[q];go(id,{back:true});}
+$('bubble').addEventListener('click',()=>{if(!tw.complete)finish();else if(tw.hasNextPage)nextTextPage();else if(automatic(current))advance();});
+$('back').addEventListener('click',()=>{if(tw?.previousPage()){paused=true;elapsed=0;charElapsed=0;$('bubble').dataset.typing='false';setEnabled();syncPaused();return;}const id=history.pop();if(!id)return;const keep=new Set(history);for(const q of Object.keys(answers))if(!keep.has(q))delete answers[q];go(id,{back:true});});
+$('pause').addEventListener('click',()=>{paused=!paused;lastTime=0;syncPaused();});
+$('dismiss').addEventListener('click',()=>$('notice').close());let resizePending=false;function resizeFit(){if(resizePending)return;resizePending=true;requestAnimationFrame(()=>{resizePending=false;fitScene({preserve:true});});}window.addEventListener('resize',resizeFit);window.visualViewport?.addEventListener('resize',resizeFit);new MutationObserver(resizeFit).observe(document.documentElement,{attributes:true,attributeFilter:['style']});
+document.addEventListener('visibilitychange',()=>{tabVisible=!document.hidden;lastTime=0;syncPaused();});
+const observer=new IntersectionObserver(entries=>{onScreen=entries[0].isIntersecting;lastTime=0;syncPaused();$('bubble').querySelector('.tap-cue').dataset.offscreen=String(!onScreen);},{threshold:.1});observer.observe($('bubble'));
+const ctaObserver=new IntersectionObserver(entries=>{ctaVisible=entries[0].intersectionRatio>=.98;lastTime=0;syncCtaMotion();},{threshold:[0,.98,1]});
+function tick(time){const delta=lastTime?Math.min(time-lastTime,100):0;lastTime=time;const enabled=!paused&&tabVisible&&onScreen&&ready&&!$('notice').open;castPlayer.tick(delta,{enabled,text:tw?.text||'',complete:tw?.allComplete,reduced:reduced.matches});if(tw&&!paused&&tabVisible&&onScreen&&ready&&!$('notice').open){if(!tw.complete){charElapsed+=delta;const interval=reduced.matches?0:55;let count=0;while(!tw.complete&&charElapsed>=interval&&count<120){const c=tw.revealOne();charElapsed-=interval;if(/[、。！？]/.test(c)&&!reduced.matches)charElapsed-=140;count++;}if(tw.complete){$('bubble').dataset.typing='false';elapsed=0;setEnabled();}}else if(automatic(current)&&(!current.showCTA||ctaVisible)){elapsed+=delta;if(elapsed>=hold())advance();}}requestAnimationFrame(tick);}
+Object.defineProperty(window,'__lp',{get:()=>({step:current?.id,paused,tabVisible,onScreen,ctaVisible,complete:tw?.complete,allComplete:tw?.allComplete,page:tw?.pageIndex,pages:tw?.pageCount,motion:castPlayer.state(),shown:tw?.count,waitElapsed:elapsed,hold:hold(),answers:{...answers},preview,ready})});
+go(scenario.start);requestAnimationFrame(tick);
