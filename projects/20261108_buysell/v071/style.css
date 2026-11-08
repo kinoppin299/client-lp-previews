@@ -22,9 +22,27 @@ header{height:44px;gap:5px}.brand{flex:1;min-width:0;font-size:10px;white-space:
 /* 0.7.2: live CTA uses a native link with the existing button presentation. */
 a.cta{text-decoration:none;cursor:pointer;touch-action:manipulation}
 
-/* 0.7.4: plain character stage and a moving next button on the opening screen. */
-#scene[data-step=welcome] #actions{margin-top:auto;padding:3px 3px 4px}
-.opening-next{animation:opening-next-nudge 1.8s ease-in-out infinite;transform-origin:center;will-change:transform}
-html[data-paused=true] .opening-next{animation-play-state:paused}
-@keyframes opening-next-nudge{0%,64%,100%{transform:translateY(0)}22%{transform:translateY(-3px)}40%{transform:translateY(0)}52%{transform:translateY(-1px)}}
-@media(prefers-reduced-motion:reduce){.opening-next{animation:none!important;transform:none!important;will-change:auto}}
+/* 0.7.5: a visible tap action throughout the conversation. */
+.book{height:calc(100dvh + var(--overflow-extra,0px))}
+html[data-overflow=true] body{height:auto;min-height:100dvh;overflow-y:auto}
+#actions{margin-top:auto;padding:2px 3px 4px;gap:6px}
+.auto-help{margin:0;min-height:16px;font-size:11px;line-height:16px;color:#71654e;text-align:center}
+.progress-next{min-height:48px;padding:6px 35px 6px 12px;gap:9px}
+.progress-next .action-label{min-width:0}
+.tap-hand{display:inline-flex;align-items:center;justify-content:center;width:28px;height:32px;flex:none;pointer-events:none;color:#875322;transform-origin:50% 85%}
+.tap-hand svg{display:block;width:100%;height:100%;overflow:visible}
+.progress-next:not(:disabled)>.tap-hand,.question-reveal:not(:disabled)>.tap-hand,.choice-instruction>.tap-hand{animation:tap-invite 2.4s ease-in-out infinite}
+@keyframes tap-invite{0%,12%,40%,100%{transform:translateY(0) rotate(-6deg)}20%,33%{transform:translateY(3px) rotate(-6deg) scale(.94)}26%{transform:translateY(0) rotate(-6deg)}}
+html[data-paused=true] #actions .tap-hand{animation-play-state:paused}
+.choice-guide{height:32px;display:flex;align-items:center;justify-content:center}
+.question-reveal,.choice-instruction{display:flex;align-items:center;justify-content:center;gap:7px;min-height:32px;margin:0;font-size:clamp(12px,.82rem,16px);line-height:1.25}
+.question-reveal{border:1px solid #d6b676;border-radius:7px;background:#fff1d7;padding:2px 12px;color:#654319;font-weight:700;min-width:190px}
+.question-reveal .tap-hand,.choice-instruction .tap-hand{width:23px;height:27px}
+.choice-instruction{color:#395f42;font-weight:700}
+.choice{justify-content:flex-start;gap:8px}
+.choice>.tap-hand{width:21px;height:26px}
+.choice-label{flex:1;min-width:0}
+.cta>.tap-hand{width:25px;height:30px;position:relative;z-index:1;color:#fff}
+@media(max-height:560px){#actions{gap:4px}.choice{padding:6px 9px;gap:6px}.choice-guide{height:30px}.question-reveal,.choice-instruction{min-height:30px}.progress-next{min-height:44px}.auto-help{font-size:10px;line-height:14px;min-height:14px}}
+@media(prefers-reduced-motion:reduce){.tap-hand{animation:none!important;transform:none!important}}
+.final-instruction{margin:0;font-size:clamp(11px,.8rem,16px);line-height:1.3;text-align:center;color:#395f42;font-weight:700}
