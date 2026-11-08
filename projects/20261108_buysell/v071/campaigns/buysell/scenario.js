@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "buysell-silent",
-    "version": "0.7.6",
+    "version": "0.7.7",
     "variant": "a",
     "title": "母の着物、しまったまま？",
     "brand": "【大注目】古い着物が驚きの査定額に!?",
@@ -67,20 +67,12 @@ export default {
           "b": "neutral"
         },
         "advanceMode": "manual",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "offer",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2540
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 844,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -95,20 +87,12 @@ export default {
           "a": "neutral",
           "b": "surprise"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 3305
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1048,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -123,20 +107,18 @@ export default {
           "a": "confused",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "ponder",
-            "pose": "anxious",
-            "delayMs": 80,
-            "durationMs": 3305
+            "clip": "a-think",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1048,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 1000
           }
         ]
       },
@@ -151,20 +133,18 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "explain",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3395
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1072,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 1100
           }
         ]
       },
@@ -179,20 +159,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 2720
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 892,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -207,20 +179,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3125
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1000,
-            "durationMs": 2100
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -235,20 +199,12 @@ export default {
           "a": "confused",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 2810
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 916,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -265,20 +221,18 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "count",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 4385
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1336,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 1100
           }
         ]
       },
@@ -293,20 +247,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 2945
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 952,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -323,20 +269,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "explain",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 4385
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1336,
-            "durationMs": 2100
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -351,20 +289,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3035
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 976,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -385,20 +315,12 @@ export default {
         "noteUrl": "https://www.recycle-tsushin.com/news/detail_11999.php",
         "noteKind": "source",
         "claimScope": "2025年12月11日掲載のジャパンキモノオークションに関する報道。着物全体・現在の個別査定結果を表すものではない。",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "count",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3890
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1204,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -413,20 +335,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "relief",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3125
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1000,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -441,20 +355,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "explain",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3710
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1156,
-            "durationMs": 2100
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -469,20 +375,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -497,20 +395,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 2765
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 904,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -528,20 +418,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "count",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3755
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1168,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "21万円",
+            "delayMs": 80
           }
         ]
       },
@@ -558,20 +440,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3125
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1000,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -586,20 +460,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "ponder",
-            "pose": "anxious",
-            "delayMs": 80,
-            "durationMs": 3035
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 976,
-            "durationMs": 2100
+            "clip": "a-think",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -614,20 +480,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3575
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1120,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -658,20 +516,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 2585
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 856,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -691,20 +541,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3935
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1216,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -723,20 +565,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "160万円",
+            "delayMs": 80
           }
         ]
       },
@@ -756,20 +590,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3620
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1132,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -788,20 +614,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -821,20 +639,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -853,20 +663,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -886,20 +688,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3620
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1132,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -918,20 +712,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -951,20 +737,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -983,20 +761,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1016,20 +786,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3935
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1216,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1048,20 +810,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "160万円",
+            "delayMs": 80
           }
         ]
       },
@@ -1081,20 +835,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1113,20 +859,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1146,20 +884,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3935
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1216,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1178,20 +908,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "160万円",
+            "delayMs": 80
           }
         ]
       },
@@ -1211,20 +933,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3620
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1132,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1243,20 +957,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1276,20 +982,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1308,20 +1006,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1341,20 +1031,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3620
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1132,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1373,20 +1055,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1406,20 +1080,12 @@ export default {
           "b": "smile"
         },
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "present",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3935
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1216,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1438,20 +1104,12 @@ export default {
         },
         "note": "※全ての着物に同様の査定額・価格差が生じるものではありません。",
         "noteKind": "case",
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "surprise",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3485
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1096,
-            "durationMs": 2100
+            "clip": "a-surprise",
+            "cue": "160万円",
+            "delayMs": 80
           }
         ]
       },
@@ -1486,20 +1144,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1534,20 +1184,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1582,20 +1224,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1626,20 +1260,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1670,20 +1296,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1714,20 +1332,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1749,20 +1359,12 @@ export default {
         },
         "next": "know_first",
         "autoHoldMs": 2200,
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "nod",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2855
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 928,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1777,20 +1379,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "reassure",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2720
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 892,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1805,20 +1399,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 2855
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 928,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1833,20 +1419,18 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "explain",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3620
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1132,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 1100
           }
         ]
       },
@@ -1861,20 +1445,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "question",
-            "pose": "confused",
-            "delayMs": 80,
-            "durationMs": 3980
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1228,
-            "durationMs": 2100
+            "clip": "a-offer",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -1892,20 +1468,18 @@ export default {
         },
         "note": "※宅配買取の場合、査定後買取希望されない場合は返送料がかかります。",
         "noteKind": "fees",
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "count",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2810
+            "clip": "b-explain",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 916,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 1100
           }
         ]
       },
@@ -1920,20 +1494,18 @@ export default {
           "a": "anxious",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "ponder",
-            "pose": "anxious",
-            "delayMs": 80,
-            "durationMs": 3170
+            "clip": "a-think",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1012,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 1000
           }
         ]
       },
@@ -1948,20 +1520,18 @@ export default {
           "a": "anxious",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "reassure",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 4295
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "a",
-            "kind": "listen",
-            "pose": "anxious",
-            "delayMs": 1312,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 1100
           }
         ]
       },
@@ -1976,20 +1546,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "relief",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3305
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1048,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -2006,20 +1568,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "count",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3350
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1060,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -2034,20 +1588,18 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "stop",
-            "pose": "surprise",
-            "delayMs": 80,
-            "durationMs": 3575
+            "clip": "a-surprise",
+            "cue": "",
+            "delayMs": 80
           },
           {
             "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1120,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 1000
           }
         ]
       },
@@ -2062,20 +1614,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "laugh",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 2675
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 880,
-            "durationMs": 2100
+            "clip": "b-reassure",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -2091,20 +1635,12 @@ export default {
           "a": "neutral",
           "b": "neutral"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "a",
-            "kind": "resolve",
-            "pose": "determined",
-            "delayMs": 80,
-            "durationMs": 3080
-          },
-          {
-            "role": "b",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 988,
-            "durationMs": 2100
+            "clip": "a-nod",
+            "cue": "",
+            "delayMs": 80
           }
         ]
       },
@@ -2121,20 +1657,12 @@ export default {
           "a": "neutral",
           "b": "smile"
         },
-        "acting": [
+        "nativeActions": [
           {
             "role": "b",
-            "kind": "invite",
-            "pose": "smile",
-            "delayMs": 80,
-            "durationMs": 3440
-          },
-          {
-            "role": "a",
-            "kind": "listen",
-            "pose": "neutral",
-            "delayMs": 1084,
-            "durationMs": 2100
+            "clip": "b-invite",
+            "cue": "まずは",
+            "delayMs": 80
           }
         ]
       }
