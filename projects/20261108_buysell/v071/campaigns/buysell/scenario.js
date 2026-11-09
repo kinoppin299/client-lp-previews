@@ -1,7 +1,7 @@
 export default {
   "a": {
     "id": "buysell-silent",
-    "version": "0.7.7",
+    "version": "0.7.8",
     "variant": "a",
     "title": "母の着物、しまったまま？",
     "brand": "【大注目】古い着物が驚きの査定額に!?",

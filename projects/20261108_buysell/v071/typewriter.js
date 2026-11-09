@@ -1,8 +1,9 @@
+import {graphemes} from './playback-compat.js?build=1d94b6e8a672';
 // Safe rich-text glyphs keep their final positions. Long lines can use in-screen pages.
 export function prepareTypewriter(line){
  const walker=document.createTreeWalker(line,NodeFilter.SHOW_TEXT),nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
- const segmenter=new Intl.Segmenter('ja',{granularity:'grapheme'}),glyphs=[];
- for(const node of nodes){const fragment=document.createDocumentFragment();for(const item of segmenter.segment(node.data)){const span=document.createElement('span');span.className='type-char';span.textContent=item.segment;span.setAttribute('aria-hidden','true');fragment.append(span);glyphs.push(span);}node.replaceWith(fragment);}
+ const glyphs=[];
+ for(const node of nodes){const fragment=document.createDocumentFragment();for(const item of graphemes(node.data)){const span=document.createElement('span');span.className='type-char';span.textContent=item;span.setAttribute('aria-hidden','true');fragment.append(span);glyphs.push(span);}node.replaceWith(fragment);}
  let pages=[[0,glyphs.length]],page=0,count=0,visibleText='';
  function paint(){const [start,end]=pages[page];glyphs.forEach((g,i)=>{g.style.display=i<start||i>=end?'none':'';g.style.visibility=i>=start&&i<start+count?'visible':'hidden';});visibleText=glyphs.slice(start,start+count).map(g=>g.textContent).join('');}
  return {

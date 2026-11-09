@@ -1,7 +1,8 @@
-import data from './campaigns/buysell/motion-data.js?build=e750178573de';
+import {loadPicture} from './playback-compat.js?build=1d94b6e8a672';
+import data from './campaigns/buysell/motion-data.js?build=1d94b6e8a672';
 // Playback only: all motion is rendered by Image 2.6 into the source GIF frames.
 const pictures=new Map();
-async function picture(url){const key=new URL(url,document.baseURI).href;if(!pictures.has(key))pictures.set(key,(async()=>{const image=new Image();image.src=key;await image.decode();return image;})());return pictures.get(key);}
+async function picture(url){const key=new URL(url,document.baseURI).href;if(!pictures.has(key))pictures.set(key,loadPicture(key).catch(error=>{pictures.delete(key);throw error;}));return pictures.get(key);}
 export function createCastPlayer(){const actors={};let generation=0;
  for(const role of ['a','b']){const img=document.getElementById('friend-'+role),canvas=document.createElement('canvas');canvas.width=data.frameWidth;canvas.height=data.frameHeight;canvas.className='character-motion';canvas.hidden=true;canvas.setAttribute('aria-hidden','true');Object.assign(canvas.style,{left:'-14.285714%',right:'auto',width:'128.571428%'});img.parentElement.append(canvas);actors[role]={img,canvas,context:canvas.getContext('2d'),plan:null,clip:null,atlas:null,baseReady:false,ready:false,started:false,ended:true,elapsed:0,frame:0,pose:'neutral'};}
  function still(a,image,poster){a.context.clearRect(0,0,data.frameWidth,data.frameHeight);if(poster)a.context.drawImage(image,0,0,data.frameWidth,data.frameHeight);else a.context.drawImage(image,32,0,224,380);a.img.src=image.src;a.img.hidden=true;a.canvas.hidden=false;}
