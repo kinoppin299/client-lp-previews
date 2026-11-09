@@ -1,10 +1,10 @@
-import {motionPreference,watchPreference,readyImage,visibilityObserver} from './playback-compat.js?build=1d94b6e8a672';
-import {createCastPlayer} from './character-motion.js?build=1d94b6e8a672';
-import registry from './scenarios.js?build=1d94b6e8a672';
-import {appendRichText,plainText} from './rich-text.js?build=1d94b6e8a672';
-import {prepareTypewriter} from './typewriter.js?build=1d94b6e8a672';
-import {readingHold} from './playback.js?build=1d94b6e8a672';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=1d94b6e8a672';
+import {motionPreference,watchPreference,readyImage,visibilityObserver} from './playback-compat.js?build=3df1fa35920a';
+import {createCastPlayer} from './character-motion.js?build=3df1fa35920a';
+import registry from './scenarios.js?build=3df1fa35920a';
+import {appendRichText,plainText} from './rich-text.js?build=3df1fa35920a';
+import {prepareTypewriter} from './typewriter.js?build=3df1fa35920a';
+import {readingHold} from './playback.js?build=3df1fa35920a';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=3df1fa35920a';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');

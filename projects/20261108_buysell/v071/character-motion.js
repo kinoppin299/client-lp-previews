@@ -1,5 +1,5 @@
-import {loadPicture} from './playback-compat.js?build=1d94b6e8a672';
-import data from './campaigns/buysell/motion-data.js?build=1d94b6e8a672';
+import {loadPicture} from './playback-compat.js?build=3df1fa35920a';
+import data from './campaigns/buysell/motion-data.js?build=3df1fa35920a';
 // Playback only: all motion is rendered by Image 2.6 into the source GIF frames.
 const pictures=new Map();
 async function picture(url){const key=new URL(url,document.baseURI).href;if(!pictures.has(key))pictures.set(key,loadPicture(key).catch(error=>{pictures.delete(key);throw error;}));return pictures.get(key);}

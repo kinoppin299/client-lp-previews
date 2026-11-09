@@ -62,3 +62,4 @@ html[data-motion-effective=static] .cta:before{display:none!important}
 #motion-preferences .motion-note{font-size:11px;line-height:1.6;color:#716b60}
 
 html[data-modal=true] .book{pointer-events:none}
+@media(max-width:359px){.playback #back,.playback #pause{width:34px}}

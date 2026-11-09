@@ -1,4 +1,4 @@
-import {graphemes} from './playback-compat.js?build=1d94b6e8a672';
+import {graphemes} from './playback-compat.js?build=3df1fa35920a';
 // Safe rich-text glyphs keep their final positions. Long lines can use in-screen pages.
 export function prepareTypewriter(line){
  const walker=document.createTreeWalker(line,NodeFilter.SHOW_TEXT),nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
