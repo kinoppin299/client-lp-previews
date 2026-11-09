@@ -1,10 +1,4 @@
 /* Design B: orientation, focused choices and a coordinated final CTA. */
-.story-progress{flex:none;padding:7px 12px 5px;border-bottom:1px solid #e6e3d6;background:#fcfaf4}
-.chapter-steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.progress-step{min-width:0;text-align:center;color:#8a897b;font-size:11px;line-height:15px}
-.progress-track{display:block;height:4px;border-radius:3px;background:#dfdfd2;overflow:hidden;margin-bottom:4px}
-.chapter-fill{display:block;height:100%;background:#237260;transform-origin:left center;transform:scaleX(0)}
-.progress-step[aria-current=step]{font-weight:800;color:#24694e}.progress-step[data-done=true]{color:#617d66}
 #scene{gap:7px;padding-top:7px}
 #scene[data-type=question] .cast{display:none}
 #scene[data-type=question] .bubble{padding-bottom:17px}
@@ -60,3 +54,12 @@ html[data-motion-effective=static] .cta[data-position=final]:before,html[data-mo
 .choice-continue{background:#eef4e9}
 @media(max-height:600px){.choice.choice-with-image{min-height:86px;padding:9px 11px;gap:10px}.choice-thumb{width:84px;height:56px}#scene[data-type=question] #actions{margin-top:10px}}
 @media(max-height:500px){.choice.choice-with-image{min-height:72px;padding:7px 9px;gap:8px}.choice-thumb{width:72px;height:48px}#scene[data-type=question] #actions{margin-top:6px}.choice-instruction{font-size:13px}}
+
+/* 0.8.1: fixed frame per viewport; no scene-dependent camera resizing. */
+#scene[data-layout=normal] #note[hidden]{display:block!important;visibility:hidden}
+#scene[data-layout=normal] #note{flex:none}
+#scene:not([data-layout=normal]) #note[hidden]{display:none!important}
+#actions{align-content:end}
+.progress-next{height:var(--next-height,66px);min-height:var(--next-height,66px)}
+.action-sub{height:var(--sub-height,17px);min-height:var(--sub-height,17px);display:flex;align-items:center;justify-content:center}
+#scene[data-type=question] .bubble{padding:14px 16px 23px}

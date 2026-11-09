@@ -1,4 +1,4 @@
-import {edges,validateScenario} from './core.js?build=b534b91f2f93';
+import {edges,validateScenario} from './core.js?build=199d4303ef4f';
 
 export function draftKey(base,campaign,variant) {
   return `chat-lp:copy-editor:${new URL('.',base).pathname}:${campaign}:${variant}`;
