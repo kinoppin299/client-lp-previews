@@ -1,10 +1,10 @@
-import {motionPreference,watchPreference,readyImage,visibilityObserver} from './playback-compat.js?build=199d4303ef4f';
-import {createCastPlayer} from './character-motion.js?build=199d4303ef4f';
-import registry from './scenarios.js?build=199d4303ef4f';
-import {appendRichText,plainText} from './rich-text.js?build=199d4303ef4f';
-import {prepareTypewriter} from './typewriter.js?build=199d4303ef4f';
-import {readingHold} from './playback.js?build=199d4303ef4f';
-import {draftKey,restoreCopyDraft} from './editor-core.js?build=199d4303ef4f';
+import {motionPreference,watchPreference,readyImage,visibilityObserver} from './playback-compat.js?build=186363da8c8e';
+import {createCastPlayer} from './character-motion.js?build=186363da8c8e';
+import registry from './scenarios.js?build=186363da8c8e';
+import {appendRichText,plainText} from './rich-text.js?build=186363da8c8e';
+import {prepareTypewriter} from './typewriter.js?build=186363da8c8e';
+import {readingHold} from './playback.js?build=186363da8c8e';
+import {draftKey,restoreCopyDraft} from './editor-core.js?build=186363da8c8e';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),campaign=query.get('scenario')||'buysell',variant=query.get('v')||'a',preview=query.get('editor_preview')==='1';
 let scenario=registry[campaign]?.[variant];
 if(!scenario)throw Error('案件が見つかりません');
@@ -26,7 +26,7 @@ function syncCTAAvailability(){const c=$('actions').querySelector('.cta');if(!c)
 
 function scale(){return Math.max(1,parseFloat(getComputedStyle($('line')).fontSize)/18);}
 function hold(){return readingHold({},current,tw?.length||0,{scale:scale(),previousVisual});}
-function syncCtaMotion(){const c=$('actions').querySelector('.cta[data-position=final]');if(c)c.dataset.motion=paused||!tabVisible||!onScreen||!ctaVisible||modalOpen()||c.dataset.armed!=='true'?'paused':'running';}
+function syncCtaMotion(){const c=$('actions').querySelector('.cta');if(c)c.dataset.motion=paused||!tabVisible||!onScreen||!ctaVisible||modalOpen()||c.dataset.armed!=='true'?'paused':'running';}
 function syncPaused(){document.documentElement.dataset.modal=String(modalOpen());document.documentElement.dataset.paused=String(paused||!tabVisible||!onScreen||modalOpen());$('pause').textContent=paused?'▶':'Ⅱ';$('pause').setAttribute('aria-label',paused?'再開':'一時停止');$('pause').title=paused?'再開':'一時停止';$('pause').setAttribute('aria-pressed',String(paused));syncCtaMotion();setEnabled();}
 function finish(){tw?.finish();$('bubble').dataset.typing='false';elapsed=0;setEnabled();}
 function setEnabled(){for(const b of $('actions').querySelectorAll('.choice'))b.disabled=!tw?.allComplete||!ready;for(const b of $('actions').querySelectorAll('.next')){b.disabled=!ready;b.querySelector('.action-label').textContent=!tw?.complete?'全文を表示':tw.hasNextPage?'続きを表示':'次へ進む';}
@@ -92,7 +92,7 @@ function scenePhoto(item){if(sceneImageCache.has(item.file))return sceneImageCac
 function visual(s){const v=$('visual');v.replaceChildren();v.className='visual';if(s.type==='question'){v.setAttribute('aria-hidden','true');return;}v.removeAttribute('aria-hidden');
  if(sceneAssets[s.visual]){v.classList.add('asset-card');if(s.visual==='campaign')v.classList.add('campaign-card');v.append(scenePhoto(sceneAssets[s.visual]));return;}
  if(s.visual==='room'){v.classList.add('room');v.append(el('p','eyebrow','KIMONO / A NEW CHAPTER'),el('h1','', '母の着物、\nしまったまま？'),el('span','ribbon','その一枚の、これからを。'));v.querySelector('h1').style.whiteSpace='pre-line';return;}
- if(s.visual==='case'){const c=cases.get(s.caseId);v.classList.add('case-visual');v.append(el('div','case-label','バイセル掲載の一例'),casePhoto(c),el('p','case-title',c.item));const n=el('div','case-amount');n.append(el('small','','査定実例'),el('strong','',c.amount.toLocaleString('ja-JP')),el('span','yen','円'));v.append(n,el('p','case-area',`${c.area} ／ 複数点の合計`));return;}
+ if(s.visual==='case'){const c=cases.get(s.caseId);v.classList.add('case-visual');const details=el('div','case-details'),n=el('div','case-amount');n.append(el('strong','',c.amount.toLocaleString('ja-JP')),el('span','yen','円'));details.append(el('div','case-label','バイセル掲載の査定実例'),el('p','case-title',c.item),n,el('p','case-area',`${c.area} ／ 複数点の合計`));v.append(casePhoto(c),details);return;}
  if(s.visual==='case-choice'){v.classList.add('case-choice-visual');const row=el('div','case-options');for(const c of scenario.cases){const card=el('div','case-option'),image=el('img','category-art');image.src=asset+`category-${c.id}.webp`;image.alt='';image.width=480;image.height=320;image.decoding='async';const seen=s.seenCases?.includes(c.id),label=c.id==='kimono'?'着物と帯':c.id==='obi'?'袋帯':'和装小物';card.append(image,el('span','category-label',(seen?'✓ ':'')+label));if(seen)card.dataset.reviewed='true';row.append(card);}v.append(row);return;}
  if(s.visual==='offer'){v.classList.add('offer-visual');v.append(el('p','service','バイセルの着物出張査定'),el('h2','','大切にしまってきた着物。\nまずは、価値を知る。'));v.querySelector('h2').style.whiteSpace='pre-line';const r=el('div','offer-steps');['01 申込む','02 日程の案内','03 ご自宅で査定'].forEach(t=>r.append(el('span','',t)));v.append(r,el('p','sub','出張料・査定料・キャンセル料 0円'));return;}
  v.classList.add('diagram');
